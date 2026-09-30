@@ -14,18 +14,20 @@ import type { RunDuration, RunUsage } from '../usage.ts'
  * Builds the static results site: the viewer page from viewer/, plus for each
  * graded run its app (rebuilt to work from a subfolder), compressed grader
  * captures, the report as HTML, and a summary in runs.json. Runs come from
- * this machine's runs/ and from results contributed to the repository.
+ * this machine's runs/ and from results archived in the repository.
  * Transcripts are never published.
  */
 
 export const SITE_DIR = path.join(BENCH_ROOT, '_site')
 const VIEWER_DIR = path.join(BENCH_ROOT, 'viewer')
-/** Contributed results, committed as results/<batch>/<run>/ in the same layout as a graded run. */
+/** Archived results, committed as results/<batch>/<run>/ in the same layout as a graded run. */
 const RESULTS_DIR = path.join(BENCH_ROOT, 'results')
 
 /** One entry of runs.json, everything the viewer shows before opening the full report. */
 export interface SiteRun {
   id: string
+  /** The run's folder name before it was archived, which was its id while it was published from runs/. */
+  formerId: string | null
   /** Runs are only ranked against runs of the same benchmark version. */
   benchmarkVersion: number
   scenario: { id: string; title: string; target: string; targetLabel: string }
@@ -78,13 +80,13 @@ export async function buildSite(basePath: string, outDir = SITE_DIR): Promise<Si
   return runs
 }
 
-/** Every graded run, with the id it gets on the site. Contributed runs are prefixed with their batch. */
+/** Every graded run, with the id it gets on the site. Archived runs are prefixed with their batch. */
 function gradedRuns(): { id: string; dir: string }[] {
   const local = subfolders(RUNS_DIR).map((name) => ({ id: name, dir: path.join(RUNS_DIR, name) }))
-  const contributed = subfolders(RESULTS_DIR).flatMap((batch) =>
+  const archived = subfolders(RESULTS_DIR).flatMap((batch) =>
     subfolders(path.join(RESULTS_DIR, batch)).map((name) => ({ id: `${batch}_${name}`, dir: path.join(RESULTS_DIR, batch, name) })),
   )
-  return [...local, ...contributed]
+  return [...local, ...archived]
     .filter((run) => fs.existsSync(path.join(run.dir, 'report', 'score.json')))
     .sort((a, b) => a.id.localeCompare(b.id))
 }
@@ -132,7 +134,7 @@ function rebasePublicPaths(outDir: string, publicDir: string, base: string): voi
   }
 }
 
-/** Grader captures as WebP. Contributed results already ship them compressed, so those are copied. */
+/** Grader captures as WebP. Archived results already ship them compressed, so those are copied. */
 async function compressCaptures(paths: RunPaths, outDir: string): Promise<void> {
   const captures = path.join(paths.report, 'captures')
   fs.mkdirSync(outDir, { recursive: true })
@@ -161,12 +163,15 @@ function renderReport(paths: RunPaths, id: string): string {
 
 function summarize(paths: RunPaths, id: string): Omit<SiteRun, 'hasApp'> {
   const meta = readMeta(paths)
+  const provenance = path.join(paths.root, 'provenance.json')
+  const originalName = fs.existsSync(provenance) ? (JSON.parse(fs.readFileSync(provenance, 'utf8')) as { run?: string }).run : undefined
   const graded = JSON.parse(fs.readFileSync(path.join(paths.report, 'score.json'), 'utf8')) as GradedRun
   const { usage, duration } = graded.processFacts
   const command = meta.agent?.command ?? ''
   const flag = (name: string) => new RegExp(`--${name}[ =]["']?([^\\s"']+)`).exec(command)?.[1] ?? null
   return {
     id,
+    formerId: originalName && originalName !== id ? originalName : null,
     benchmarkVersion: graded.benchmarkVersion ?? 1,
     scenario: { id: meta.scenario.id, title: meta.scenario.title, target: meta.scenario.target, targetLabel: meta.scenario.targetLabel },
     model: usage?.model ?? flag('model') ?? meta.agent?.model ?? 'unknown model',

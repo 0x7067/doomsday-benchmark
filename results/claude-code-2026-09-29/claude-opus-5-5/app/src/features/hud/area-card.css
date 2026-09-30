@@ -1,0 +1,95 @@
+.area-card {
+  position: fixed;
+  z-index: var(--z-content);
+  left: var(--gutter);
+  top: 56%;
+  display: grid;
+  justify-items: start;
+  row-gap: 0.6rem;
+  pointer-events: none;
+  animation: area-card 4.2s var(--ease-in-out) both;
+}
+
+.area-card__name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.4vw, 3rem);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: var(--cream);
+  text-shadow:
+    0 2px 18px rgb(0 0 0 / 0.85),
+    0 0 2px rgb(0 0 0 / 0.6);
+}
+
+.area-card__subtitle {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-style: italic;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  color: var(--cream-muted);
+  text-shadow: 0 1px 12px rgb(0 0 0 / 0.9);
+}
+
+/* The thin rule the game draws under area names. */
+.area-card__subtitle::before {
+  content: '';
+  width: 3.5rem;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-300), transparent);
+}
+
+@keyframes area-card {
+  0% {
+    opacity: 0;
+    transform: translate3d(-12px, -50%, 0);
+    filter: blur(6px);
+  }
+  18%,
+  72% {
+    opacity: 1;
+    transform: translate3d(0, -50%, 0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(8px, -50%, 0);
+    filter: blur(4px);
+  }
+}
+
+/* Not LANDSCAPE_QUERY. */
+@media not all and (min-aspect-ratio: 5/4) {
+  .area-card {
+    left: 0;
+    right: 0;
+    top: 38%;
+    justify-items: center;
+    text-align: center;
+  }
+  .area-card__subtitle::after {
+    content: '';
+    width: 3.5rem;
+    height: 1px;
+    background: linear-gradient(to left, var(--gold-300), transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .area-card {
+    animation-name: area-card-fade;
+  }
+  @keyframes area-card-fade {
+    0%,
+    100% {
+      opacity: 0;
+      transform: translateY(-50%);
+    }
+    15%,
+    75% {
+      opacity: 1;
+      transform: translateY(-50%);
+    }
+  }
+}

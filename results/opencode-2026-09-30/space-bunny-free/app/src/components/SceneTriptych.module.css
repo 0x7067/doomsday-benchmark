@@ -1,0 +1,181 @@
+/* ==========================================================================
+   Hero bottom rail
+   ========================================================================== */
+
+.rail {
+  position: relative;
+  z-index: var(--z-rail);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(1.25rem, 3.5vw, 3rem);
+  /* `min(100% - x, y)` with a bare product is not a valid min() and the
+     declaration is dropped, which silently lets the rail size to its content. */
+  inline-size: calc(100% - var(--gutter) * 2);
+  max-inline-size: 46rem;
+  margin-inline: auto;
+  padding-block: clamp(0.6rem, 1.5vh, 1rem) clamp(0.7rem, 1.8vh, 1.15rem);
+}
+
+.rail::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--hairline-strong) 22%,
+    var(--hairline-strong) 78%,
+    transparent
+  );
+}
+
+.list {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.cell {
+  flex: 1;
+  min-inline-size: 0;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--ink-700);
+  border: 1px solid var(--hairline);
+  transition:
+    border-color 420ms var(--ease-out),
+    transform 520ms var(--ease-out);
+
+  /* Blurred placeholder, set inline by the component. */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  filter: saturate(0.8) brightness(0.82);
+  scale: 1.02;
+  transition:
+    filter 620ms var(--ease-out),
+    scale 900ms var(--ease-out);
+}
+
+/* The poster is a tall source; take the canopy light rather than Link, so the
+   strip reads as three places and not as the hero shot twice. */
+.frame[data-poster='true'] .image {
+  object-position: 50% 17%;
+}
+
+.sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgb(3 8 10 / 0.7) 100%);
+  opacity: 0.85;
+  transition: opacity 420ms var(--ease-out);
+}
+
+.caption {
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-indent: 0.24em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 420ms var(--ease-out);
+}
+
+.link:hover .frame,
+.link:focus-visible .frame {
+  border-color: var(--hairline-strong);
+  transform: translateY(-3px);
+}
+
+.link:hover .image,
+.link:focus-visible .image {
+  filter: saturate(1.05) brightness(1);
+  scale: 1.06;
+}
+
+.link:hover .sheen,
+.link:focus-visible .sheen {
+  opacity: 0.35;
+}
+
+.link:hover .caption,
+.link:focus-visible .caption {
+  color: var(--accent-soft);
+}
+
+.more {
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.64rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-indent: 0.24em;
+}
+
+.more svg {
+  animation: nudge 2.6s var(--ease-in-out) infinite;
+}
+
+@keyframes nudge {
+  0%,
+  70%,
+  100% {
+    translate: 0 0;
+  }
+  80% {
+    translate: 0 3px;
+  }
+  90% {
+    translate: 0 0;
+  }
+}
+
+@media (min-width: 34rem) {
+  .more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding-block-end: 0.35rem;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.3em;
+  }
+}
+
+@media (max-width: 30rem) {
+  .caption {
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-indent: 0.14em;
+  }
+}

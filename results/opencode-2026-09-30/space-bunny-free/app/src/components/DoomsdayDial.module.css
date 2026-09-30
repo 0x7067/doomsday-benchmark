@@ -1,0 +1,299 @@
+/* ==========================================================================
+   Doomsday dial
+   A 200x200 SVG instrument. The hands read the real time of day in Eastern at
+   the target moment, so they sweep normally right now and land exactly on
+   twelve at the instant the gate opens.
+   ========================================================================== */
+
+.dial {
+  --dial-size: clamp(12.5rem, 31vh, 19.5rem);
+  position: relative;
+  inline-size: var(--dial-size);
+  block-size: var(--dial-size);
+  flex: none;
+  isolation: isolate;
+}
+
+/* The outer bloom. Breathes faster as the moment nears. */
+.dial::before {
+  content: '';
+  position: absolute;
+  inset: -18%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--halo) 0%,
+    color-mix(in oklab, var(--accent) 7%, transparent) 32%,
+    transparent 66%
+  );
+  animation: dial-breathe calc(9s - var(--urgency) * 4.5s) var(--ease-in-out) infinite;
+  pointer-events: none;
+}
+
+@keyframes dial-breathe {
+  0%,
+  100% {
+    scale: 1;
+    opacity: calc(0.5 + var(--urgency) * 0.4);
+  }
+  50% {
+    scale: 1.05;
+    opacity: calc(0.74 + var(--urgency) * 0.26);
+  }
+}
+
+/* Radial guilloche, faked with a conic gradient so the SVG stays small. */
+.sunburst {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgb(226 201 135 / 0.13) 0deg 0.4deg,
+    transparent 0.35deg 3deg
+  );
+  mask-image: radial-gradient(circle, transparent 22%, #000 40%, #000 82%, transparent 96%);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.dialSvg {
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 2.25rem 3rem rgb(0 0 0 / 0.6));
+}
+
+/* --- Bezel --------------------------------------------------------------- */
+
+.bezelGold {
+  fill: url('#bezelFill');
+}
+
+.bezelEdge {
+  fill: none;
+  stroke: rgb(251 243 216 / 0.42);
+  stroke-width: 0.5;
+}
+
+.bezelInner {
+  fill: none;
+  stroke: rgb(0 0 0 / 0.5);
+  stroke-width: 1.1;
+}
+
+/* Engraved tracks: one dashed circle each, sixty and twelve times around. */
+.trackMinute {
+  fill: none;
+  stroke: var(--gold-300);
+  stroke-linecap: butt;
+  opacity: 0.5;
+}
+
+.trackHour {
+  fill: none;
+  stroke: var(--gold-200);
+  stroke-linecap: round;
+}
+
+/* --- Face ---------------------------------------------------------------- */
+
+.face {
+  fill: url('#faceFill');
+}
+
+.hairline {
+  fill: none;
+  stroke: rgb(226 201 135 / 0.12);
+  stroke-width: 0.4;
+}
+
+.numeral {
+  fill: var(--gold-200);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-anchor: middle;
+  dominant-baseline: central;
+  transition: fill 700ms var(--ease-out);
+}
+
+/* --- Aperture ------------------------------------------------------------ */
+
+.apertureFrame {
+  fill: url('#apertureFill');
+  stroke: rgb(0 0 0 / 0.45);
+  stroke-width: 0.5;
+}
+
+.apertureDay {
+  fill: var(--gold-100);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 8.4px;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.apertureMonth {
+  fill: var(--gold-400);
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 4.2px;
+  letter-spacing: 0.12em;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.brand {
+  fill: var(--gold-400);
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 3.4px;
+  letter-spacing: 0.28em;
+  text-anchor: middle;
+  dominant-baseline: central;
+  opacity: 0.7;
+}
+
+/* --- Hands --------------------------------------------------------------- */
+
+/* Angles are written straight to `style.transform` by the frame loop, so the
+   hands move on the compositor and the SVG filter never re-rasterises. */
+.hand {
+  transform-box: view-box;
+  transform-origin: 100px 100px;
+  will-change: transform;
+}
+
+.snap {
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.28, 1);
+}
+
+.handBody {
+  fill: url('#handGold');
+  stroke: rgb(0 0 0 / 0.4);
+  stroke-width: 0.4;
+  stroke-linejoin: round;
+}
+
+.handInlay {
+  fill: none;
+  stroke: rgb(10 24 20 / 0.5);
+  stroke-width: 0.55;
+}
+
+.minuteInlay {
+  fill: none;
+  stroke: var(--navi-200);
+  stroke-width: 0.5;
+  opacity: 0.7;
+}
+
+.secondHand {
+  stroke: var(--navi-200);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+  filter: url('#naviGlow');
+}
+
+.secondTail {
+  stroke: var(--gold-300);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  fill: none;
+  filter: url('#naviGlow');
+}
+
+.hub {
+  fill: url('#hubFill');
+  stroke: rgb(0 0 0 / 0.45);
+  stroke-width: 0.5;
+}
+
+.gem {
+  fill: var(--navi-200);
+  filter: url('#naviGlow');
+}
+
+.hubInner {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.5);
+  stroke-width: 0.35;
+}
+
+/* --- Triforce ------------------------------------------------------------ */
+
+.triforce {
+  fill: var(--gold-300);
+  transition: fill 700ms var(--ease-out);
+}
+
+[data-door='open'] .triforce {
+  fill: var(--navi-200);
+}
+
+.dial[data-arrived='true'] .triforce {
+  fill: var(--gold-100);
+}
+
+.dial[data-arrived='true'] .numeral {
+  fill: var(--gold-100);
+}
+
+/* --- Arrival ------------------------------------------------------------- */
+
+.arrivalSweep {
+  fill: none;
+  stroke: url('#arrivalStroke');
+  stroke-width: 1.4;
+  opacity: 0;
+  transform-box: view-box;
+  transform-origin: 100px 100px;
+}
+
+.dial[data-arrived='true'] .arrivalSweep {
+  animation: sweep 2400ms var(--ease-out) 150ms 1 both;
+}
+
+@keyframes sweep {
+  from {
+    opacity: 0.95;
+    scale: 0.8;
+  }
+  to {
+    opacity: 0;
+    scale: 1.12;
+  }
+}
+
+.dial[data-arrived='true'] .dialSvg {
+  animation: dial-arrive 1700ms var(--ease-out) 1 both;
+}
+
+@keyframes dial-arrive {
+  0% {
+    filter: brightness(2.4) saturate(0.35) drop-shadow(0 0 0 transparent);
+  }
+  100% {
+    filter: brightness(1) saturate(1) drop-shadow(0 2.25rem 3rem rgb(0 0 0 / 0.6));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dial::before {
+    animation: none;
+  }
+  .snap {
+    transition: none;
+  }
+  .dial[data-arrived='true'] .arrivalSweep,
+  .dial[data-arrived='true'] .dialSvg {
+    animation: none;
+  }
+  .dial[data-arrived='true'] .arrivalSweep {
+    opacity: 0;
+  }
+}

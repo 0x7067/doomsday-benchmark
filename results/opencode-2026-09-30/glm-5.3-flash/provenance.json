@@ -1,0 +1,95 @@
+{
+  "run": "ocarina-remake_glm-5.3-flash-max_2026-09-30T04-38-52",
+  "transcriptSha256": "575f6c809026848a2ef51264d645750302673f1f2e586bb8e5e0a752017d9758",
+  "appFiles": {
+    ".gitignore": "fe718e7babb14f3cbad2d97f08889b9ce5215ed3fe0e43b2b8cfbfb3b9b844e8",
+    ".oxlintrc.json": "b4d344818a1e1bf43997e4744a9153c8eef770c98b58229cd86363dabb85ded4",
+    "README.md": "8a2c8e4f599d3d2f603c69311729af8c0a4e62213cd68b02da175a1b1f6994c3",
+    "index.html": "43a80e40cde719b7d237928b0b74f2994b9433c5ad0bb28fcb9005d7b6d0415c",
+    "package-lock.json": "6c707d21c3f695ca9ee74593986e3df906a2e07005b92a90ba5cece99b87f28f",
+    "package.json": "38c85d7b83a7b096588748387e8348f87064e5a4d5fb8eb1109d6eaf3e231bad",
+    "public/favicon.svg": "c20b55204fc43f5d837f3a96f1098c726dc43ea3f60fcb3f4884f59997bb4c83",
+    "public/fonts/cinzel-var.woff2": "ef95296c778719c3d658a8284d65078100450948851b9114485ada01d9d3d3f8",
+    "public/fonts/cormorant-garamond-italic.woff2": "e6d6d1d73858aa9b66f3a3539f9dec22faab2276e61ad1d813bc04dd59c9c122",
+    "public/fonts/cormorant-garamond.woff2": "5d618c462b7a5b74f442e1548880086af71764d9cc7d35c16ab45353da934621",
+    "public/images/dawn.avif": "f82f05315d537d43a91836f9ae8b473e1763b96ebff83e59212e0cd81f2707ad",
+    "public/images/forest-night.avif": "6adf7b519a1d031ac14d28a0a778c29c12e7aa6592b674ab22b4d1c00046a6ad",
+    "public/images/forest-poster.avif": "c591cf5d076662c4cb35aa896a36b1868a229021f86e235888ddc39ad170f5df",
+    "public/images/og.jpg": "f98da6f27754417a53456c835e4bd3654df2cb57fdf81197cee823cd3bd1fe09",
+    "public/images/oot-logo.png": "82f71f02db6e8a983cf230995aeac755dc1a3dd3fa91bdb4380938779e28a047",
+    "src/App.css": "6ed5b98e705174f344a0afe5225da64d7daa241a9494bc72a32237ca07fbfc0f",
+    "src/App.tsx": "5abd01bb1165dc927af21f5be8e9f87fd6dcbcc5e130c235cf975e001ee04ec2",
+    "src/components/Backdrop.tsx": "c777399756a5a4ba5defe97a256f9f313a56fe059aaccaed39df6f67eebdadbd",
+    "src/components/Countdown.tsx": "b7cb79cb8120ea2b27254bd916838bc48af7f97cb6b5941afa861b1229711ee3",
+    "src/components/Fireflies.tsx": "06b6f84d50cc41a9cf2f660a0ff4b0755c1d10b9fa92fbd8002ddec41eaf9bdd",
+    "src/components/SimBadge.tsx": "c6f70bfe88a4a907195460e77f29e43b6d913ffbe390db9e5c92e38444081d0a",
+    "src/index.css": "0b30ef60abf2fdd59ce59aec4a0d6b09c9b8df7929361c72ddc839c220df5bd0",
+    "src/lib/time.ts": "6944054222a577d83c8284396f9a07f16bdcf4c067b4181bbb439d4725629002",
+    "src/lib/useNow.ts": "47ce07c13aaf684b4ad62eada001c49f801512d9b2751b3a8a17aaa7eb94d34f",
+    "src/lib/usePointerParallax.ts": "9b2289539ecc23bbddaa8152df1c6d4f73209711165a0c807a36048b15902ce4",
+    "src/lib/usePrefersReducedMotion.ts": "0e2cb7794d485bcce55b8eef2d5453c445b411cdecf22a32cbff737e2e36ce1b",
+    "src/main.tsx": "6e9e5807fcbd48b75a96db5cbef36c996262196be42e6d4760dc86babbe61ad2",
+    "tsconfig.app.json": "8e5d12ba330e7d86409edec74b95451e0db22ee09b9426c94b5bf817571eddb0",
+    "tsconfig.json": "770b4140bbb581e2dfd9ea9946ffc9c75a1d86ba7d2db5f77c83e37cbdf9d808",
+    "tsconfig.node.json": "d366cc0827139db39c61815f22491bbfda56c654354a42ad7795143d314e45e8",
+    "vite.config.ts": "e1eefd0ed1639c88d1213884ef760516884db9e168190e223fee6b063ad3e088"
+  },
+  "captures": {
+    "01-weeks-out-desktop.webp": {
+      "originalPngSha256": "052e35e46ea987fa0e5120cfc4f9c3933e7a199c21dbd71666c36e4da3877c56",
+      "webpSha256": "71b1c12583920e6a5d89164f8023e58dd2040c1907a05a46392eb1720585d8fd"
+    },
+    "02-motion-a.webp": {
+      "originalPngSha256": "97e65393623c88143bae887bc01a4ecac82658d78c4cc1c0369e6b2e602b5376",
+      "webpSha256": "df35579507306eac03aec1ba804110383dd84a72146729e166b05fa25cb338fe"
+    },
+    "03-motion-b.webp": {
+      "originalPngSha256": "a64b478ee28665468210dc3e763242974803a5f449a446e0c0bfa7ccc6b6a414",
+      "webpSha256": "7d84ae0c8616964d31b0d4ba8e53bdc2bd1a2f295b86ed056ed6a65c264f8341"
+    },
+    "04-pointer-upper-left.webp": {
+      "originalPngSha256": "22095b52e2f28bb71ba1b2c2548d66dc4ffeefa02923d74f5beadeb41390f311",
+      "webpSha256": "add7a0b1da3187f221aabd8494ba0ca261b6b205b18370f31a03fb693ced4da8"
+    },
+    "05-pointer-lower-right.webp": {
+      "originalPngSha256": "13e23de0a88d945cc80ce0d05597812646a9b72a7d9af707f461ccf051bac274",
+      "webpSha256": "09eb58f3578f29816987ddbb1fe4f8291702086a868c20ed688b60a53d3b70f2"
+    },
+    "06-final-hour-desktop.webp": {
+      "originalPngSha256": "f538681a3e439c30b5822e2362d7225c46b65b4fea274394467c695624272c86",
+      "webpSha256": "26d27c9d93f0a517b61923f0fe6c7ab78b8026419f0fe0139d8efd538d550c17"
+    },
+    "07-final-seconds-desktop.webp": {
+      "originalPngSha256": "0aef95eae1e53cd9fd9879d38a37bb2b3d35161b23046fc06f413924335deb6e",
+      "webpSha256": "076af5e7c6ce948a92a7f109440afb70b49b8a4d1d596adc718c9c99f6d6b255"
+    },
+    "08-arrived-desktop.webp": {
+      "originalPngSha256": "c847f18750b2776a8975bb45ebfaef0921bb6e368a894ca151f2400e93a446fa",
+      "webpSha256": "04f993e1a7f9868376c0ee7bfb940ecad5afbf488aa9be336263dd81ee3cd086"
+    },
+    "09-weeks-out-mobile.webp": {
+      "originalPngSha256": "dc8d49c41d92277fa65273e5d1ea985158b536ad6e938c7a10d2f0663e374197",
+      "webpSha256": "55338a3cd9f0b2e5924375249db91f1aac10b57a2b130ccfbe1b21b23bd665c4"
+    },
+    "10-final-hour-mobile.webp": {
+      "originalPngSha256": "29459f33caabba72f2358e325cd8595ac2294b26a85ed4af73997d5e6b31a88d",
+      "webpSha256": "199fd11f3aff635c965516a15389319650086ed048f0285040bd3ec2236b3778"
+    },
+    "11-final-seconds-mobile.webp": {
+      "originalPngSha256": "ec120f4831df6cd621d20add24efc33b10049389263943746041e31c6a6215e0",
+      "webpSha256": "3b5c1c2ff8526eded521f7404411acd7830fae9e533a3c88d2d47600f4355e19"
+    },
+    "12-arrived-mobile.webp": {
+      "originalPngSha256": "cb2803e1b961f55a59d259c31ab6b173da0951d213baddef6f6a75737fe223a4",
+      "webpSha256": "86b8b0b2a74014ed9bccfb25db1e3b68ce780e969c8f6f44cfec699e3e2c7dec"
+    },
+    "13-zero-crossing.webp": {
+      "originalPngSha256": "1ac068b83bf157c4e57a24ca4865df71fb4be919ec8575a3e923513dd385f94a",
+      "webpSha256": "2872333a04b091443a35a4c403bd76148dc8ac107c39c68640fd1c1b10355dfd"
+    },
+    "14-keyboard-focus.webp": {
+      "originalPngSha256": "b708c7108292b298bfed7d90f0492d81e9bde667bd94924fa47292ab8ffdcdd0",
+      "webpSha256": "d60bf1f7a34a54584e0c0471f7b0a3a62e4000dcdee0abcefc054aaeff9f208b"
+    }
+  }
+}

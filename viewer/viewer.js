@@ -34,9 +34,15 @@ async function main() {
 
 function route() {
   const params = new URLSearchParams(location.hash.slice(1))
-  const run = runs.find((r) => r.id === params.get('run'))
-  if (run) showRun(run, params.get('now'))
-  else showLeaderboard()
+  const id = params.get('run')
+  const run = runs.find((r) => r.id === id || r.formerId === id)
+  if (!run) return showLeaderboard()
+  // Links shared before a run was archived use its old id; show the current one from then on.
+  if (run.id !== id) {
+    params.set('run', run.id)
+    history.replaceState(null, '', `#${params}`)
+  }
+  showRun(run, params.get('now'))
 }
 
 function showLeaderboard() {

@@ -1,0 +1,205 @@
+{
+  "run": "ocarina-remake_opus_2026-09-29T19-53-39",
+  "transcriptSha256": "313fe15424ded1ac4c66b4e50f8691f753a2ac477d9e9216d4e9ba97610dfead",
+  "appFiles": {
+    ".gitignore": "4b64670a281a3536969bfcda58eb56c57a3c36b4432a18662cb97c50aa2cb62b",
+    ".oxlintrc.json": "b4d344818a1e1bf43997e4744a9153c8eef770c98b58229cd86363dabb85ded4",
+    "README.md": "1c46054b1a6917b46aa5441f46fe48e599dca09cc4ac6d6f1f7229ad8a280f76",
+    "art/deku-tree.avif": "6adf7b519a1d031ac14d28a0a778c29c12e7aa6592b674ab22b4d1c00046a6ad",
+    "art/hyrule-field.avif": "f82f05315d537d43a91836f9ae8b473e1763b96ebff83e59212e0cd81f2707ad",
+    "art/kokiri-forest-portrait.jpg": "33f53957cd47a02b339bc6c59cd903f3610df1a3ab49afa699e47bea89a32c09",
+    "art/kokiri-forest.png": "39ab25c60bab4d28a44d63db285a062f7107fd89d0f358cc72d7d9c9f0a209e4",
+    "art/logo.png": "82f71f02db6e8a983cf230995aeac755dc1a3dd3fa91bdb4380938779e28a047",
+    "e2e/countdown.spec.ts": "65a4d82e6bbfe23687e87815745a9f611a4d13c5c2f85ae96d4dc761875bca97",
+    "index.html": "15ddd8add0cbc7f4e1eb9e33ca24502d447fe2f45723c108512f145b6ba786c6",
+    "package-lock.json": "66297df1736ea86f596b001bea43897fbe6eb9f12b6a7a6581bf40d601867a30",
+    "package.json": "d0296f2900b24a06f510e66d034a1f50d6e6e8dd3d895e0dbb852291bdd8001b",
+    "playwright.config.ts": "be43eb990c83b52eea1b47536a2d3bc74bc79a060f0abf8aa0e690d5467ddeaf",
+    "public/favicon.svg": "378030ee98a6b656ecbb120d3c29c6c5e7860371212b14411766ad88d48c26c8",
+    "public/og-image.jpg": "26b16caea9f8f723376a3aec3d8e07958c451a1faa2c7e991492c832ae3e866d",
+    "scripts/optimize-images.mjs": "afacefd39e341927ce2c6aa73da1a19b0f76e94796e0c655b506e7cbd475b6fc",
+    "src/App.css": "9538c200c2995aff6752ca70bbdf4bafc89ceab91028ce3d982b97d6de2eb7bd",
+    "src/App.tsx": "81b6f9e0b9e53e53a159da816a5dacea528401628807b1c1af8d29e6da0df915",
+    "src/assets/logo/logo.avif": "d56b90c72276646c26eb1380506c19e1c6e9c4c848f9c195239a2ea08cc6a83c",
+    "src/assets/logo/logo.webp": "31da8d68382d550577d22e9db756c428687cdcd786a1b7ba3c2da19f9995a2f8",
+    "src/assets/scenes/deku-tree-1280.avif": "d0d20d911070378df8db4b1bc41e066f4e8ffe8d345650094972af7e2c410cd0",
+    "src/assets/scenes/deku-tree-1280.webp": "7ce66b4bc391334ebe27c3456561d772567f246a46b302accc846dfa254f9f71",
+    "src/assets/scenes/deku-tree-1920.avif": "3493010813f00fb49199cc688721cbd1435ff8ce5d604e3c8abc95bbfe43ff58",
+    "src/assets/scenes/deku-tree-1920.webp": "e4ae877d5ad65652af9923d54be63a8e46e0d91823bfc5f47d25ff5e4be58b9c",
+    "src/assets/scenes/deku-tree-2560.avif": "bfe27e635e0eb84052aa7bba2daea21a259981382a0484dddc3c22bb9899b77e",
+    "src/assets/scenes/deku-tree-2560.webp": "f80bf297ce478110e0e96ae3240a08e6560f2a4e62ecfdf41cf65004799dc5f6",
+    "src/assets/scenes/deku-tree-3840.avif": "494b1f7a611665ba323355143d447991555c1e448cf39339f5ab5cbbea73f3e1",
+    "src/assets/scenes/deku-tree-3840.webp": "6889920cced840b30007636007fc85cacac704496e2b961270236ff76fc46c94",
+    "src/assets/scenes/deku-tree-portrait-1080.avif": "1dbab69b2ef444c41a5977f366528ba5359869909866ea2d8119f4bd5e076b9b",
+    "src/assets/scenes/deku-tree-portrait-1080.webp": "fc7866d39b5e1391714cfb9175fb00389dd05a4164c3c0d7ddb44c63c883adfc",
+    "src/assets/scenes/deku-tree-portrait-720.avif": "2ba4449a6781156258a1459109783bd71b8a7acb96b1f8ed1b0f57025213b36f",
+    "src/assets/scenes/deku-tree-portrait-720.webp": "48b2af2ee9f0278fc674054ed3dcd78a84edd3a601fda15afad2abfabe0ae1cd",
+    "src/assets/scenes/hyrule-field-1280.avif": "494fb4544a10b45ebacbc3d7bd88af47e5d0c69f73e1744def195910bfae7a1c",
+    "src/assets/scenes/hyrule-field-1280.webp": "a5d3c280da53d3db4d7e3f417ae7b669a25102326ea80652d1261ddaf731fc5b",
+    "src/assets/scenes/hyrule-field-1920.avif": "d7757c76f1af0a4764bc5482de504452949f6b0c768be05d30a64a3f47ffda39",
+    "src/assets/scenes/hyrule-field-1920.webp": "a2c3a7865fb18ef03e2a634de59d3f97c3466c3dd62ed63ddf8ba4dba49631e0",
+    "src/assets/scenes/hyrule-field-2560.avif": "65e6c36649411649b5bf4bc6e316b3da8aa77167f114cd5940a39727737c1fbd",
+    "src/assets/scenes/hyrule-field-2560.webp": "efbae202922b5677aa825726ceb7b375058017c52e62d1ea56e3141e3b19a16d",
+    "src/assets/scenes/hyrule-field-3200.avif": "eae7c75852fc4855625dd9238488ec33a8360adff23b61bdd396913da8997d4a",
+    "src/assets/scenes/hyrule-field-3200.webp": "3b6955a00fbb29d786bd93b70011fa29a95c1a459bd6ef2157b148c293193389",
+    "src/assets/scenes/hyrule-field-portrait-720.avif": "af8b1ed6a16394c5795477e3ec775f46545db319084820166828a6d8c004fc9e",
+    "src/assets/scenes/hyrule-field-portrait-720.webp": "22692e0eedf0454fc98515c37fb3a31c920199071ebcd34c32ecd24fd011305b",
+    "src/assets/scenes/hyrule-field-portrait-900.avif": "9669dc14ed15e07496ac78f819366fe6fbe92b2fb870fb6333735504c1ad44f9",
+    "src/assets/scenes/hyrule-field-portrait-900.webp": "d77bb098a8beeb187fa457bcf7f3f48894d2efc7749d99272c320128dc6debf3",
+    "src/assets/scenes/kokiri-forest-1280.avif": "753a65be409fade86b7f28bc928877cf7fd6bae0f0956e3d480e29c56723ad31",
+    "src/assets/scenes/kokiri-forest-1280.webp": "4636cfaceda54cf309fdc609449a792a4f239ee272eb6060806e863cc2b5c8c6",
+    "src/assets/scenes/kokiri-forest-1920.avif": "0af8fc77fc7fca1d6050d3e665894330ed7d983a32875b32f5204f236b4834e1",
+    "src/assets/scenes/kokiri-forest-1920.webp": "5775c9b3bcce94624f3fae770751acf96d7bccaa5aedab85759d6e7743af932b",
+    "src/assets/scenes/kokiri-forest-portrait-1178.avif": "9e378792b63aea240c55210e5a38bcdcab18104bb4de0b02ab458a2a086dc8e5",
+    "src/assets/scenes/kokiri-forest-portrait-1178.webp": "98fb9e37ed89cdf45c6f7233d857ba1c3a3bf40f72be57cbacd070588b0f8aea",
+    "src/assets/scenes/kokiri-forest-portrait-720.avif": "74f9ffc82700dbee8012b65deb6bd253149743a7096a7bff8977e8f48111f84e",
+    "src/assets/scenes/kokiri-forest-portrait-720.webp": "73669f0c4887ca75d90e979f6de065b759e6ee564e6e7b7447c951a7ffd0d9a9",
+    "src/assets/scenes/placeholders.json": "04ae2ca79f5f6f372d75edf85cc6c3ab27ee479b4f17c3680fa7f651e38e641d",
+    "src/components/Logo.tsx": "15d705c0a751bf577f8f912ab0a0417acfe620d64ebe16bef098879f3df5d52b",
+    "src/components/logo.css": "b20ed45d974ab63d6da06f1776ab395a4c88cda12961713d975254ca929ae51a",
+    "src/config/launch.ts": "47b1988ff99771e1128bdd8674d2dca602daa1784c9105baf51ec790d3498914",
+    "src/features/atmosphere/AtmosphereCanvas.tsx": "423ce2b1c669548aeb24c81a6045f8af54a02b2d66b611a0110037860884817c",
+    "src/features/atmosphere/atmosphere.css": "8e82e9352b6ee0daf00d5c5ccaf15c4bcdc31497aa1085772f415151a94b98d4",
+    "src/features/atmosphere/engine.ts": "336fb4585fa07d6a6daa547db17095576afd8b0f206fefd4f2c778145d53f296",
+    "src/features/backdrop/Backdrop.tsx": "beb1120ff45d79501b4bcff37edd74098a5f398f0f2100269947096466d218aa",
+    "src/features/backdrop/backdrop.css": "4a9fa4cedd23c6cf6b53b0810e635e73cead8c193f2f579b3a89a12e6512c316",
+    "src/features/countdown/Arrival.tsx": "2c38c92fa4de73524077d6bfe5bbe84bbf7d39a4a6aea5fe8da5b6e9162b22fb",
+    "src/features/countdown/CalendarButton.tsx": "ff005ed4aa12d50ef67351ca4cf03598176e9ca239696d44db27735e71a4f0fb",
+    "src/features/countdown/Countdown.tsx": "19e047baa04dabadf2643fbfa6575b642a1fdb98b438d0f00b97458ff1b6e85c",
+    "src/features/countdown/Finale.tsx": "25823e701dcb9a21bbf04d9598a502964409e2494681863f8240d4fa1e9a535f",
+    "src/features/countdown/LaunchDetails.tsx": "0ab48c0a82a3644c9347de368cae6fe16324593f2a1be61a02f846273f3858fa",
+    "src/features/countdown/RemainingTime.tsx": "dbf429386522744911643968be537d0bbc016363b44b4d944d0ae6dcc8069904",
+    "src/features/countdown/RollingDigit.tsx": "d773cea471ebede14e0fe8bfaecbe26733bc0387a0ba81525ed36f196156e43e",
+    "src/features/countdown/arrival.css": "9a417e7600cef689ce4d87ae7d9509b4c73fad9fea530dd57f8415fdff2aee8b",
+    "src/features/countdown/calendar-button.css": "05af6a3fb7cc5a7f6ef3ef9ac72ff0deb90e05992e451f53f11bb86fa16e1bf1",
+    "src/features/countdown/countdown.css": "cb62a131697f41af8cf5c8f2ac9183e1cada2b6e31bed2bdc93eb3f4e2139478",
+    "src/features/countdown/launch-details.css": "dfbfcd167183a86738ea95f73b97b4de318122fd0c4c7811c34f5c6af5804d49",
+    "src/features/countdown/useArrival.ts": "4bf298426385f19e8da833294a29bb78dcd1d5c23d8b7ea9477032a5b8cbbaa2",
+    "src/features/effects/Effects.tsx": "67076ca6cf5314cbbf4b95daaabedc577cd4adb8720ae9a40c6a2fb71191ca38",
+    "src/features/effects/effects.css": "b916d618326d2649e00943bcce89ac4660dd821aa717a562027be5b9b4ed864c",
+    "src/features/hud/AreaCard.tsx": "f86192a59f8430d901b00540ba8cb9ea7fb234098e16697266ffaeac8f6d4c71",
+    "src/features/hud/Places.tsx": "a9df51f02c30468fcd2eddafc63ff3faa02e88d7b548e1d605b3d2322e705190",
+    "src/features/hud/SoundToggle.tsx": "07470b70a4b8a6e6cd763bbd538306cb8f40688c8b4152257ab2ad547e0f8b7b",
+    "src/features/hud/area-card.css": "9f9cb474879b4aa6e92fc72272a9e079be1d2d5e5261931d4ce0736e1c05a445",
+    "src/features/hud/places.css": "313922fb4a66b0a275a9acbda54cc5e4aa0cd9aa8ef93e14546c5b4d11d3ead2",
+    "src/features/hud/sound-toggle.css": "aa5f750d244f70eaed5de1ce24d56099f2e81f048774d2a2e10dae1ca205b70c",
+    "src/features/ocarina/Navi.tsx": "3bef1993d0c37faa8b788d6362a7d9380cc46770ed92c19257d95f5f5e3bfb02",
+    "src/features/ocarina/NoteButton.tsx": "ffff5175bcf158e22783cc0957650eca014f36bdd85b6133afe90da7cd582e89",
+    "src/features/ocarina/NoteGlyph.tsx": "d4c3b9dbabd5c758b3d506977e94944b92e7d3e8305ff44213cd3dcf47073ef8",
+    "src/features/ocarina/OcarinaDock.tsx": "888c8ca68a59d981af3cbfdcda3aaf1fe484ba9d37cda38f66d4309bca927a6b",
+    "src/features/ocarina/Songbook.tsx": "0cdf4faaf005026fc0f48adcbfd7712502844c972efaedf565fd320885d33707",
+    "src/features/ocarina/Staff.tsx": "f8ecc37dd3d9a3cb209b3be52a4f7170534fc53817c6ec3cf6b68927306d3b7b",
+    "src/features/ocarina/navi.css": "86d3d0910723228202e7ff6f38ec6020dd1fdefd003b392b6a28c4d30cbf616c",
+    "src/features/ocarina/ocarina.css": "ebda788a33ff4eabf4c36c68d5f047e123dc64cfef24cdcde650adef2a088809",
+    "src/features/ocarina/useOcarina.ts": "888632a5885fb2d049c9df68f3981d70fb4ddd8dfa973fdf23ffbf7eb7ab5d05",
+    "src/features/ocarina/useOcarinaKeys.ts": "457512d3044e2b206145885096fa65b25547d68b5162c485a101b36df9872e16",
+    "src/features/world/world.test.ts": "1b7ed5f0bce1826a830d2f94918188733ffa54b80125a3ef74b42cc09f614173",
+    "src/features/world/world.ts": "bbe654afca4bfb188f95a661cb5765501ec10f6f3432df56eadd550da083e358",
+    "src/lib/audio/synth.ts": "3c5946060bf0ea175c1c303a98879f2387024d79877e4d7b738b18633371c5ea",
+    "src/lib/calendar.test.ts": "368957047c98321749c55fd5797871fdb4845466f44e945bb344688097ec168e",
+    "src/lib/calendar.ts": "0e660acac7df5f661394e48d83f5b15fa8aae353a89a71f1305954ce629b90c5",
+    "src/lib/layout.ts": "c12825b20d613cc6a2e6170a1c7b3a6c0ddc12dcde81a3b9c60335ff46b2f112",
+    "src/lib/ocarina/notes.ts": "8d8e61b31633407ee7683daba4b13e8f5d6e460adb75fae2143d6ddf0d2ebf8f",
+    "src/lib/ocarina/songs.test.ts": "007979d1a9e85f36357f758ee164a536de6cd499d0d7a42da8ca749a70b747ec",
+    "src/lib/ocarina/songs.ts": "efcddacbc327fe9d1b68c7bf1629c24f4ffd6a5cc6a9805a57a2073cefdfafce",
+    "src/lib/pointer.ts": "777200c373cd0e78e9c7266758c4ebf15bcbd1ded1a2f6eed3a0e3168dff0ec5",
+    "src/lib/scenes/images.ts": "dd02bbbc4e26b996b3b9e8dc319f377e7b687316a002e05424f12ae454b0271a",
+    "src/lib/scenes/scenes.ts": "f017cfe7237a2889368be4a4e92647c53a509dc587fdb22bc2701eaca906e8c7",
+    "src/lib/time/clock.test.ts": "f3c5d175f30d2919c833c45e2ed8c9bc3a8fc5064f5ae88303f16cc105017ba7",
+    "src/lib/time/clock.ts": "4e56808f86127355aa75964f6e5fb82c1e48cb7542cf1617b709c9d0f0e4cdfd",
+    "src/lib/time/countdown-store.test.ts": "92fb84830cc11e2edf3f4f850921288b368559236c738c7efe0d8f6bb90de282",
+    "src/lib/time/countdown-store.ts": "0c856416132a8ba477c317068545ee20413d813a5d7e72209c4f2e1556578656",
+    "src/lib/time/duration.test.ts": "f8561ee597514ff4536400cd9ae26d7071d0bc610b1cf090a190c86b954f9698",
+    "src/lib/time/duration.ts": "1b75e6291b133d493c967fd98f75f3d84469fee4c29ccff070e68eccdf104892",
+    "src/lib/time/local-time.test.ts": "2b25caebdd924102058e22d8f9728b5afaf33dc6852fba725981e240608a08f9",
+    "src/lib/time/local-time.ts": "0109233b1460466254d1a0b9f7f76c955d742e3b226467aeb266ddd508c7af01",
+    "src/lib/time/useRemainingSeconds.ts": "efcd8ab65cc193ef9a8b56116b62e963a4f8d5efe1332c099df396cb4c219e58",
+    "src/lib/time/useTabTitle.ts": "5f27d0652076a6997f3ea465c6ac593ad33b26fca7241418b2826c619a32e8e6",
+    "src/lib/useMediaQuery.ts": "0d53fe5bb560c0af9057ae023c571b518c6876832692720015c1dba283687e2e",
+    "src/main.tsx": "50fae64828c6bc30234c6201e25328ab2d5b0127d8709879eb16eddfd36c22ed",
+    "src/styles/base.css": "63002f18ad5d3cba282bf08410a40421396f92a0248090e998d947187cecb423",
+    "src/styles/tokens.css": "4c77e7959ff6a50ec13a05b4041518b145ffda46c57affd7e9bca1cb2f868612",
+    "tsconfig.app.json": "8e5d12ba330e7d86409edec74b95451e0db22ee09b9426c94b5bf817571eddb0",
+    "tsconfig.json": "770b4140bbb581e2dfd9ea9946ffc9c75a1d86ba7d2db5f77c83e37cbdf9d808",
+    "tsconfig.node.json": "4e4a4a3afb4e6cfcb0d1bb436a48fce106aef3da525ce422805fd56b9de7c27e",
+    "vite.config.ts": "03e797859bbd9625366dc08144825800324690569f3b2a9520809272dd21c453"
+  },
+  "captures": {
+    "01-weeks-out-desktop.webp": {
+      "originalPngSha256": "8fd46da6838f74e05a0963cdcce3736006674e622af94a338a7757d2fd518f9d",
+      "webpSha256": "05d7ceed2ef9834e9322fa954d5be023179b23dfecdf7ef3006895a4824c863f"
+    },
+    "02-motion-a.webp": {
+      "originalPngSha256": "797a6a0c40efb6b851bcfc5ad19046bc96b5c72d962f689a16ee48dfa14bfd30",
+      "webpSha256": "f960ae23548c36c7108578a95a33750f8d32c6c5d4775d85681443dceed5f8c3"
+    },
+    "03-motion-b.webp": {
+      "originalPngSha256": "3db03e490edcc4e9e810ace4d6335046c2ede97e78986f0b2d47cd42734ce2a1",
+      "webpSha256": "e8944f5a10e373bf7a92ccb6a872c633661a9a4e393fbd7c86050f6a60ab524a"
+    },
+    "04-pointer-upper-left.webp": {
+      "originalPngSha256": "0e4d27f4a091790eacf618bca2c2c06682079c1755d5aaa53a0b9d7f9c16d52a",
+      "webpSha256": "b412956d1a41187f88ce55d88a5a9d89f07c13d9df5fff9fa0bc3ece72de9e13"
+    },
+    "05-pointer-lower-right.webp": {
+      "originalPngSha256": "4853ff131f9cfda26e5d18fe2411c444f3932b5647fa2ffb79b28dc56d452c1b",
+      "webpSha256": "2cb82ce2067c8cbaa5a11927d06b6aca922a9645a809976b20a11db2c3af7c17"
+    },
+    "06-final-hour-desktop.webp": {
+      "originalPngSha256": "7e2e101e39a0f26b12b132915b1eedb21fa77b78c0511e6e1d75a1c3acd98373",
+      "webpSha256": "e51105ae3b9d8c37363d93d20dd15f4b389e817667c13efa43e41139ec1b47af"
+    },
+    "07-final-seconds-desktop.webp": {
+      "originalPngSha256": "2ce9e1f5e8d0035c299f9a982dcd7792b84c34fc23f7308d49c4a7c22811d113",
+      "webpSha256": "7dbc21bbd6d615d099616838ca5cf897e245a9f321800ebbb2903239dab70f2c"
+    },
+    "08-arrived-desktop.webp": {
+      "originalPngSha256": "21e62bb8cdcbd4bd914235628d340f2be16482734dbb1f8d96db6674e60bf6d8",
+      "webpSha256": "6cfc23980f84ac9ca3145f4027ec0fd14b86216d098125e4bf6ff4f325dc475c"
+    },
+    "09-weeks-out-mobile.webp": {
+      "originalPngSha256": "992ad2a1dc3620e9c013c2c813d863b347a9e98eaf96b87faaaffe776c485ec8",
+      "webpSha256": "1470acfcc6fb8dee2cc69c6f9301db62b5d78e2fdc80b157c3b7e96f6cbedbf1"
+    },
+    "10-final-hour-mobile.webp": {
+      "originalPngSha256": "5efffd13bac4ca4f1500ab23839ccc3fbd42eef9bbcb79a2c7667922dd8cf719",
+      "webpSha256": "453b21c893f020b3a02a1a9fe78f5a0294d4e9a6c997d4ae7bebd60c36e35d5a"
+    },
+    "11-final-seconds-mobile.webp": {
+      "originalPngSha256": "68579b6330c2fa0e494c6cec5d6790e8e4cb77ce83a916a754df1fa251b43d33",
+      "webpSha256": "6f1aeeec63bb363037d74e8903c77df485873ae99354fd9a80d8cb1d8a7122d6"
+    },
+    "12-arrived-mobile.webp": {
+      "originalPngSha256": "4ca36b4852359adcd1188f0141174da9740a32b9eed7e7fb87c542261d657548",
+      "webpSha256": "dd5ec49a7a320ababbd80ccbae2e8211d2b6d37fa48fc045ac4e34d046621e3b"
+    },
+    "13-zero-crossing.webp": {
+      "originalPngSha256": "05bafc67fb9ca9997a62e22ca745087c4e3e6838cc4713808c0f5f5d35910341",
+      "webpSha256": "c5fdc05168f8414a45cd0efa4d17d550b0128c6230834034d54b398da9491757"
+    },
+    "14-click-1.webp": {
+      "originalPngSha256": "8f8c624d2956568ebceacab92f2f532b66d2be90a8d8b906be206bdc3fc29e8e",
+      "webpSha256": "b918ba684e2932a2edf23a00a331d57df6b5ede0d97d240019ea4cb4bf13c312"
+    },
+    "15-click-2.webp": {
+      "originalPngSha256": "b8eeaf584024392eeda9d986859f5369d52b21b20fcf2c43f427ef7b173a6d3f",
+      "webpSha256": "3d3bd0397aece81fee18fd7a364a3ff65667dcf7286840ad22315e0343badf91"
+    },
+    "16-click-3.webp": {
+      "originalPngSha256": "a8aa02e4b496bc2a1279272d6a854aa79fd09e19b7c81bdb0c3b5ed0d1d1e16a",
+      "webpSha256": "92b062d6ca74f93633fa33d87fc633a79468ae3c2ba49146e85b0eaad7ec8ee0"
+    },
+    "17-click-4.webp": {
+      "originalPngSha256": "73a3b431a2bcf2866220825bb207f29ae7b5af4d06f0e7f003e3d535e3e65fc4",
+      "webpSha256": "cbc1868f0b02be16ab1b2b9066240d92c561e3deb230efdd3035795a7f16182a"
+    },
+    "18-click-5.webp": {
+      "originalPngSha256": "d92025ef0e3faa8faead38e7a6cfbe5ce4fd0d6980bfa1d51158ac213a8e7cc8",
+      "webpSha256": "e750f8d62e280f30b26d8f10c0bf2cd6c400a70d8a9384f99fe8b9710e0bd3e0"
+    },
+    "19-keyboard-focus.webp": {
+      "originalPngSha256": "edd40b47f83f544a97bbdd1f6a2654e9d4aedbd2a4fd982e3e0dafcc96c0b1aa",
+      "webpSha256": "0462355c204a7cf2d468f3136e889ad748711b122df48736c07ad68915c5bfdd"
+    }
+  }
+}

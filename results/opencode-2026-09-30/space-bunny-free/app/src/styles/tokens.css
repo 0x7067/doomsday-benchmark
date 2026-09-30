@@ -1,0 +1,83 @@
+/* ==========================================================================
+   Design tokens
+   One palette, borrowed from the assets: forest shadow, lantern gold, and the
+   pale mint of a fairy light. `--urgency` is written by React on <body> and
+   warms the whole page as the moment closes in.
+   ========================================================================== */
+
+:root {
+  /* Ink */
+  --ink-900: #03080a;
+  --ink-850: #05100f;
+  --ink-800: #071614;
+  --ink-700: #0b201d;
+
+  /* Gold */
+  --gold-100: #fbf3d8;
+  --gold-200: #f2dfa8;
+  --gold-300: #e3c477;
+  --gold-400: #c9a24a;
+  --gold-500: #a87f2c;
+  --gold-600: #7a5a1c;
+  --gold-700: #4d3913;
+
+  /* Navi / forest */
+  --navi-100: #e9fff2;
+  --navi-200: #b6ffdb;
+  --navi-300: #7cebb6;
+  --navi-400: #3fc98c;
+  --navi-500: #1f8f63;
+
+  /* Ember, reserved for the last hour */
+  --ember-300: #ffcf8a;
+  --ember-400: #ff9d4d;
+  --ember-500: #e8703a;
+
+  --page: #040b0c;
+  --page-2: #061312;
+
+  --text: #e8e3d2;
+  --text-soft: #b9b3a1;
+  --text-dim: #8b8779;
+  --text-faint: #625f56;
+
+  --hairline: rgb(226 201 135 / 0.16);
+  --hairline-strong: rgb(226 201 135 / 0.34);
+
+  /* Written every second by <App>. */
+  --urgency: 0;
+
+  --font-display: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+  --font-body: 'Archivo', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-label: 'Barlow Condensed', 'Archivo Narrow', ui-sans-serif, system-ui, sans-serif;
+
+  --measure: 62ch;
+  --gutter: clamp(1.25rem, 4.5vw, 4.5rem);
+  --rule: 1px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --z-background: 0;
+  --z-content: 1;
+  --z-rail: 4;
+
+  /* Film grain, as a self-contained turbulence filter. Cheaper than shipping a
+     noise bitmap and it never tiles visibly at this scale. */
+  --grain-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  color-scheme: dark;
+}
+
+/* Warm shift driven by proximity to the moment. Kept to three stops so the
+   page never turns orange from a distance. */
+:root {
+  --accent: color-mix(in oklab, var(--navi-300) calc(100% - var(--urgency) * 100%), var(--ember-300));
+  --accent-soft: color-mix(in oklab, var(--navi-200) calc(100% - var(--urgency) * 100%), var(--ember-400));
+  --accent-deep: color-mix(in oklab, var(--gold-500) calc(100% - var(--urgency) * 100%), var(--ember-500));
+  --halo: color-mix(
+    in oklab,
+    rgb(124 235 182 / 0.14) calc(100% - var(--urgency) * 100%),
+    rgb(255 157 77 / 0.2)
+  );
+}

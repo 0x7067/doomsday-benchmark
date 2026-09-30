@@ -1,0 +1,240 @@
+/* ==========================================================================
+   The engine room
+   Deliberately plain: this is a control panel, not a section of the story.
+   ========================================================================== */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vh, 1.9rem);
+  padding: clamp(1.4rem, 3.5vw, 2.4rem);
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  background: rgb(4 11 11 / 0.7);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  max-inline-size: 52ch;
+}
+
+.title {
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-indent: 0.3em;
+}
+
+.blurb {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-faint);
+  text-wrap: pretty;
+}
+
+/* An explicit 2x3 / 3x2 rather than auto-fit: the caption widths vary, and
+   auto-fit wraps the last button onto a row of its own. */
+.presets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+@media (min-width: 34rem) {
+  .presets {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.preset {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-inline-size: 0;
+  padding: 0.6rem 0.7rem 0.55rem;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  text-align: start;
+  transition:
+    border-color 200ms var(--ease-out),
+    background 200ms var(--ease-out);
+}
+
+.preset:hover {
+  border-color: var(--hairline-strong);
+  background: rgb(226 201 135 / 0.06);
+}
+
+.presetLabel {
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.12em;
+  color: var(--text);
+}
+
+.presetNote {
+  font-size: 0.72rem;
+  line-height: 1.3;
+  color: var(--text-faint);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1.25rem 2rem;
+}
+
+.slider {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.45rem 1rem;
+  flex: 1 1 20rem;
+  min-inline-size: 0;
+  cursor: pointer;
+}
+
+.sliderLabel {
+  grid-column: 1;
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.66rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  text-indent: 0.28em;
+}
+
+.sliderValue {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  text-align: end;
+  white-space: nowrap;
+}
+
+.range {
+  grid-column: 1 / -1;
+  inline-size: 100%;
+  block-size: 1.35rem;
+  appearance: none;
+  background: none;
+  cursor: grab;
+}
+
+.range:active {
+  cursor: grabbing;
+}
+
+.range::-webkit-slider-runnable-track {
+  block-size: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--ember-500), var(--gold-400) 22%, var(--navi-500) 100%);
+}
+
+.range::-moz-range-track {
+  block-size: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--ember-500), var(--gold-400) 22%, var(--navi-500) 100%);
+}
+
+.range::-webkit-slider-thumb {
+  appearance: none;
+  inline-size: 1rem;
+  block-size: 1rem;
+  margin-block-start: -0.44rem;
+  border-radius: 50%;
+  border: 1px solid var(--gold-100);
+  background: var(--gold-300);
+  box-shadow: 0 0 0.75rem rgb(226 201 135 / 0.5);
+  transition: scale 160ms var(--ease-out);
+}
+
+.range::-moz-range-thumb {
+  inline-size: 1rem;
+  block-size: 1rem;
+  border-radius: 50%;
+  border: 1px solid var(--gold-100);
+  background: var(--gold-300);
+  box-shadow: 0 0 0.75rem rgb(226 201 135 / 0.5);
+}
+
+.range:hover::-webkit-slider-thumb {
+  scale: 1.12;
+}
+
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.primary,
+.secondary {
+  padding: 0.62rem 1.15rem 0.56rem;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 2px;
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-indent: 0.2em;
+  transition:
+    background 220ms var(--ease-out),
+    border-color 220ms var(--ease-out),
+    color 220ms var(--ease-out);
+}
+
+.primary {
+  color: var(--gold-100);
+}
+
+.primary:hover {
+  background: color-mix(in oklab, var(--gold-400) 20%, transparent);
+  border-color: var(--gold-300);
+}
+
+.secondary {
+  color: var(--text-dim);
+}
+
+.secondary:hover {
+  background: rgb(226 201 135 / 0.07);
+  color: var(--text);
+}
+
+.state {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-faint);
+}
+
+.state[data-simulated='true'] {
+  color: var(--accent-soft);
+}
+
+.reference {
+  padding-block-start: 0.35rem;
+  border-block-start: 1px solid var(--hairline);
+  font-size: 0.76rem;
+  color: var(--text-faint);
+  overflow-wrap: anywhere;
+}
+
+.reference code {
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, monospace;
+  font-size: 0.95em;
+  color: var(--text-dim);
+}

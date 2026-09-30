@@ -1,0 +1,1106 @@
+{
+  "run": "ocarina-remake_deepseek-v4.1-flash-max_2026-09-30T01-48-42",
+  "gradedAt": "2026-09-30T02:44:51.890Z",
+  "judgeModel": "opus",
+  "judgedAt": "2026-09-30T02:41:18.830Z",
+  "judgesReused": false,
+  "card": {
+    "total": 70.2,
+    "max": 100,
+    "lines": [
+      {
+        "area": "Countdown contract",
+        "kind": "automated",
+        "points": 10,
+        "max": 10,
+        "details": [
+          "✓ exactly one valid duration <time> at every moment (2/2)",
+          "✓ correct remaining time (8/8 moments) (4/4)",
+          "✓ ticks every second (1/1)",
+          "✓ reaches zero on time (1/1)",
+          "✓ no console errors or uncaught exceptions (1/1)",
+          "✓ no horizontal overflow on a 390px phone (0.5/0.5)",
+          "✓ no requests to other origins (0.5/0.5)"
+        ]
+      },
+      {
+        "area": "Code hygiene",
+        "kind": "automated",
+        "points": 15,
+        "max": 15,
+        "details": [
+          "No problems found"
+        ]
+      },
+      {
+        "area": "Experience and use of assets",
+        "kind": "judged",
+        "rubric": "experience",
+        "max": 35,
+        "points": 21.4,
+        "details": [
+          "Cohesion with the subject: 6/10 (4.2 of 7 points)",
+          "Visual craft: 6/10 (4.2 of 7 points)",
+          "Countdown legibility: 5/10 (2 of 4 points)",
+          "Motion and interactivity: 7/10 (2.8 of 4 points)",
+          "Phone layout and edge states: 4/10 (1.2 of 3 points)",
+          "Asset selection: 8/10 (4 of 5 points)",
+          "Asset treatment: 6/10 (3 of 5 points)"
+        ]
+      },
+      {
+        "area": "Codebase",
+        "kind": "judged",
+        "rubric": "code",
+        "max": 15,
+        "points": 9,
+        "details": [
+          "Navigability: 7/10 (2.8 of 4 points)",
+          "Separation of concerns: 6/10 (1.8 of 3 points)",
+          "Readability: 6/10 (2.4 of 4 points)",
+          "Finish: 5/10 (2 of 4 points)"
+        ]
+      },
+      {
+        "area": "Process: self-critique, persistence, verification",
+        "kind": "judged",
+        "rubric": "process",
+        "max": 25,
+        "points": 14.8,
+        "details": [
+          "Verification: 8/10 (4 of 5 points)",
+          "Critique quality: 5/10 (3 of 6 points)",
+          "Follow-through: 5/10 (2.5 of 5 points)",
+          "Persistence: 5/10 (2.5 of 5 points)",
+          "Honest handover: 7/10 (2.8 of 4 points)"
+        ]
+      }
+    ]
+  },
+  "judges": [
+    {
+      "rubric": "experience",
+      "criteria": {
+        "cohesion": {
+          "evidence": "The page reads as Zelda. The gold foil logo sits over the Epona and Death Mountain key art (01). Cinzel display capitals in gold, diamond ornaments, hairline corner brackets and a thin frame suggest temple engraving. Several touches are specific to the subject: Navi drifts around the hero and says \"Hey! Listen!\" when clicked, the Deku Tree chapter is titled \"Every legend begins with a single step\" (17), and a playable ocarina asks you to play the Song of Time (18). The copy is on tone (\"Before the sword, before the princess, there was a boy…\"). There are weaknesses. The palette is a fairly generic dark-violet-and-gold luxury scheme, and the scrim turns the bright, sunny Epona art into a muddy dusk. The ocarina gives the right notes to the wrong buttons (Ocarina.tsx:18-22: C-right=D5, A=B4, C-down=A4), so ▶ A ▼ plays D5–B4–A4 instead of the familiar A–D–F. Any fan would hear that it is wrong. The rainbow C-buttons are not the game's colors either. As an event, it is elegant rather than ominous. Nothing builds as zero approaches: the final-hour and final-seconds frames (06, 07) look the same as 37 days out.",
+          "score": 6
+        },
+        "visual_craft": {
+          "evidence": "The type system is well considered: Cinzel for display, Inter for UI, tracked small caps for kickers, and gold gradient digits with a drop-glow. The hero composition on desktop is good (01): the logo sits in the gap between Epona and the mountain, and the date, ornamental rules and countdown are stacked and centered. Buttons are consistent pills with a warm gold primary. Rough edges: the tile widths change from tick to tick (02 vs 03 vs 05), so the row visibly shifts. The action feedback toast lands almost on top of the \"DISCOVER HYRULE\" cue (15, 16: text at y≈831 against the cue at y≈848). The \"RETURN TO HYRULE\" kicker is faint gold on pale foliage and barely readable (17). On mobile the logo overlaps a cropped slab of horse (10–12). The footer shows a developer-facing \"Time travel: add ?now=…\" hint. Overall it is polished, but not flawless.",
+          "score": 6
+        },
+        "legibility": {
+          "evidence": "The countdown is clearly the hero. It uses large gold numerals in labelled tiles (DAYS/HOURS/MINUTES/SECONDS), contrast against the dark glass tiles is good, and it becomes a 2×2 grid on mobile. Two problems cost it. First, Cinzel has no tabular figures, and each digit is an inline-block at its natural width (Countdown.tsx:13-21, .digit). As a result the tiles change width every second: the seconds tile runs x≈893–1027 in 02, 900–1020 in 03 and 905–1032 in 05, and the whole row slides. Second, each changed digit replays a 0.52 s drop-in with a 7px blur, so for about half of every second the seconds value shows as a ghost (02: \"0\" plus a faint \"2\"; 03: \"0\" plus a smear).",
+          "score": 5
+        },
+        "motion_interaction": {
+          "evidence": "There is a lot of motion, and most of it is on theme. The hero has a slow Ken Burns zoom, canvas embers and spirit motes, a pulsing diamond separator on each tick, a digit stamp animation, scroll parallax and staggered reveals in the chapters. Navi follows the pointer (04 shows her near the logo; 05 near \"MIDNIGHT ET\"), wanders when the pointer is idle, and chimes with a whisper when clicked. The sound toggle switches to a gold \"SOUND ON\" state (14). Add to Calendar downloads an .ics and shows a confirmation (15). Share shows a fallback message (16). Clicking an ocarina key fills the first slot of the song staff and shows the pressed state (18), and completing the song triggers a solved state with sparkles. The zero crossing fires a flash, rings and sparks (13). Hover states exist on buttons, ocarina keys and the cue, and the gold keyboard focus ring is clearly visible (19). Downsides: the blur stamp on digits hurts reading, the toast collides with the cue, and the Share fallback only tells you to copy the URL yourself.",
+          "score": 7
+        },
+        "responsive_and_states": {
+          "evidence": "The 390px layout has had some thought. The clock becomes a 2×2 grid, the sound label and scroll cue are hidden, the feature columns stack, and the ocarina card is centered (09). Nothing overflows or goes negative. The hero crop on phone, though, only reuses the desktop image with a different object-position: Link is out of frame, the horse is cut at the left edge, and the logo overlaps its head (10–12). The final seconds are not treated as a moment: 07 and 11 are the same layout as 37 days out, with \"0 DAYS 00 HOURS 00 MINUTES\" still showing. The arrival changes the kicker to \"AVAILABLE NOW\", brightens the tile borders and fires a one-off burst (13). After that the page keeps showing 0 00 00 00, the \"In your time zone\" line and a \"SAVE THE DATE\" button, which is the wrong copy for a game that is already out (08, 12). Both states feel like afterthoughts.",
+          "score": 4
+        },
+        "asset_selection": {
+          "evidence": "Four of the five assets are used, and each has its own job. The Epona and Death Mountain key art, the strongest and most iconic landscape, is the full-bleed hero. The transparent gold logo is the hero lockup. The Deku Tree art carries the \"Return to Hyrule\" chapter. The forest shot of Link holding the ocarina (thumb-1920) sits behind the ocarina section, which is a smart thematic match. The portrait wallpaper f55hr5n4xdoh1.jpg is left out, and its diagonal lenticular line artifacts and near-duplicate pose (the same Link as thumb-1920) justify that. The HANDOVER explains the choice. One caveat: that portrait could arguably have solved the weak phone hero.",
+          "score": 8
+        },
+        "asset_treatment": {
+          "evidence": "Handling is sensible: the 2.8 MB PNG was re-encoded to a 165 KB AVIF, the source AVIFs are kept, the decorative art has alt=\"\" with aria-hidden, and the logo has proper alt text. The desktop hero composites well: the logo is placed in the negative space between horse and volcano, and a scrim with a warm radial glow ties the image to the gold palette. The Deku Tree face stays visible behind the headline (17). Weaker points: the forest image sits under a 0.74–0.92 dark scrim (Chapter.module.css:56-66), so its luminous Link-and-Navi scene becomes a murky backdrop (18). The sunny Epona art is dimmed to a flat dusk. The mobile hero crop is not art-directed (10). There is no srcset, so single 1600px images are served everywhere, and the 279 KB logo PNG ships unoptimized.",
+          "score": 6
+        }
+      },
+      "summary": "An elegant, on-theme Zelda launch page. It picks its assets well and adds charming interactions specific to the game (a pointer-following Navi and a playable Song of Time ocarina), but the countdown tiles shift width every second because Cinzel's digits are proportional, and the blur-in animation smears the seconds. The final seconds and the arrival are barely designed (after release the page shows static zeros and \\\"Save the date\\\"), the phone hero crop is weak, and the ocarina plays the wrong pitches for the Song of Time. No reviewer-directed or prompt-injection text was found in the run.",
+      "error": null
+    },
+    {
+      "rubric": "code",
+      "criteria": {
+        "navigability": {
+          "evidence": "The layout is conventional and fits the size of the project. `src/lib` holds pure logic (time, audio, calendar, random), `src/hooks` holds the effects (useCountdown, useSound, useReducedMotion, useScrollFx), and `src/components` has one file per visual piece, with its CSS module next to it. The countdown math is in `lib/time.ts` (`countdownAt`, `splitSeconds`, `formatIsoDuration`). The ?now override is `parseNowParam` in the same file and is used in one place, `hooks/useCountdown.ts:21`. Each visual piece has a component named after it: Hero, Countdown, Embers, Navi, Ocarina, ReleaseBurst, HyruleChapter, OcarinaChapter. `app/README.md` says what the project is, lists the commands, explains ?now with examples, and gives an annotated map of every source file. That map matches the tree, so a new engineer can find any of these within a minute. Small frictions: `Chapter.module.css` is shared by two components with different names (a header comment explains this), `Icons.tsx` bundles four icons in one file, and Hero.tsx contains its own scroll-out effect when there is a `useScrollFx` hook to look in. The README says nothing about testing, but no tests exist.",
+          "score": 7
+        },
+        "separation": {
+          "evidence": "Time logic is pure, which is the main strength here. `countdownAt(nowMs, targetMs = RELEASE_MS)` in `lib/time.ts:62` takes the target as a parameter and never reads the clock or the DOM. `useCountdown` keeps real and virtual time apart cleanly, stores the origin pair in state and re-derives time on each tick. The target moment lives in `RELEASE_ISO`/`RELEASE_MS`, but `lib/calendar.ts:11-12` hardcodes it a second time as `ICS_START = '20261105T050000Z'` instead of deriving it, and imports `RELEASE_ISO` only to build the UID. Mute state lives in two places, React state in `useSound` and a module-level `muted` in `lib/audio.ts`. `useSound.toggle` calls `setMuted` inside a setState updater, which is a side effect in an updater, and a `useEffect` then does the same sync again. `useCountdown.ts:57` hardcodes a 6000 ms `justReleased` window that silently depends on the 5.6 s `fadeAway` animation in `ReleaseBurst.module.css`. `Hero.tsx` handles scroll-out, toast announcements and layout in one component, and its scroll handler repeats the rAF-throttle pattern already in `useScrollFx`. `lib/time.ts` also contains presentation code (the Intl formatter and a regex list of Eastern time zones). Sound and reduced-motion state are lifted to App and passed down one or two levels, which is reasonable. The functions are easy to test, but there are no tests.",
+          "score": 6
+        },
+        "readability": {
+          "evidence": "Names are mostly clear and components are small; the largest are Ocarina and Hero at about 150 lines each. Several comments explain the why well: the `Math.ceil` rationale in `time.ts:64`, the Chromium background-clip quirk in `Countdown.module.css:89`, the transform-only reveal in `global.css:235`, and the note that remounting the digit face replays the animation in `Countdown.tsx:12`. Some comments are wrong, though. `useCountdown.ts:6` says `justReleased` is true \"for one render pass\", but it stays true for 6 s. `useScrollFx.ts:4` says the hook writes `--parallax-progress`, which is never set. The example in `time.ts:91`, \"10:00 AM GMT+1\", is wrong; midnight ET is 06:00 GMT+1. `audio.ts` names its option type `PluckOptions` for a function called `voice`, and `output()` calls `audio()` again after `voice` already has. The separator in `Countdown.tsx:62` is keyed by `seconds` to force a remount without any comment, unlike the Digit trick. The Embers sprite changes its alpha by rewriting the rgba string with a regex. The four icons in `Icons.tsx` repeat the same SVG wrapper. The gold colour is written out as `rgba(227, 189, 108, …)` 28 times even though tokens exist. I would approve this with a handful of comments.",
+          "score": 6
+        },
+        "finish": {
+          "evidence": "Build and lint pass. I found no dead components, commented-out code, TODOs or console logging, and no dependencies were added beyond the scaffold. There is leftover residue, though. `global.css` defines `.sr-only` and `.text-gold`, which nothing uses, and six custom properties that nothing reads: `--ink-raised`, `--ink-glass`, `--gold-shadow`, `--ember`, `--navi`, `--shadow-deep`. HANDOVER describes \"ember and Navi accents\" as part of the design system, but `Navi.module.css` hardcodes those colours instead. `Hero.module.css:21` targets an `.art picture` element that doesn't exist. `Countdown.module.css` redefines a `.kicker` that nearly duplicates the global `.kicker`, and `Footer.module.css` redefines the global `.diamond`. None of the four icons ever receives the `size` or `className` props it accepts. The stale comments listed under readability are iteration leftovers. Scaffold remnants remain: the `// https://vite.dev/config/` comment and the package name `app` at version 0.0.0. The agent never committed anything; the HANDOVER says so, but the repository was handed over as an uncommitted working tree.",
+          "score": 5
+        }
+      },
+      "summary": "This is a well-organised codebase for its size: a README that maps every source file, and a pure, parameterised countdown module (`lib/time.ts`) with a clean real-vs-virtual clock hook. The weaker points are a second hardcoded copy of the target instant in `calendar.ts`, mute state duplicated between React and the audio module (with a side effect inside a setState updater), several inaccurate comments, and unused global CSS classes and tokens. Nothing was committed to git. I found no text in the run that addressed reviewers or asked for a score.",
+      "error": null
+    },
+    {
+      "rubric": "process",
+      "criteria": {
+        "verification": {
+          "evidence": "Checked more than most runs do. It ran `tsc -b`, `npm run lint` and `npm run build` several times (transcript lines ~7461, 14383, 18798). After writing HANDOVER.md it ran lint and `tsc -b --force` again (line ~19859) and took shot 031, so no files changed after the last screenshot. It wrote a Playwright script, tmp-verify.mjs, that asserts: exactly one <time> at 7 instants, a valid ISO duration, ticking (P0DT0H0M10S → P0DT0H0M8S), a live zero-crossing (PT0S, kicker, burst, tab title), Navi, the ocarina easter egg and the .ics download. The first run had a Navi FAIL (line ~12858); the agent fixed it, and later runs pass. It logged network requests against the `vite preview` production build (tmp-network.mjs), checked reduced motion (tmp-reduced.mjs), and measured overflow with a layout script at 1280×720, 1440×760, 768×1024, 390×844 and 1440×900. Screenshots cover phone, tablet, short laptop and desktop; final seconds on desktop (011) and mobile (026); arrival on desktop (012) and mobile (027); plus 360×640 (029) and 1440×600 (030). The measured facts match: build, lint and types clean, all 8 countdown moments correct, no requests to other origins. Gaps: the only mobile full-page shot (014) was at +15 min and was never retaken after later hero, countdown and footer changes. In 029 the Share button is cut off at the 360×640 fold, and the agent moved on without comment.",
+          "score": 8
+        },
+        "critique_quality": {
+          "evidence": "The model's reasoning isn't in the transcript, so only its short text notes can be judged. The layout diagnoses are specific and correct. 'separators are grid items creating a 2-row layout' matches shot 001. 'digits are being clipped by background-clip: text interacting with animated descendants' matches 002. 'percentage margins on the separator forced the clock to 213px tall' is also specific and correct. 'The chapters are too dark and scroll-reveals leave content invisible in full-page captures' is honest and matches 009. 'date wrapping, art crop' names the problem in 013. 'Tablet and short-laptop viewports need viewport-height-aware sizing' fits 016, where the CTAs are cut off. The design-level judgement is weak or rosy. It said 'Mobile chapters look good' at shot 014, where the ocarina chapter's forest art is almost black. It said 'The Epona crop is stronger' and reverted, although mobile shots 026, 027 and 029 show a fragment of the horse with Link out of frame. It said 'Both zero states work' about 012 and 027 without noting problems a design lead would raise: a 'SAVE THE DATE' CTA shown after release, the stale 'In your time zone: Wed, Nov 4, 11:00 PM' line, and '0' days next to '00' for the other units. Navi's orb sitting on 'MIDNIGHT ET' in 015, 017, 022, 023 and 026 was only addressed at the very end. The notes are not self-congratulatory, but they catch bugs rather than design problems.",
+          "score": 5
+        },
+        "follow_through": {
+          "evidence": "Named bugs mostly got fixed. The broken grid and clipped digits in 001–002 were fixed by 003. The dark chapters with invisible content in 009 were fixed in 010. The mobile date wrap in 013 was fixed in 015. The 1280×720 CTA overflow in 016 was fixed in 021. The failing Navi test was fixed. Navi's idle drift was moved 'away from the copy' after 026, although in 027 and 029 it still sits on the logo on mobile. However, the desktop hero was essentially final by shot 003 (+2 min): 031 is nearly identical to it. The mobile art crop was named as a problem and ended no better (a horse fragment). The tablet's empty lower third is unchanged from 017 to 022. The arrival state was never revisited after 'Both zero states work'. So the early and middle shots improved in fit and legibility, but visual quality barely changed after the first few minutes.",
+          "score": 5
+        },
+        "persistence": {
+          "evidence": "The run lasted 51 min, with 31 screenshots over 36.5 min at seven viewport sizes, plus several throwaway measurement and verification scripts. It tried a real alternative, retesting the portrait wallpaper on mobile with a stronger scrim (023), then reverted it, and it swept extra sizes (360×640, 1440×600) late in the run. Most iteration went into fit and overflow fixes, not pushing the design. It stopped while clear problems were visible in its own recent shots: the mobile crop, Navi over the copy and logo, the thin arrival state, and the nearly black mobile ocarina chapter. Competent, but it did not push far past its first 'good enough'.",
+          "score": 5
+        },
+        "honesty": {
+          "evidence": "HANDOVER.md is present and detailed, and its checkable claims hold up against the measured facts. Lint and build pass, there are 0 type errors, and all requests are same-origin (no requests to other origins). There is exactly one <time> element, and PT0S at zero is correct. The verification section describes scripts that actually ran. The known-gaps list is real (audio needs a gesture, Chromium only, ?now read once, AVIF only, fixed .ics UID, nothing committed). It explains why it left out f55hr5n4xdoh1.jpg. Small stretches: '1440×760' is listed among screenshot sizes but was only a layout measurement. The gaps list leaves out visible design weaknesses it had screenshots of: the mobile hero crop hides Link, Navi overlaps the copy and logo on phones, and after release the page still shows 'Save the date' and a stale local-time line. No major overclaiming. I found no text in the run's files addressed to reviewers or asking for a score.",
+          "score": 7
+        }
+      },
+      "summary": "This run checked its own work well: repeated lint, build and type-check (including after the last edit), a Playwright script covering the <time> contract, ticking and a live zero-crossing, a network check on the production build, and screenshots of phone, tablet, desktop, final seconds and arrival. Its visible critiques were accurate about layout bugs and got them fixed, but its design judgement was rosy ('Mobile chapters look good', 'Epona crop is stronger', 'Both zero states work'). After minute 3 the desktop hero barely changed, and the mobile crop, Navi overlap and thin arrival state were left as they were. The handover is accurate on every checkable fact but does not mention those visible design weaknesses.",
+      "error": null
+    }
+  ],
+  "scenario": {
+    "title": "The Legend of Zelda: Ocarina of Time (remake)",
+    "event": "the release of the Ocarina of Time remake on Nintendo Switch 2",
+    "target": "2026-11-05T00:00:00-05:00",
+    "targetLabel": "November 5, 2026 at midnight Eastern Time",
+    "id": "ocarina-remake"
+  },
+  "agent": {
+    "preset": null,
+    "model": null,
+    "command": "opencode run --auto --format json --model opencode/deepseek-v4.1-flash --variant max \"$(cat BRIEF.md)\"",
+    "startedAt": "2026-09-30T01:48:48.648Z",
+    "finishedAt": "2026-09-30T02:39:57.178Z",
+    "exitCode": 0,
+    "timedOut": false
+  },
+  "statics": {
+    "build": {
+      "ok": true,
+      "log": "> app@0.0.0 build\n> tsc -b && vite build\n\nvite v8.3.1 building client environment for production...\ntransforming...\n✓ 45 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                  1.04 kB │ gzip:  0.51 kB\ndist/assets/cinzel-latin-ext-C_yqxIr0.woff2     14.53 kB\ndist/assets/cinzel-latin-BOqWLKHx.woff2         25.88 kB\ndist/assets/inter-latin-8kRkwJBP.woff2          48.43 kB\ndist/assets/inter-latin-ext-B_-bZUTo.woff2      85.27 kB\ndist/assets/hero-epona-BglRdPph.avif           161.48 kB\ndist/assets/forest-BAyNwWIO.avif               169.01 kB\ndist/assets/logo-ocarina-of-time-C-TPAjUa.png  285.40 kB\ndist/assets/deku-tree-DJIS-WJw.avif            494.67 kB\ndist/assets/index--WGAGLh_.css                  26.06 kB │ gzip:  7.02 kB\ndist/assets/index-DEXMzLxP.js                  246.47 kB │ gzip: 77.84 kB\n\n✓ built in 108ms"
+    },
+    "ownLint": {
+      "ok": true,
+      "log": "> app@0.0.0 lint\n> oxlint"
+    },
+    "typecheck": {
+      "ok": true,
+      "log": "",
+      "stdout": "",
+      "errorCount": 0
+    },
+    "lint": {
+      "ok": true,
+      "log": "",
+      "diagnostics": []
+    },
+    "deadCode": {
+      "ok": true,
+      "log": "",
+      "issues": []
+    },
+    "suppressions": [],
+    "debugLogging": [],
+    "weakenedCompilerOptions": [],
+    "untouchedScaffold": [],
+    "scaffoldReplaced": true,
+    "orphanFiles": [],
+    "strayFiles": [],
+    "notes": []
+  },
+  "experience": {
+    "error": null,
+    "moments": [
+      {
+        "moment": "weeks-out",
+        "viewport": "desktop",
+        "now": "2026-09-28T17:49:55.000Z",
+        "durations": [
+          "P37DT11H10M4S"
+        ],
+        "expectedSeconds": 3237005,
+        "actualSeconds": 3237004,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "final-hour",
+        "viewport": "desktop",
+        "now": "2026-11-05T04:17:43.000Z",
+        "durations": [
+          "P0DT0H42M16S"
+        ],
+        "expectedSeconds": 2537,
+        "actualSeconds": 2536,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "final-seconds",
+        "viewport": "desktop",
+        "now": "2026-11-05T04:59:52.000Z",
+        "durations": [
+          "P0DT0H0M7S"
+        ],
+        "expectedSeconds": 8,
+        "actualSeconds": 7,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "arrived",
+        "viewport": "desktop",
+        "now": "2026-11-05T08:00:00.000Z",
+        "durations": [
+          "PT0S"
+        ],
+        "expectedSeconds": 0,
+        "actualSeconds": 0,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "weeks-out",
+        "viewport": "mobile",
+        "now": "2026-09-28T17:49:55.000Z",
+        "durations": [
+          "P37DT11H10M4S"
+        ],
+        "expectedSeconds": 3237005,
+        "actualSeconds": 3237004,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "final-hour",
+        "viewport": "mobile",
+        "now": "2026-11-05T04:17:43.000Z",
+        "durations": [
+          "P0DT0H42M16S"
+        ],
+        "expectedSeconds": 2537,
+        "actualSeconds": 2536,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "final-seconds",
+        "viewport": "mobile",
+        "now": "2026-11-05T04:59:52.000Z",
+        "durations": [
+          "P0DT0H0M7S"
+        ],
+        "expectedSeconds": 8,
+        "actualSeconds": 7,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "arrived",
+        "viewport": "mobile",
+        "now": "2026-11-05T08:00:00.000Z",
+        "durations": [
+          "PT0S"
+        ],
+        "expectedSeconds": 0,
+        "actualSeconds": 0,
+        "correct": true,
+        "horizontalOverflow": false
+      }
+    ],
+    "ticks": {
+      "firstSeconds": 3237003,
+      "secondSeconds": 3237000,
+      "ok": true
+    },
+    "reachesZero": {
+      "actualSeconds": 0,
+      "ok": true
+    },
+    "consoleErrors": [],
+    "externalRequests": [],
+    "interactiveElements": 10,
+    "captures": [
+      {
+        "file": "./report/captures/01-weeks-out-desktop.webp",
+        "caption": "37 days out, desktop 1440px, full page"
+      },
+      {
+        "file": "./report/captures/02-motion-a.webp",
+        "caption": "37 days out, desktop, 0.7 s after the first capture"
+      },
+      {
+        "file": "./report/captures/03-motion-b.webp",
+        "caption": "37 days out, desktop, 1.4 s after the first capture"
+      },
+      {
+        "file": "./report/captures/04-pointer-upper-left.webp",
+        "caption": "37 days out, desktop, pointer moved to the upper left"
+      },
+      {
+        "file": "./report/captures/05-pointer-lower-right.webp",
+        "caption": "37 days out, desktop, pointer moved to the lower right"
+      },
+      {
+        "file": "./report/captures/06-final-hour-desktop.webp",
+        "caption": "42 minutes out, desktop 1440px"
+      },
+      {
+        "file": "./report/captures/07-final-seconds-desktop.webp",
+        "caption": "8 seconds out, desktop 1440px"
+      },
+      {
+        "file": "./report/captures/08-arrived-desktop.webp",
+        "caption": "3 hours after the moment, desktop 1440px"
+      },
+      {
+        "file": "./report/captures/09-weeks-out-mobile.webp",
+        "caption": "37 days out, mobile 390px, full page"
+      },
+      {
+        "file": "./report/captures/10-final-hour-mobile.webp",
+        "caption": "42 minutes out, mobile 390px"
+      },
+      {
+        "file": "./report/captures/11-final-seconds-mobile.webp",
+        "caption": "8 seconds out, mobile 390px"
+      },
+      {
+        "file": "./report/captures/12-arrived-mobile.webp",
+        "caption": "3 hours after the moment, mobile 390px"
+      },
+      {
+        "file": "./report/captures/13-zero-crossing.webp",
+        "caption": "Loaded 4 seconds before the moment, captured 2 seconds after it"
+      },
+      {
+        "file": "./report/captures/14-click-1.webp",
+        "caption": "37 days out, desktop, after clicking \"SOUND OFF\""
+      },
+      {
+        "file": "./report/captures/15-click-2.webp",
+        "caption": "37 days out, desktop, after clicking \"ADD TO CALENDAR\""
+      },
+      {
+        "file": "./report/captures/16-click-3.webp",
+        "caption": "37 days out, desktop, after clicking \"SHARE\""
+      },
+      {
+        "file": "./report/captures/17-click-4.webp",
+        "caption": "37 days out, desktop, after clicking \"Discover Hyrule\""
+      },
+      {
+        "file": "./report/captures/18-click-5.webp",
+        "caption": "37 days out, desktop, after clicking \"C-up, D4\""
+      },
+      {
+        "file": "./report/captures/19-keyboard-focus.webp",
+        "caption": "37 days out, desktop, after pressing Tab once (focus style)"
+      }
+    ]
+  },
+  "assets": {
+    "usage": [
+      {
+        "file": "8a1enblo1b6h1.png",
+        "status": "shipped"
+      },
+      {
+        "file": "f55hr5n4xdoh1.jpg",
+        "status": "not-found"
+      },
+      {
+        "file": "link-on-epona-with-death-mountain-in-the-distance-in-zelda-ocarina-of-time-remake.avif",
+        "status": "shipped"
+      },
+      {
+        "file": "link-standing-before-the-great-deku-tree-in-the-ocarina-of-time-remake-on-switch-2.avif",
+        "status": "shipped"
+      },
+      {
+        "file": "thumb-1920-1414762.png",
+        "status": "not-found"
+      }
+    ],
+    "builtImages": [
+      {
+        "file": "app/dist/assets/deku-tree-DJIS-WJw.avif",
+        "bytes": 494679
+      },
+      {
+        "file": "app/dist/assets/forest-BAyNwWIO.avif",
+        "bytes": 169016
+      },
+      {
+        "file": "app/dist/assets/hero-epona-BglRdPph.avif",
+        "bytes": 161486
+      },
+      {
+        "file": "app/dist/assets/logo-ocarina-of-time-C-TPAjUa.png",
+        "bytes": 285407
+      },
+      {
+        "file": "app/dist/favicon.svg",
+        "bytes": 444
+      }
+    ],
+    "error": null
+  },
+  "processFacts": {
+    "agent": {
+      "preset": null,
+      "model": null,
+      "command": "opencode run --auto --format json --model opencode/deepseek-v4.1-flash --variant max \"$(cat BRIEF.md)\"",
+      "startedAt": "2026-09-30T01:48:48.648Z",
+      "finishedAt": "2026-09-30T02:39:57.178Z",
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "duration": {
+      "seconds": 3068.53,
+      "source": "launch to exit, measured by the benchmark"
+    },
+    "usage": {
+      "harness": "opencode",
+      "model": null,
+      "turns": 149,
+      "tokens": {
+        "input": 469316,
+        "cacheRead": 19686982,
+        "cacheWrite": 0,
+        "output": 160558,
+        "reasoning": 90570,
+        "total": 20316856
+      },
+      "costUsd": 0.451586292,
+      "costBasis": "OpenCode's cost at its provider's prices",
+      "transcriptSeconds": 3061.703
+    },
+    "shots": [
+      {
+        "n": 1,
+        "file": ".bench/shots/001-1440x900.png",
+        "takenAt": "2026-09-30T02:03:02.168Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "145257c9f55da0fb6f3fdd1268af7db8b5b6c4ee",
+        "problems": []
+      },
+      {
+        "n": 2,
+        "file": ".bench/shots/002-1440x900.png",
+        "takenAt": "2026-09-30T02:04:29.887Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "b1b58548af2405782457311d069057339dc77733",
+        "problems": []
+      },
+      {
+        "n": 3,
+        "file": ".bench/shots/003-1440x900.png",
+        "takenAt": "2026-09-30T02:05:21.803Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "fde11553031754f87268f8fe9d8d44bbd19fb433",
+        "problems": []
+      },
+      {
+        "n": 4,
+        "file": ".bench/shots/004-1440x900.png",
+        "takenAt": "2026-09-30T02:06:23.222Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "342dc4596b318fcd5eca55da1741c6f07627173a",
+        "problems": []
+      },
+      {
+        "n": 5,
+        "file": ".bench/shots/005-390x844.png",
+        "takenAt": "2026-09-30T02:06:25.774Z",
+        "width": 390,
+        "height": 844,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "87879f920c16de3afbc7f384447af1d7686d5fbc",
+        "problems": []
+      },
+      {
+        "n": 6,
+        "file": ".bench/shots/006-1440x900.png",
+        "takenAt": "2026-09-30T02:07:36.744Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "a7a89e8e4e4e71fa88a0ae50c31270acf1637f51",
+        "problems": []
+      },
+      {
+        "n": 7,
+        "file": ".bench/shots/007-390x844.png",
+        "takenAt": "2026-09-30T02:07:39.313Z",
+        "width": 390,
+        "height": 844,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "9b23173bee762bfde5fb582b5d6763f9d0860082",
+        "problems": []
+      },
+      {
+        "n": 8,
+        "file": ".bench/shots/008-1440x900.png",
+        "takenAt": "2026-09-30T02:11:26.576Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "d2dc09b7c10fed1b8f41a3644fe719b232ac411f",
+        "problems": []
+      },
+      {
+        "n": 9,
+        "file": ".bench/shots/009-1440x900.png",
+        "takenAt": "2026-09-30T02:12:08.601Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": true,
+        "commit": "49b7f61fce650083aa991a819de9b26c5c82598c",
+        "problems": []
+      },
+      {
+        "n": 10,
+        "file": ".bench/shots/010-1440x900.png",
+        "takenAt": "2026-09-30T02:13:42.087Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": true,
+        "commit": "5697c15e5ff393078a3cb1c46af03c0b77617183",
+        "problems": []
+      },
+      {
+        "n": 11,
+        "file": ".bench/shots/011-1440x900.png",
+        "takenAt": "2026-09-30T02:14:54.848Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-11-04T23:59:50-05:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "db10214940b8e092c5b0f165cf1b3980e40299ec",
+        "problems": []
+      },
+      {
+        "n": 12,
+        "file": ".bench/shots/012-1440x900.png",
+        "takenAt": "2026-09-30T02:14:57.082Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-11-05T00:00:01-05:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "e1941d2d87a254376c9ae43147d0132dc296a658",
+        "problems": []
+      },
+      {
+        "n": 13,
+        "file": ".bench/shots/013-390x844.png",
+        "takenAt": "2026-09-30T02:18:17.142Z",
+        "width": 390,
+        "height": 844,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "6c7c118bd5f314b8411937cbe0e3053f4da20831",
+        "problems": []
+      },
+      {
+        "n": 14,
+        "file": ".bench/shots/014-390x844.png",
+        "takenAt": "2026-09-30T02:18:20.537Z",
+        "width": 390,
+        "height": 844,
+        "now": null,
+        "path": "/",
+        "fullPage": true,
+        "commit": "8d1418941959d76b575eb0124dd6d545ea7ac175",
+        "problems": []
+      },
+      {
+        "n": 15,
+        "file": ".bench/shots/015-390x844.png",
+        "takenAt": "2026-09-30T02:20:14.215Z",
+        "width": 390,
+        "height": 844,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "f48649e0f184f927c0ad58941821876f8e72620b",
+        "problems": []
+      },
+      {
+        "n": 16,
+        "file": ".bench/shots/016-1280x720.png",
+        "takenAt": "2026-09-30T02:22:07.543Z",
+        "width": 1280,
+        "height": 720,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "45690685020e78042a8bac904045a006ab40a1f2",
+        "problems": []
+      },
+      {
+        "n": 17,
+        "file": ".bench/shots/017-768x1024.png",
+        "takenAt": "2026-09-30T02:22:10.460Z",
+        "width": 768,
+        "height": 1024,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "1b86183645766c68f2dc791dbe181227f74e7890",
+        "problems": []
+      },
+      {
+        "n": 18,
+        "file": ".bench/shots/018-1280x720.png",
+        "takenAt": "2026-09-30T02:23:25.234Z",
+        "width": 1280,
+        "height": 720,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "696ac8ea8954231922944a6557ed6815c24f61de",
+        "problems": []
+      },
+      {
+        "n": 19,
+        "file": ".bench/shots/019-768x1024.png",
+        "takenAt": "2026-09-30T02:23:28.144Z",
+        "width": 768,
+        "height": 1024,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "b808efe76899ccd40ed0532486bf822bb351d9ba",
+        "problems": []
+      },
+      {
+        "n": 20,
+        "file": ".bench/shots/020-1440x900.png",
+        "takenAt": "2026-09-30T02:23:31.143Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "939ec29f57f62ed35408fb7045b62c39e635c8ff",
+        "problems": []
+      },
+      {
+        "n": 21,
+        "file": ".bench/shots/021-1280x720.png",
+        "takenAt": "2026-09-30T02:26:32.709Z",
+        "width": 1280,
+        "height": 720,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "0a28e5c0929b8424d48005fd8085b3cd55392176",
+        "problems": []
+      },
+      {
+        "n": 22,
+        "file": ".bench/shots/022-768x1024.png",
+        "takenAt": "2026-09-30T02:26:35.640Z",
+        "width": 768,
+        "height": 1024,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "362a3227b211395b3fe1f1d5c2faf0c09d0513cc",
+        "problems": []
+      },
+      {
+        "n": 23,
+        "file": ".bench/shots/023-390x844.png",
+        "takenAt": "2026-09-30T02:29:30.961Z",
+        "width": 390,
+        "height": 844,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "cc20e289f51f160567c0785e5187b21998ba95bb",
+        "problems": []
+      },
+      {
+        "n": 24,
+        "file": ".bench/shots/024-1440x900.png",
+        "takenAt": "2026-09-30T02:34:43.754Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "63f7147da9ad1ff1d95a7732bd14281acb1d0cb4",
+        "problems": []
+      },
+      {
+        "n": 25,
+        "file": ".bench/shots/025-1440x900.png",
+        "takenAt": "2026-09-30T02:34:47.813Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": true,
+        "commit": "ece9f2f9f2447649be61c57353b8b43fc7cca2fb",
+        "problems": []
+      },
+      {
+        "n": 26,
+        "file": ".bench/shots/026-390x844.png",
+        "takenAt": "2026-09-30T02:34:51.082Z",
+        "width": 390,
+        "height": 844,
+        "now": "2026-11-04T23:59:20-05:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "7dd89a587ae03e526fa5ca572a67b49a688110f7",
+        "problems": []
+      },
+      {
+        "n": 27,
+        "file": ".bench/shots/027-390x844.png",
+        "takenAt": "2026-09-30T02:35:37.428Z",
+        "width": 390,
+        "height": 844,
+        "now": "2026-11-05T00:00:05-05:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "3f2507c6f8f16114fab8c3fd3561c0d8b17baa95",
+        "problems": []
+      },
+      {
+        "n": 28,
+        "file": ".bench/shots/028-1440x900.png",
+        "takenAt": "2026-09-30T02:35:40.471Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "4a826fa47ff8498cf8fdb14fb1bef35fce63d044",
+        "problems": []
+      },
+      {
+        "n": 29,
+        "file": ".bench/shots/029-360x640.png",
+        "takenAt": "2026-09-30T02:37:10.013Z",
+        "width": 360,
+        "height": 640,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "631921c8c2345ab1c6db952feac66cbd9f0c0f83",
+        "problems": []
+      },
+      {
+        "n": 30,
+        "file": ".bench/shots/030-1440x600.png",
+        "takenAt": "2026-09-30T02:37:12.900Z",
+        "width": 1440,
+        "height": 600,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "6703632db2e417b8226f511928816124caa5a8a6",
+        "problems": []
+      },
+      {
+        "n": 31,
+        "file": ".bench/shots/031-1440x900.png",
+        "takenAt": "2026-09-30T02:39:29.392Z",
+        "width": 1440,
+        "height": 900,
+        "now": null,
+        "path": "/",
+        "fullPage": false,
+        "commit": "cf9e6ad26baaa9a7e909b7d70d1b421897963527",
+        "problems": []
+      }
+    ],
+    "shotSpanMinutes": 36.5,
+    "snapshots": [
+      {
+        "label": "setup",
+        "commit": "25bbf80ca3ae7bdd9e1ab845df1db17565e473ab",
+        "filesChanged": 19,
+        "insertions": 1968,
+        "deletions": 0
+      },
+      {
+        "label": "shot 1",
+        "commit": "145257c9f55da0fb6f3fdd1268af7db8b5b6c4ee",
+        "filesChanged": 46,
+        "insertions": 3089,
+        "deletions": 439
+      },
+      {
+        "label": "shot 2",
+        "commit": "b1b58548af2405782457311d069057339dc77733",
+        "filesChanged": 2,
+        "insertions": 13,
+        "deletions": 13
+      },
+      {
+        "label": "shot 3",
+        "commit": "fde11553031754f87268f8fe9d8d44bbd19fb433",
+        "filesChanged": 2,
+        "insertions": 18,
+        "deletions": 15
+      },
+      {
+        "label": "shot 4",
+        "commit": "342dc4596b318fcd5eca55da1741c6f07627173a",
+        "filesChanged": 2,
+        "insertions": 7,
+        "deletions": 8
+      },
+      {
+        "label": "shot 5",
+        "commit": "87879f920c16de3afbc7f384447af1d7686d5fbc",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 6",
+        "commit": "a7a89e8e4e4e71fa88a0ae50c31270acf1637f51",
+        "filesChanged": 2,
+        "insertions": 29,
+        "deletions": 8
+      },
+      {
+        "label": "shot 7",
+        "commit": "9b23173bee762bfde5fb582b5d6763f9d0860082",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 8",
+        "commit": "d2dc09b7c10fed1b8f41a3644fe719b232ac411f",
+        "filesChanged": 2,
+        "insertions": 17,
+        "deletions": 2
+      },
+      {
+        "label": "shot 9",
+        "commit": "49b7f61fce650083aa991a819de9b26c5c82598c",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 10",
+        "commit": "5697c15e5ff393078a3cb1c46af03c0b77617183",
+        "filesChanged": 2,
+        "insertions": 21,
+        "deletions": 12
+      },
+      {
+        "label": "shot 11",
+        "commit": "db10214940b8e092c5b0f165cf1b3980e40299ec",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 12",
+        "commit": "e1941d2d87a254376c9ae43147d0132dc296a658",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 13",
+        "commit": "6c7c118bd5f314b8411937cbe0e3053f4da20831",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 14",
+        "commit": "8d1418941959d76b575eb0124dd6d545ea7ac175",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 15",
+        "commit": "f48649e0f184f927c0ad58941821876f8e72620b",
+        "filesChanged": 4,
+        "insertions": 51,
+        "deletions": 14
+      },
+      {
+        "label": "shot 16",
+        "commit": "45690685020e78042a8bac904045a006ab40a1f2",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 17",
+        "commit": "1b86183645766c68f2dc791dbe181227f74e7890",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 18",
+        "commit": "696ac8ea8954231922944a6557ed6815c24f61de",
+        "filesChanged": 2,
+        "insertions": 6,
+        "deletions": 6
+      },
+      {
+        "label": "shot 19",
+        "commit": "b808efe76899ccd40ed0532486bf822bb351d9ba",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 20",
+        "commit": "939ec29f57f62ed35408fb7045b62c39e635c8ff",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 21",
+        "commit": "0a28e5c0929b8424d48005fd8085b3cd55392176",
+        "filesChanged": 1,
+        "insertions": 1,
+        "deletions": 7
+      },
+      {
+        "label": "shot 22",
+        "commit": "362a3227b211395b3fe1f1d5c2faf0c09d0513cc",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 23",
+        "commit": "cc20e289f51f160567c0785e5187b21998ba95bb",
+        "filesChanged": 2,
+        "insertions": 15,
+        "deletions": 9
+      },
+      {
+        "label": "shot 24",
+        "commit": "63f7147da9ad1ff1d95a7732bd14281acb1d0cb4",
+        "filesChanged": 6,
+        "insertions": 69,
+        "deletions": 56
+      },
+      {
+        "label": "shot 25",
+        "commit": "ece9f2f9f2447649be61c57353b8b43fc7cca2fb",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 26",
+        "commit": "7dd89a587ae03e526fa5ca572a67b49a688110f7",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 27",
+        "commit": "3f2507c6f8f16114fab8c3fd3561c0d8b17baa95",
+        "filesChanged": 1,
+        "insertions": 3,
+        "deletions": 2
+      },
+      {
+        "label": "shot 28",
+        "commit": "4a826fa47ff8498cf8fdb14fb1bef35fce63d044",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 29",
+        "commit": "631921c8c2345ab1c6db952feac66cbd9f0c0f83",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 30",
+        "commit": "6703632db2e417b8226f511928816124caa5a8a6",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 31",
+        "commit": "cf9e6ad26baaa9a7e909b7d70d1b421897963527",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "grading",
+        "commit": "0b69ca442825dc26d6d828dd76080d091ce742c5",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      }
+    ],
+    "changedAfterLastShot": {
+      "filesChanged": 0,
+      "insertions": 0,
+      "deletions": 0
+    },
+    "appCommits": [],
+    "handover": "# Handover — Ocarina of Time \"Doomsday Clock\"\n\nA front-end-only countdown to **The Legend of Zelda: Ocarina of Time** on Nintendo Switch 2.\nThe clock hits zero at **November 5, 2026, 00:00 Eastern (`2026-11-05T00:00:00-05:00`)**.\n\nEverything lives in `app/`; the brief's assets live in `assets/` and were copied into\n`app/src/assets/art/` when used.\n\n---\n\n## 1. The experience\n\n**One scroll, three acts.**\n\n1. **Hero — the clock.** Full-bleed key art (Link on Epona, Death Mountain burning at dusk),\n   the gold logo, and a four-unit countdown carved in Cinzel with a metallic gold gradient.\n   Drifting canvas embers, a slow Ken Burns on the art, hairline corner brackets on each tile,\n   separator diamonds that pulse once per second, and a scroll-out fade as you leave.\n   Two working calls to action: **Add to calendar** (builds a real `.ics` in the browser and\n   downloads it) and **Share** (native share sheet, clipboard fallback).\n2. **\"Return to Hyrule\" — the promise.** The Great Deku Tree at full bleed with a scroll\n   parallax, a short pitch and three feature columns that slide in on scroll.\n3. **\"Play the Song of Time\" — the invitation.** The forest clearing behind a working ocarina:\n   five note buttons laid out like the N64 controller (C-up / C-left / A / C-right / C-down),\n   each synthesising a real tone through the Web Audio API. A staff records what you play;\n   playing **▶ A ▼ ▶ A ▼** unlocks a hidden message and a shower of golden notes.\n\nTwo more things hide in the hero: **Navi** — a fairy who follows your pointer around the key\nart and whispers one of several lines when clicked — and the **sound toggle**, which arms all\nof the page's audio. Sound is off until a visitor asks for it.\n\nAt zero the countdown switches to **AVAILABLE NOW**: the tiles lock at zero with a golden\nglow, a flash of light and sparks fires across the screen, a chime plays if sound is on, and\nthe tab title becomes \"Ocarina of Time — out now on Nintendo Switch 2\".\n\n### Time travel\n\n`?now=<ISO 8601>` makes the page behave as if it loaded at that instant, then keep ticking:\n\n```\n/?now=2026-11-04T23:59:50-05:00   # 10 seconds left; hits zero 10s later, live\n/?now=2026-11-05T00:00:01-05:00   # already released\n```\n\n---\n\n## 2. Run it\n\n```bash\ncd app\nnpm run dev      # dev server\nnpm run lint     # oxlint — passes clean\nnpm run build    # tsc -b && vite build — passes clean\nnpm run preview  # serve dist/\n```\n\nNo dependencies were added: React 19 + Vite 8 + TypeScript, plus the browser's own canvas,\nWeb Audio and Intl APIs.\n\n---\n\n## 3. Code map\n\n```\napp/\n  index.html                  title, meta, theme colour, favicon\n  public/favicon.svg          gold Triforce mark\n  src/\n    App.tsx                   page composition; tab-title clock; release chime\n    main.tsx                  React root\n    lib/\n      time.ts                 release instant, ?now parsing, unit split, ISO-8601 duration\n      audio.ts                Web Audio synthesis: ocarina voice, glass-bell chime\n      calendar.ts             .ics builder/download + share/clipboard\n      random.ts               deterministic pseudo-random (pure renders)\n    hooks/\n      useCountdown.ts         the virtual clock (real/virtual origin pair)\n      useSound.ts             one source of truth for mute state\n      useReducedMotion.ts     live prefers-reduced-motion\n      useScrollFx.ts          useParallax + useReveal (rAF-throttled, IntersectionObserver)\n    components/\n      Hero.tsx / .module.css        act one\n      Countdown.tsx / .module.css   the <time> element and its units\n      Embers.tsx                    canvas particle field (pre-rendered sprites, DPR-aware)\n      Navi.tsx / .module.css        pointer-following fairy with speech bubble\n      HyruleChapter.tsx             act two (Deku Tree)\n      OcarinaChapter.tsx            act three shell (forest)\n      Ocarina.tsx / .module.css     the instrument + Song of Time easter egg\n      ReleaseBurst.tsx / .module.css  zero-moment celebration\n      Footer.tsx / .module.css      small print + ?now hint\n      Icons.tsx                     inline SVG icons\n    styles/\n      fonts.css               @font-face for self-hosted Cinzel + Inter\n      global.css              reset, design tokens, buttons, kicker, grain, reveal\n    assets/\n      art/                    hero-epona.avif, deku-tree.avif, forest.avif, logo png\n      fonts/                  cinzel/inter woff2 (latin + latin-ext)\n```\n\n### The countdown contract (requirements 3–6)\n\n`useCountdown` captures a **real/virtual origin pair** on mount:\n\n```ts\nconst origin = { real: Date.now(), virtual: parseNowParam(location.search) ?? Date.now() }\n```\n\nEvery 200 ms it re-derives `virtual = origin.virtual + (Date.now() - origin.real)`, computes\n`ceil(remaining / 1000)` and only re-renders when that whole second changes. Background-tab\nthrottling, clock drift and `visibilitychange` therefore self-correct on the next tick.\n\n`Countdown.tsx` renders exactly **one `<time>` element**, wrapping the four visible units, with\n`datetime` set to an ISO 8601 duration of the remaining time — all units written out\n(`P36DT2H43M53S`), and the canonical `PT0S` once the moment has passed. A `released` flag\nclamps everything at zero and flips the page into its release state, so no negative numbers\ncan ever reach the DOM.\n\n### Assets\n\n| asset | where it went |\n| --- | --- |\n| `link-on-epona-…avif` | hero key art, desktop and mobile (responsive `object-position`) |\n| `link-standing-before-the-great-deku-tree-…avif` | act two full-bleed art |\n| `thumb-1920-1414762.png` | act three forest, re-encoded to AVIF (2.8 MB → 169 KB) |\n| `8a1enblo1b6h1.png` | hero logo |\n| `f55hr5n4xdoh1.jpg` | reviewed and deliberately not used — the portrait lenticular wallpaper fought the logo for attention on phones; the landscape key art crop reads better and keeps one art direction across breakpoints |\n\n---\n\n## 4. Design system\n\nTokens live in `src/styles/global.css`: ink `#08070f`, gold ramp `#f8e7b4 → #a97c2f`,\ncream `#f6efe1`, ember and Navi accents. Cinzel carries the display voice (logo, digits,\ntitles); Inter carries labels and body. The metallic digits are a vertical gold gradient\nclipped to each glyph face — deliberately applied per digit, not to the parent, because a\n`background-clip: text` window containing an animated descendant does not paint reliably in\nChromium.\n\nType and spacing scale with **both** viewport axes where the composition needs it\n(`clamp(240px, min(38vw, 46vh), 440px)` for the logo, `min(6.2vw, 8.6vh)` for the digits), so\nshort laptops (1280×720), portrait tablets (768×1024) and phones (390×844) all fit the hero in\none screen without clipping.\n\n---\n\n## 5. Performance, offline, accessibility\n\n- **Offline by construction.** Fonts are woff2 files in the bundle, art is AVIF/PNG in the\n  bundle, and every sound is synthesised. Verified with a request log: the production build\n  makes 9 requests, all same-origin, zero failures. No `<link>` to any CDN, no analytics.\n- **Particles** are pre-rendered sprites on a DPR-capped canvas, paused when the tab is hidden.\n- **Motion** respects `prefers-reduced-motion`: Ken Burns, embers, Navi's wandering, digit\n  stamps and parallax all stand down; the countdown keeps ticking.\n- **Accessibility.** The visible countdown *is* the `<time>` element; its `aria-label` reads\n  the remaining time (\"36 days, 2 hours…\") while the digits are `aria-hidden`. The kicker is a\n  polite live region, so the release announces itself exactly once. All controls are real\n  buttons with visible focus rings; the ocarina has an `aria-label` per note with its pitch.\n- **No layout shift on feedback:** the hero's action feedback line is absolutely positioned.\n\n---\n\n## 6. How this was verified\n\n- `npm run lint` and `npm run build` both pass clean (oxlint reports zero warnings; `tsc -b`\n  is part of the build).\n- A scripted Chromium pass (Playwright, same engine as `./shot`) asserted:\n  - exactly one `<time>` element at every `?now` value tested (36 days out, 10 s left, 1 s\n    left, exactly zero, 10 s past, 2027, 2030) and a well-formed ISO duration in `datetime`;\n  - the value ticks down between two samples 2.2 s apart;\n  - loading 3 s before zero produces `PT0S`, the \"AVAILABLE NOW\" kicker, the celebration\n    overlay and the released tab title **live**, without a reload;\n  - Navi's click produces a whisper; the Song of Time unlocks the easter egg;\n  - \"Add to calendar\" downloads `ocarina-of-time-remake.ics` containing\n    `DTSTART:20261105T050000Z`.\n- Production build served via `vite preview`: same-origin requests only, no console errors, all\n  images decode, only the two Latin font subsets load.\n- Screenshots at 1440×900, 1440×760, 1280×720, 768×1024, 390×844, 360×640 and 1440×600, in\n  normal, released, reduced-motion and full-page modes. `.bench/shots/` holds the whole\n  iteration history; the final frames are the last few numbered shots.\n\n---\n\n## 7. Known gaps and judgement calls\n\n- **Sound needs a gesture.** Browsers won't let a page create an `AudioContext` before the\n  visitor interacts. If someone loads the page and never touches it, the zero-moment chime is\n  silent (the visuals still fire). This is deliberate: no autoplay, no nagging.\n- **`?now` is read once, at mount.** Changing the query string without a reload won't re-time\n  the clock; the page is a static SPA with no router.\n- **The ocarina is an approximation.** The five buttons map to a pentatonic set (D4 F4 A4 B4\n  D5) and the Song of Time is ▶ A ▼ twice; it is not a sample-accurate recreation of the N64\n  instrument.\n- **Navi follows a mouse, not a finger.** On touch devices there is no `pointermove`, so she\n  wanders on her own — tap her for a whisper.\n- **Only AVIF for the artwork.** Every browser that can run this build supports it, but there\n  is no JPEG/WebP fallback if that ever stops being true.\n- **Chromium was the only engine exercised** (it's what `./shot` drives). The CSS sticks to\n  widely supported features (`backdrop-filter`, `clamp()`, `min()` in `clamp`, `:has` is not\n  used); Safari and Firefox should be fine but have not been run.\n- **The `.ics` uses a fixed UID and a placeholder `DTSTAMP`.** Fine for a one-off save-the-date,\n  not for a calendar feed.\n- **The tab title changes every second** by design (it's part of the clock); if that is\n  considered noise, the effect in `App.tsx` is one line to change.\n- **Nothing is committed.** The working tree is the deliverable; `git status` in `app/` shows\n  the scaffold deletions/additions, and the root run directory holds this file.\n",
+    "transcript": {
+      "source": "./.bench/transcript.log",
+      "cleaned": "report/transcript.txt",
+      "bytes": 754742
+    }
+  }
+}

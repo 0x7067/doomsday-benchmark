@@ -2,5 +2,6 @@
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "entry": ["src/shot.ts"],
   "project": ["src/**/*.ts"],
+  "ignore": ["results/**"],
   "ignoreExportsUsedInFile": { "interface": true, "type": true }
 }

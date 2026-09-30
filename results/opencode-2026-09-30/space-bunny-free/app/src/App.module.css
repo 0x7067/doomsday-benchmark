@@ -1,0 +1,39 @@
+/* ==========================================================================
+   Page shell
+   ========================================================================== */
+
+.page {
+  position: relative;
+  min-block-size: 100dvh;
+  background: var(--page);
+  overflow-x: clip;
+}
+
+/* A single fixed wash so the seam between the hero and the page below never
+   reads as a hard edge, however the sections are sized. */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(90% 55% at 50% 0%, rgb(16 44 38 / 0.55), transparent 70%),
+    radial-gradient(70% 50% at 12% 42%, rgb(10 32 30 / 0.5), transparent 72%),
+    radial-gradient(70% 50% at 88% 68%, rgb(12 28 34 / 0.5), transparent 72%);
+  transition: background 2200ms var(--ease-out);
+}
+
+/* Once the moment lands, the wash turns to first light. */
+.page[data-arrived='true'] {
+  --accent: var(--gold-200);
+  --accent-soft: var(--gold-100);
+  --accent-deep: var(--gold-300);
+  --halo: rgb(255 226 168 / 0.22);
+}
+
+.page[data-arrived='true'] .ambient {
+  background:
+    radial-gradient(95% 60% at 50% 0%, rgb(84 62 26 / 0.6), transparent 72%),
+    radial-gradient(80% 60% at 50% 30%, rgb(255 226 168 / 0.14), transparent 70%),
+    linear-gradient(180deg, rgb(10 20 24 / 0.6), rgb(4 11 12 / 0.9));
+}

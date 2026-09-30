@@ -1,0 +1,71 @@
+.places__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.places__place {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+  text-shadow:
+    0 1px 10px rgb(0 0 0 / 0.95),
+    0 0 2px rgb(0 0 0 / 0.8);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.places__place::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  rotate: 45deg;
+  border: 1px solid currentColor;
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s;
+}
+
+.places__place:hover {
+  color: var(--cream);
+}
+
+.places__place[aria-current='true'] {
+  color: var(--gold-200);
+}
+
+.places__place[aria-current='true']::before {
+  background: var(--gold-300);
+  box-shadow: 0 0 10px rgb(247 224 160 / 0.8);
+}
+
+/* Inside the phone's ocarina sheet. */
+.ocarina .places {
+  grid-area: extra;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgb(239 203 115 / 0.14);
+}
+
+.ocarina .places__list {
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+
+.ocarina .places__place {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  min-height: 2.75rem;
+}

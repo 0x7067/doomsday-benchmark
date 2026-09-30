@@ -1,0 +1,17 @@
+.canvas {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-background);
+  pointer-events: none;
+  /* --presence is written from the scroll position: the field belongs to the
+     hero and recedes once the hero has gone. */
+  opacity: calc(0.88 * var(--presence, 1));
+  mix-blend-mode: screen;
+  transition: opacity 220ms linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas {
+    opacity: calc(0.5 * var(--presence, 1));
+  }
+}

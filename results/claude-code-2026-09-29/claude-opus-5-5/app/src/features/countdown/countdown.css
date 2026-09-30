@@ -1,0 +1,220 @@
+/*
+ * Sized from the width of its container (the hero column is an inline-size
+ * container), so a 3- or 4-digit day count still fits on one line; capped by
+ * the viewport height so landscape phones keep room for everything else.
+ */
+.countdown {
+  /* Slot widths in em, unitless so the sizing formula can use them too. Cinzel
+     has no tabular figures; its widest digit ("0") is 0.63em. */
+  --glyph: 0.66;
+  --separator: 0.38;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 560;
+  line-height: 1;
+  font-size: clamp(2.2rem, min(96cqi / (var(--glyphs) * var(--glyph) + 3 * var(--separator)), 16vh), 8.5rem);
+  user-select: none;
+}
+
+.countdown__unit {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.7rem;
+}
+
+.countdown__value {
+  display: flex;
+  /* Shadows live on the group, not per glyph: one filter pass instead of eight. */
+  filter: drop-shadow(0 0.03em 0 rgb(48 26 0 / 0.7)) drop-shadow(0 0.06em 0.18em rgb(0 0 0 / 0.55));
+}
+
+.countdown__label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(0.6rem, 0.16em, 0.8rem);
+  letter-spacing: 0.32em;
+  /* Letter-spacing trails the last glyph; pull it back so labels centre true. */
+  margin-right: -0.32em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+  animation: fade-in 0.8s 0.35s var(--ease-out) both;
+}
+
+.digit {
+  display: inline-grid;
+  width: calc(var(--glyph) * 1em);
+  height: 1.12em;
+  overflow: clip;
+  mask-image: linear-gradient(transparent, #000 16%, #000 84%, transparent);
+}
+
+.digit__glyph {
+  grid-area: 1 / 1;
+  place-self: center;
+  padding-block: 0.06em;
+  background: var(--gold-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.digit__glyph[data-motion='intro'] {
+  animation: digit-intro 0.9s calc(0.15s + var(--i) * 40ms) var(--ease-out) both;
+}
+
+.digit__glyph[data-motion='in'] {
+  animation: digit-in 0.62s var(--ease-out) both;
+}
+
+.digit__glyph[data-motion='out'] {
+  animation: digit-out 0.62s var(--ease-out) both;
+}
+
+@keyframes digit-intro {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 38%, 0);
+    filter: blur(8px);
+  }
+}
+
+@keyframes digit-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 58%, 0) scale(0.92);
+    filter: blur(5px);
+  }
+}
+
+@keyframes digit-out {
+  to {
+    opacity: 0;
+    transform: translate3d(0, -58%, 0) scale(0.92);
+    filter: blur(5px);
+  }
+}
+
+.countdown__separator {
+  display: grid;
+  place-items: center;
+  width: calc(var(--separator) * 1em);
+  height: 1.12em;
+}
+
+.countdown__pips {
+  display: grid;
+  row-gap: 0.2em;
+  animation: pip-pulse 1s var(--ease-out) both;
+}
+
+.countdown__pips::before,
+.countdown__pips::after {
+  content: '';
+  width: 0.1em;
+  height: 0.1em;
+  rotate: 45deg;
+  background: var(--gold-300);
+  box-shadow: 0 0 0.12em rgb(247 224 160 / 0.8);
+}
+
+@keyframes pip-pulse {
+  from {
+    opacity: 1;
+    scale: 1.25;
+  }
+  to {
+    opacity: 0.45;
+    scale: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .digit__glyph[data-motion='intro'],
+  .digit__glyph[data-motion='in'] {
+    animation: fade-in 0.3s ease both;
+  }
+  .digit__glyph[data-motion='out'] {
+    animation: fade-out 0.3s ease both;
+  }
+  .countdown__pips {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ——— The last ten seconds ——— */
+
+.countdown__unit {
+  transition: opacity 0.8s var(--ease-out);
+}
+
+/* Everything but the seconds is spent; let them recede. */
+.countdown[data-final] .countdown__unit:not([data-unit='seconds']),
+.countdown[data-final] .countdown__separator {
+  opacity: 0.32;
+}
+
+.countdown[data-final] [data-unit='seconds'] .countdown__value {
+  filter: drop-shadow(0 0.03em 0 rgb(48 26 0 / 0.7)) drop-shadow(0 0 0.3em rgb(255 214 120 / 0.55));
+}
+
+.finale {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.55rem;
+  animation: rise-in 0.8s var(--ease-out) both;
+}
+
+.finale__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  margin-right: -0.3em;
+  text-transform: uppercase;
+  color: var(--gold-200);
+}
+
+.finale__notes {
+  display: flex;
+  gap: clamp(0.5rem, 2.4cqi, 1rem);
+}
+
+.finale__note {
+  display: grid;
+  place-items: center;
+  width: clamp(1.9rem, 6cqi, 2.6rem);
+  aspect-ratio: 1;
+  border: 1px dashed rgb(239 203 115 / 0.35);
+  border-radius: 50%;
+}
+
+.finale__note svg {
+  width: 72%;
+  height: 72%;
+  overflow: visible;
+  opacity: 0;
+  scale: 0.4;
+  transition:
+    opacity 0.3s,
+    scale 0.5s var(--ease-spring),
+    filter 0.5s;
+}
+
+.finale__note[data-played] {
+  border-color: transparent;
+}
+
+.finale__note[data-played] svg {
+  opacity: 1;
+  scale: 1;
+  filter: drop-shadow(0 0 10px rgb(255 236 170 / 0.9));
+}

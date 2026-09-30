@@ -1,0 +1,164 @@
+/* ==========================================================================
+   Section II — the gallery
+   A magazine spread: one tall plate beside two wide ones, captions underneath.
+   ========================================================================== */
+
+.section {
+  padding-block: clamp(4.5rem, 14vh, 9rem);
+  scroll-margin-block-start: 4rem;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.9rem, 2vh, 1.4rem);
+  max-inline-size: 54rem;
+  margin-block-end: clamp(2.25rem, 6vh, 4rem);
+}
+
+.heading {
+  font-size: clamp(1.7rem, 1rem + 2.7vw, 3.1rem);
+  color: var(--gold-100);
+}
+
+.grid {
+  --parallax: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vh, 3.25rem);
+}
+
+@media (min-width: 56rem) {
+  .grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: auto auto;
+    column-gap: clamp(1.5rem, 3vw, 2.75rem);
+    row-gap: clamp(2rem, 4vh, 3rem);
+    align-items: start;
+  }
+
+  .poster {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    position: sticky;
+    inset-block-start: 3rem;
+  }
+}
+
+.poster,
+.scene {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 0;
+}
+
+.plate {
+  --depth: 0.1;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink-800);
+  border: 1px solid var(--hairline);
+  box-shadow: 0 1.75rem 3rem -1.25rem rgb(0 0 0 / 0.75);
+  transition: border-color 520ms var(--ease-out);
+
+  /* Blurred placeholder, set inline by the component. */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.scene .plate {
+  aspect-ratio: 16 / 9;
+}
+
+.poster .plate {
+  aspect-ratio: 4 / 5.4;
+}
+
+.image {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+  filter: saturate(0.88) brightness(0.9);
+  /* Scaled past the frame so the parallax can never expose an edge. */
+  scale: 1.14;
+  translate: 0 calc(var(--parallax) * var(--depth) * -38%);
+  transition:
+    filter 700ms var(--ease-out),
+    scale 900ms var(--ease-out);
+}
+
+.poster .image {
+  object-position: 50% 40%;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  background-image: var(--grain-url);
+  background-size: 180px 180px;
+  pointer-events: none;
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding-block-start: 0.15rem;
+}
+
+.place {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  text-indent: 0.28em;
+}
+
+.place::after {
+  content: '';
+  flex: 1;
+  block-size: 1px;
+  background: linear-gradient(90deg, var(--hairline-strong), transparent);
+}
+
+.note {
+  max-inline-size: 40ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-dim);
+  text-wrap: pretty;
+}
+
+/* Hover and keyboard focus get the same lift, so the gallery is navigable
+   without a mouse. */
+.poster:hover .plate,
+.poster:focus-within .plate,
+.scene:hover .plate,
+.scene:focus-within .plate {
+  border-color: var(--hairline-strong);
+}
+
+.poster:hover .image,
+.poster:focus-within .image,
+.scene:hover .image,
+.scene:focus-within .image {
+  filter: saturate(1.04) brightness(1);
+  scale: 1.17;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    translate: none;
+    transition: none;
+  }
+}

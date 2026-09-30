@@ -1,0 +1,103 @@
+/* ==========================================================================
+   Section I — the cinematic band
+   ========================================================================== */
+
+.band {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr;
+  align-items: end;
+  min-block-size: clamp(24rem, 60svh, 36rem);
+  padding-block: clamp(3.5rem, 10vh, 7rem);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  /* The blurred placeholder is set inline; this is what shows beneath it. */
+  background-color: var(--ink-900);
+
+  /* Blurred placeholder, set inline by the component. */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: 50% 46%;
+  filter: saturate(0.92) brightness(0.94) contrast(1.03);
+  scale: 1.04;
+  animation: band-drift 72s var(--ease-in-out) infinite alternate;
+}
+
+@keyframes band-drift {
+  from {
+    scale: 1.04;
+    translate: 0 0;
+  }
+  to {
+    scale: 1.12;
+    translate: -0.8% -1.4%;
+  }
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      var(--page) 0%,
+      rgb(4 11 12 / 0.45) 20%,
+      transparent 48%,
+      rgb(4 11 12 / 0.55) 80%,
+      var(--page) 100%
+    ),
+    linear-gradient(
+      100deg,
+      rgb(3 8 10 / 0.88) 0%,
+      rgb(3 8 10 / 0.6) 38%,
+      rgb(3 8 10 / 0.12) 72%,
+      transparent 100%
+    );
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(0.9rem, 2vh, 1.5rem);
+  max-inline-size: 44rem;
+}
+
+.heading {
+  font-size: clamp(2rem, 1.1rem + 3.6vw, 4.25rem);
+  color: var(--gold-100);
+  text-shadow: 0 0.15em 1.4em rgb(0 0 0 / 0.7);
+}
+
+.body {
+  max-inline-size: var(--measure);
+  font-size: clamp(0.98rem, 0.92rem + 0.35vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--text-soft);
+  text-wrap: pretty;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    animation: none;
+  }
+}
+
+@media (min-width: 60rem) {
+  .inner {
+    padding-inline-start: 6%;
+  }
+}

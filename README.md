@@ -13,7 +13,7 @@ It works with any model and any harness: Claude Code, Codex, OpenCode, Copilot, 
 
 **Results:** [charlexmachina.github.io/doomsday-benchmark](https://charlexmachina.github.io/doomsday-benchmark/)
 
-**Contributed runs:** [Codex: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna (September 30, 2026)](results/codex-2026-09-30/README.md).
+**Archived runs:** [Claude Code: Claude Opus 5.5 (September 29, 2026)](results/claude-code-2026-09-29/README.md), [OpenCode: Space Bunny Free, DeepSeek V4.1 Flash and GLM 5.3 Flash (September 30, 2026)](results/opencode-2026-09-30/README.md), and [Codex: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna (September 30, 2026, contributed)](results/codex-2026-09-30/README.md).
 
 ## Quick start
 
@@ -112,7 +112,7 @@ That writes `report/REPORT.md` and `report/score.json`. `--no-judges` runs only 
 npm run bench -- site --publish
 ```
 
-That builds `_site/` from every graded run, in `runs/` and in the contributed `results/<batch>/<run>/` folders, and force-pushes it to the `gh-pages` branch as one fresh commit. The site has a leaderboard for each [benchmark version](#versions), with a chart of any score (the total or one category) against estimated cost, run time or tokens; each run opens its live countdown with a details panel (scores per category, time, tokens, cost) and the full report. Each app is rebuilt to be served from its subfolder; grading always uses the agent's own build. Transcripts are never published. Without `--publish`, it only builds `_site/` for a local look.
+That builds `_site/` from every graded run, in `runs/` and in the archived `results/<batch>/<run>/` folders, and force-pushes it to the `gh-pages` branch as one fresh commit. The site has a leaderboard for each [benchmark version](#versions), with a chart of any score (the total or one category) against estimated cost, run time or tokens; each run opens its live countdown with a details panel (scores per category, time, tokens, cost) and the full report. Each app is rebuilt to be served from its subfolder; grading always uses the agent's own build. Transcripts are never published. Without `--publish`, it only builds `_site/` for a local look.
 
 ### Preset status
 
@@ -156,7 +156,7 @@ Judges are independent, read-only Claude Code sessions in the run directory, so 
 
 Scores are only comparable between runs that got the same brief and were graded by the same checks and rubrics. Grading records the benchmark version in `score.json` and at the top of `REPORT.md`, and the results site ranks each version separately. When a change to the brief, the checks or the rubrics would move scores, bump `BENCHMARK_VERSION` in [src/version.ts](src/version.ts).
 
-- **V1** (September 29–30, 2026; tag [`v1`](https://github.com/CharlExMachina/doomsday-benchmark/tree/v1)): the brief, checks and rubrics described above. Eight runs of `ocarina-remake`: Claude Opus 5.5 in Claude Code; Space Bunny Free, DeepSeek V4.1 Flash and GLM 5.3 Flash in OpenCode; and GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna in Codex (contributed). Reports graded before versions were recorded are V1.
+- **V1** (September 29–30, 2026; tag [`v1`](https://github.com/CharlExMachina/doomsday-benchmark/tree/v1)): the brief, checks and rubrics described above. Eight runs of `ocarina-remake`, all archived in [results/](results/): Claude Opus 5.5 in Claude Code; Space Bunny Free, DeepSeek V4.1 Flash and GLM 5.3 Flash in OpenCode; and GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna in Codex (contributed). Reports graded before versions were recorded are V1.
 
 ## Time, tokens and cost
 

@@ -1,0 +1,172 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-backdrop);
+  overflow: hidden;
+  background: var(--ink-950);
+  animation: backdrop-in 1.6s var(--ease-out) both;
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
+
+/* Pointer parallax: the art leans away from the cursor. `--pointer-*` is -1…1, set on :root. */
+.backdrop__parallax {
+  position: absolute;
+  inset: -3%;
+  transform: translate3d(calc(var(--pointer-x, 0) * -1.1%), calc(var(--pointer-y, 0) * -0.9%), 0);
+  will-change: transform;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  background: var(--placeholder) var(--focus) / cover no-repeat;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity var(--scene-fade) var(--ease-in-out),
+    visibility 0s linear var(--scene-fade);
+}
+
+.scene[data-state='active'] {
+  z-index: 2;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--scene-fade) var(--ease-in-out);
+}
+
+/* Time travel: swap quickly while the warp flash is at its brightest. */
+.backdrop[data-via='warp'] .scene[data-state='active'] {
+  transition: opacity 0.5s 0.3s ease-in-out;
+}
+
+/* The outgoing scene stays fully opaque under the incoming one. */
+.scene[data-state='previous'] {
+  z-index: 1;
+  opacity: 1;
+  visibility: visible;
+  transition: none;
+}
+
+.scene picture {
+  display: contents;
+}
+
+.scene__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--focus);
+  opacity: 0;
+  transition: opacity 0.9s var(--ease-out);
+  /* A slow, breathing push-in, like the camera on a title screen. */
+  animation: scene-drift 60s var(--ease-in-out) infinite alternate;
+  animation-play-state: paused;
+}
+
+.scene[data-state='active'] .scene__image,
+.scene[data-state='previous'] .scene__image {
+  animation-play-state: running;
+}
+
+.scene[data-loaded] .scene__image {
+  opacity: 1;
+}
+
+@keyframes scene-drift {
+  from {
+    transform: scale(1.01);
+  }
+  to {
+    transform: scale(1.09) translate3d(-0.8%, -0.5%, 0);
+  }
+}
+
+/* PORTRAIT_QUERY in src/lib/scenes/scenes.ts: the <picture> switches to portrait art here. */
+@media (max-aspect-ratio: 4/5) {
+  .scene {
+    background-image: var(--placeholder-portrait);
+    background-position: var(--focus-portrait);
+    transform: scale(var(--scale-portrait));
+    transform-origin: 50% 0;
+  }
+  .scene__image {
+    object-position: var(--focus-portrait);
+  }
+}
+
+/*
+ * Legibility. On wide screens the characters stand on the left and type sits
+ * on the right, so the scrim leans right; on tall screens it holds the top
+ * (logo) and the bottom (clock + ocarina).
+ */
+.backdrop__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(130% 100% at 38% 42%, transparent 52%, rgb(3 5 4 / 0.6) 100%),
+    linear-gradient(to left, rgb(4 7 6 / 0.82) 0%, rgb(4 7 6 / 0.62) 26%, rgb(4 7 6 / 0.2) 50%, transparent 64%),
+    linear-gradient(to bottom, rgb(4 7 6 / 0.6) 0%, rgb(4 7 6 / 0.2) 9%, transparent 18%),
+    linear-gradient(to top, rgb(4 7 6 / 0.85) 0%, rgb(4 7 6 / 0.35) 16%, transparent 30%);
+}
+
+/* Not LANDSCAPE_QUERY. */
+@media not all and (min-aspect-ratio: 5/4) {
+  .backdrop__scrim {
+    background:
+      radial-gradient(140% 90% at 50% 48%, transparent 45%, rgb(3 5 4 / 0.55) 100%),
+      linear-gradient(to bottom, rgb(4 7 6 / 0.62) 0%, rgb(4 7 6 / 0.2) 22%, transparent 34%),
+      linear-gradient(to top, rgb(4 7 6 / 0.94) 0%, rgb(4 7 6 / 0.78) 30%, rgb(4 7 6 / 0.25) 48%, transparent 60%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop {
+    animation-name: fade-in;
+  }
+  .backdrop__parallax {
+    transform: none;
+  }
+  .scene__image {
+    animation: none;
+  }
+}
+
+/* Grades for the Sun's Song (night) and the Song of Storms (overcast). */
+.backdrop__grade {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 2.6s var(--ease-in-out);
+}
+
+.backdrop__grade--night {
+  background:
+    radial-gradient(55% 45% at 72% 6%, rgb(170 200 255 / 0.28), transparent 70%),
+    linear-gradient(to bottom, rgb(20 34 92 / 0.78), rgb(8 14 48 / 0.86));
+  mix-blend-mode: multiply;
+}
+
+.backdrop__grade--storm {
+  background: linear-gradient(to bottom, rgb(92 102 120 / 0.8), rgb(60 68 80 / 0.62));
+  mix-blend-mode: multiply;
+}
+
+.backdrop[data-night] .backdrop__grade--night,
+.backdrop[data-storm] .backdrop__grade--storm {
+  opacity: 1;
+}
+
+/* Night and storm together would multiply into black; ease the storm off. */
+.backdrop[data-night][data-storm] .backdrop__grade--storm {
+  opacity: 0.45;
+}

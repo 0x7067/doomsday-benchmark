@@ -1,0 +1,38 @@
+.launch-details {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.35rem;
+  animation: rise-in 0.8s 0.4s var(--ease-out) both;
+}
+
+.launch-details__date {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(0.8rem, 1.1vw + 0.45rem, 1.05rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-200);
+  text-shadow: 0 1px 12px rgb(0 0 0 / 0.8);
+}
+
+.launch-details__dot {
+  width: 0.32em;
+  height: 0.32em;
+  rotate: 45deg;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.launch-details__local {
+  font-style: italic;
+  font-size: clamp(0.95rem, 0.5vw + 0.8rem, 1.1rem);
+  color: var(--cream-muted);
+  text-shadow: 0 1px 10px rgb(0 0 0 / 0.9);
+}
+
+.launch-details__actions {
+  margin-top: 0.75rem;
+}

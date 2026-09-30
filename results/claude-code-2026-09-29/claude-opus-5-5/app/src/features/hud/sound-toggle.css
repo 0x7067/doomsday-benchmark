@@ -1,0 +1,48 @@
+.sound-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  padding: 0.45rem 0.9rem 0.45rem 0.7rem;
+  border: 1px solid var(--gold-line);
+  border-radius: 999px;
+  background: rgb(6 10 8 / 0.42);
+  backdrop-filter: var(--panel-blur);
+  -webkit-backdrop-filter: var(--panel-blur);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream-muted);
+  cursor: pointer;
+  transition:
+    color 0.25s,
+    border-color 0.25s;
+}
+
+.sound-toggle:hover {
+  color: var(--cream);
+  border-color: rgb(239 203 115 / 0.55);
+}
+
+.sound-toggle[aria-pressed='true'] svg {
+  color: var(--gold-300);
+}
+
+@media (max-width: 30rem) {
+  .sound-toggle {
+    width: 2.5rem;
+    padding: 0;
+    justify-content: center;
+  }
+  /* Icon only on small phones; the label stays for screen readers. */
+  .sound-toggle__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,115 @@
+.burst {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  overflow: hidden;
+  pointer-events: none;
+  animation: fadeAway 5.6s var(--ease-out) forwards;
+}
+
+.flash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140vmax;
+  height: 140vmax;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 246, 216, 0.75) 0%,
+    rgba(227, 189, 108, 0.35) 22%,
+    rgba(255, 176, 118, 0.12) 45%,
+    transparent 68%
+  );
+  animation: flash 1.5s var(--ease-out) forwards;
+}
+
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18vmin;
+  height: 18vmin;
+  translate: -50% -50%;
+  border-radius: 50%;
+  border: 2px solid rgba(248, 231, 180, 0.75);
+  box-shadow: 0 0 40px rgba(227, 189, 108, 0.5);
+  animation: ring 2.6s var(--ease-out) forwards;
+}
+
+.spark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--spark);
+  box-shadow: 0 0 12px 2px var(--spark);
+  animation-name: fly;
+  animation-timing-function: cubic-bezier(0.16, 0.7, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+@keyframes flash {
+  0% {
+    opacity: 0;
+    scale: 0.2;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 1;
+  }
+}
+
+@keyframes ring {
+  0% {
+    opacity: 0;
+    scale: 0.2;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 5.5;
+  }
+}
+
+@keyframes fly {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  8% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1);
+  }
+}
+
+@keyframes fadeAway {
+  0%,
+  72% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .burst {
+    display: none;
+  }
+}

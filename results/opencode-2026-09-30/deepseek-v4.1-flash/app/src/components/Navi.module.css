@@ -1,0 +1,136 @@
+.navi {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  will-change: transform;
+  transition: opacity 0.6s var(--ease-out);
+}
+
+/* Reduced motion: park her in a corner instead of wandering. */
+.navi:not([data-wandering='true']) {
+  top: 26%;
+  left: 74%;
+  transform: none;
+}
+
+.orb {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px rgba(182, 236, 255, 0.9));
+}
+
+.wings {
+  position: absolute;
+  inset: -8%;
+  width: 116%;
+  height: 116%;
+  overflow: visible;
+  opacity: 0.75;
+}
+
+.wings ellipse {
+  fill: rgba(214, 245, 255, 0.85);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: flutter 0.42s var(--ease-in-out) infinite alternate;
+}
+
+.wingRight {
+  animation-delay: -0.21s;
+}
+
+.core {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffffff, #cdf1ff 45%, #7fd4ff 100%);
+  box-shadow:
+    0 0 8px 2px rgba(190, 240, 255, 0.95),
+    0 0 26px 8px rgba(120, 200, 255, 0.55),
+    0 0 60px 22px rgba(90, 170, 255, 0.28);
+  animation: glow 3.4s var(--ease-in-out) infinite;
+}
+
+.burst {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 1px solid rgba(190, 240, 255, 0.8);
+  animation: burst 0.9s var(--ease-out) forwards;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  translate: -50% 0;
+  padding: 8px 14px;
+  border-radius: 14px 14px 14px 4px;
+  background: rgba(10, 16, 24, 0.85);
+  border: 1px solid rgba(182, 236, 255, 0.4);
+  box-shadow: 0 14px 34px -14px rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(8px);
+  color: #e8faff;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  animation: bubbleIn 0.42s var(--ease-out) both;
+  pointer-events: none;
+}
+
+@keyframes flutter {
+  from {
+    transform: scaleX(0.72) scaleY(1) rotate(-4deg);
+    opacity: 0.5;
+  }
+  to {
+    transform: scaleX(1.05) scaleY(0.92) rotate(4deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes burst {
+  from {
+    opacity: 0.9;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+}
+
+@keyframes bubbleIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.94);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .core,
+  .wings ellipse {
+    animation: none;
+  }
+}

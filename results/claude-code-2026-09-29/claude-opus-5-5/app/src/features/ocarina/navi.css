@@ -1,0 +1,209 @@
+/*
+ * Navi and her text box. In the game her messages come in a translucent
+ * blue box (everyone else's is black), which is what this imitates.
+ */
+.navi {
+  position: absolute;
+  right: calc(100% + 1.25rem);
+  bottom: 0.4rem;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  width: max-content;
+  animation: navi-in 0.9s var(--ease-out) both;
+}
+
+@keyframes navi-in {
+  from {
+    opacity: 0;
+    transform: translate3d(40px, 12px, 0) scale(0.9);
+  }
+}
+
+.navi__box {
+  position: relative;
+  order: -1;
+  display: grid;
+  row-gap: 0.3rem;
+  max-width: 17.5rem;
+  padding: 0.75rem 2.3rem 0.8rem 1rem;
+  border: 1px solid rgb(180 220 255 / 0.45);
+  border-radius: 14px;
+  background: linear-gradient(to bottom, rgb(40 92 170 / 0.82), rgb(22 58 124 / 0.86));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow:
+    0 14px 40px rgb(0 0 0 / 0.4),
+    inset 0 1px 0 rgb(220 240 255 / 0.25);
+  color: #f2f8ff;
+}
+
+/* The blinking "more" arrow from the game's text boxes. */
+.navi__box::after {
+  content: '';
+  position: absolute;
+  right: 0.8rem;
+  bottom: 0.7rem;
+  border: 5px solid transparent;
+  border-top-color: rgb(150 210 255 / 0.95);
+  animation: navi-more 1s steps(2, jump-none) infinite;
+}
+
+@keyframes navi-more {
+  50% {
+    opacity: 0;
+  }
+}
+
+.navi__hey {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bfe4ff;
+}
+
+.navi__text {
+  font-size: 0.98rem;
+  line-height: 1.3;
+}
+
+.navi__text strong {
+  font-weight: 600;
+  color: #ffd76a;
+}
+
+.navi__notes {
+  display: flex;
+  gap: 0.2rem;
+  margin-top: 0.15rem;
+}
+
+.navi__glyph {
+  width: 1.1rem;
+  height: 1.1rem;
+  overflow: visible;
+}
+
+.navi__dismiss {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.45rem;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.08);
+  color: rgb(230 245 255 / 0.8);
+  cursor: pointer;
+}
+
+.navi__dismiss:hover {
+  background: rgb(255 255 255 / 0.18);
+  color: #fff;
+}
+
+/* Navi herself: a bright core, a halo, and four quick wings. */
+.navi__fairy {
+  position: relative;
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  margin-top: -0.6rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0 32%, #d6f0ff 45%, rgb(143 208 255 / 0.9) 70%, rgb(143 208 255 / 0) 72%);
+  box-shadow:
+    0 0 12px 4px rgb(160 215 255 / 0.85),
+    0 0 40px 14px rgb(110 180 255 / 0.4);
+  animation: navi-hover 2.6s var(--ease-in-out) infinite;
+}
+
+@keyframes navi-hover {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  30% {
+    transform: translate3d(4px, -7px, 0);
+  }
+  65% {
+    transform: translate3d(-3px, -2px, 0);
+  }
+}
+
+.navi__wing {
+  position: absolute;
+  top: -0.55rem;
+  width: 0.75rem;
+  height: 1.05rem;
+  border-radius: 60% 60% 50% 50%;
+  background: radial-gradient(ellipse at 50% 80%, rgb(235 248 255 / 0.85), rgb(170 220 255 / 0.25) 70%);
+  animation: navi-flap 0.16s ease-in-out infinite alternate;
+}
+
+.navi__wing--left {
+  right: 55%;
+  transform-origin: 100% 100%;
+  rotate: -28deg;
+}
+
+.navi__wing--right {
+  left: 55%;
+  transform-origin: 0 100%;
+  rotate: 28deg;
+}
+
+@keyframes navi-flap {
+  to {
+    scale: 0.35 1;
+  }
+}
+
+/*
+ * Stacked layout (not LANDSCAPE_QUERY): the clock fills the bottom of the
+ * screen and must never be covered, so she floats in the open art between
+ * the logo and the clock instead of by the ocarina button.
+ */
+@media not all and (min-aspect-ratio: 5/4) {
+  .navi {
+    position: fixed;
+    top: 41%;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    translate: -50% -50%;
+    animation-name: navi-in-up;
+  }
+
+  @keyframes navi-in-up {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 16px, 0) scale(0.92);
+    }
+  }
+}
+
+/* Landscape but not ROOMY_QUERY (phones on their side): the characters' corner, clear of the clock. */
+@media (min-aspect-ratio: 5/4) and (max-width: 59.99rem), (min-aspect-ratio: 5/4) and (max-height: 33.99rem) {
+  .navi {
+    position: fixed;
+    right: auto;
+    bottom: max(env(safe-area-inset-bottom), 1rem);
+    left: var(--gutter);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navi {
+    animation: fade-in 0.4s ease both;
+  }
+  .navi__fairy,
+  .navi__wing,
+  .navi__box::after {
+    animation: none;
+  }
+}

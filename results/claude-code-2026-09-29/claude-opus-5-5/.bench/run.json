@@ -1,0 +1,47 @@
+{
+  "scenario": {
+    "title": "The Legend of Zelda: Ocarina of Time (remake)",
+    "event": "the release of the Ocarina of Time remake on Nintendo Switch 2",
+    "target": "2026-11-05T00:00:00-05:00",
+    "targetLabel": "November 5, 2026 at midnight Eastern Time",
+    "id": "ocarina-remake"
+  },
+  "assets": [
+    {
+      "file": "8a1enblo1b6h1.png",
+      "bytes": 285407,
+      "sha256": "82f71f02db6e8a983cf230995aeac755dc1a3dd3fa91bdb4380938779e28a047"
+    },
+    {
+      "file": "f55hr5n4xdoh1.jpg",
+      "bytes": 3009272,
+      "sha256": "33f53957cd47a02b339bc6c59cd903f3610df1a3ab49afa699e47bea89a32c09"
+    },
+    {
+      "file": "link-on-epona-with-death-mountain-in-the-distance-in-zelda-ocarina-of-time-remake.avif",
+      "bytes": 161486,
+      "sha256": "f82f05315d537d43a91836f9ae8b473e1763b96ebff83e59212e0cd81f2707ad"
+    },
+    {
+      "file": "link-standing-before-the-great-deku-tree-in-the-ocarina-of-time-remake-on-switch-2.avif",
+      "bytes": 494679,
+      "sha256": "6adf7b519a1d031ac14d28a0a778c29c12e7aa6592b674ab22b4d1c00046a6ad"
+    },
+    {
+      "file": "thumb-1920-1414762.png",
+      "bytes": 2941433,
+      "sha256": "39ab25c60bab4d28a44d63db285a062f7107fd89d0f358cc72d7d9c9f0a209e4"
+    }
+  ],
+  "template": "create-vite@9.2.1 --template react-ts",
+  "createdAt": "2026-09-29T19:53:41.235Z",
+  "agent": {
+    "preset": "claude-code",
+    "model": "opus",
+    "command": "claude -p \"$(cat BRIEF.md)\" --model opus --dangerously-skip-permissions --output-format stream-json --verbose",
+    "startedAt": "2026-09-29T19:53:41.236Z",
+    "finishedAt": "2026-09-29T21:04:59.202Z",
+    "exitCode": 0,
+    "timedOut": false
+  }
+}

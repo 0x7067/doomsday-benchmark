@@ -1,0 +1,144 @@
+/* ==========================================================================
+   Section IV — the moment
+   ========================================================================== */
+
+.section {
+  padding-block: clamp(4.5rem, 14vh, 9rem) clamp(3rem, 8vh, 5rem);
+  scroll-margin-block-start: 4rem;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.9rem, 2vh, 1.4rem);
+  max-inline-size: 42rem;
+  margin-block-end: clamp(2rem, 5vh, 3rem);
+}
+
+.heading {
+  font-size: clamp(1.85rem, 1rem + 3.2vw, 3.6rem);
+  color: var(--gold-100);
+}
+
+.plate {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 4vh, 2.5rem);
+  padding: clamp(1.4rem, 3.5vw, 2.75rem);
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  background:
+    radial-gradient(90% 120% at 12% 0%, rgb(20 49 42 / 0.55), transparent 60%),
+    linear-gradient(180deg, rgb(8 20 18 / 0.9), rgb(4 12 11 / 0.9));
+  box-shadow: 0 2.5rem 4rem -2rem rgb(0 0 0 / 0.8);
+}
+
+.vitals {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+  gap: 1px;
+  margin: 0;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+}
+
+.vital {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: clamp(1rem, 2.4vw, 1.5rem);
+  background: var(--ink-850);
+}
+
+.term {
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.66rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  text-indent: 0.3em;
+}
+
+.detail {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(0.98rem, 0.92rem + 0.35vw, 1.15rem);
+  line-height: 1.4;
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+.detail[data-state='counting'] {
+  color: var(--accent-soft);
+}
+
+.detail[data-state='open'] {
+  color: var(--navi-200);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+}
+
+.copy {
+  padding: 0.72rem 1.5rem 0.64rem;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 2px;
+  font-family: var(--font-label);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-indent: 0.22em;
+  color: var(--text);
+  transition:
+    background 240ms var(--ease-out),
+    border-color 240ms var(--ease-out),
+    color 240ms var(--ease-out);
+}
+
+.copy:hover {
+  background: color-mix(in oklab, var(--gold-400) 16%, transparent);
+  border-color: var(--gold-300);
+  color: var(--gold-100);
+}
+
+.copy[data-state='done'] {
+  border-color: color-mix(in oklab, var(--navi-300) 55%, transparent);
+  color: var(--navi-200);
+}
+
+.copy[data-state='failed'] {
+  border-color: color-mix(in oklab, var(--ember-400) 55%, transparent);
+  color: var(--ember-300);
+}
+
+.zoneNote {
+  font-size: 0.8rem;
+  color: var(--text-faint);
+}
+
+.closing {
+  max-inline-size: 40rem;
+  margin-block-start: clamp(2.5rem, 6vh, 4rem);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.15rem, 1rem + 0.9vw, 1.7rem);
+  line-height: 1.5;
+  color: var(--text-soft);
+  text-wrap: pretty;
+}
+
+.closing::before {
+  content: '';
+  display: block;
+  inline-size: 3.5rem;
+  block-size: 1px;
+  margin-block-end: clamp(1.25rem, 3vh, 2rem);
+  background: linear-gradient(90deg, var(--gold-400), transparent);
+}
