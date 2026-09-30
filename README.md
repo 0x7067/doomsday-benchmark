@@ -13,6 +13,8 @@ It works with any model and any harness: Claude Code, Codex, OpenCode, Copilot, 
 
 **Results:** [charlexmachina.github.io/doomsday-benchmark](https://charlexmachina.github.io/doomsday-benchmark/)
 
+**Contributed runs:** [Codex: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna (September 30, 2026)](results/codex-2026-09-30/README.md).
+
 ## Quick start
 
 You need Node 24+, git, and the [Claude Code](https://claude.com/claude-code) CLI (the judges run on it).
@@ -118,7 +120,7 @@ That builds `_site/` from every graded run and force-pushes it to the `gh-pages`
 | --- | --- |
 | `claude-code` | Uses your Claude Code login. It loads your global `~/.claude/CLAUDE.md`, plugins and settings like any session, so account for that when comparing. |
 | `opencode` | Smoke-tested with OpenCode 1.18: runs headless, calls `./shot` and sees the PNG. `--model` takes `provider/model` (see `opencode models`). |
-| `codex` | Written from Codex CLI docs; not installed on the machine this was built on, so unverified. |
+| `codex` | Completed headless runs with Codex CLI 0.159.2 on GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna, including screenshots and JSONL usage capture. Loads the normal Codex user configuration, hooks and plugins. |
 
 The agent can only critique what it can see, so use models that accept images. In OpenCode, `opencode models --verbose` shows `"attachment": true` for those.
 
@@ -155,7 +157,8 @@ Judges are independent, read-only Claude Code sessions in the run directory, so 
 Every report has a "Time, tokens and cost" section, and `run` and `grade` both print a one-line summary. None of it affects the score.
 
 - **Run time** is launch to exit, measured by the benchmark when it launched the agent. For runs you drive by hand, it comes from the transcript when the harness records it.
-- **Tokens and cost** come from the harness's own transcript: Claude Code's final summary (cost at API list prices, not what a subscription charges), or OpenCode's per-call usage (cost at its provider's prices). If a Claude Code session is cut short before that summary, input and cache tokens are still exact, but output tokens and cost are marked unknown. Other harnesses show "not reported".
+- **Tokens and cost** come from the harness's own transcript: Claude Code's final summary (cost at API list prices, not what a subscription charges), OpenCode's per-call usage (cost at its provider's prices), or Codex's final `turn.completed` totals. Codex input is split into uncached, cache-read and cache-write tokens; output already includes reasoning. Its totals are cumulative, so earlier completed turns are not added again. If a Claude Code session is cut short before its summary, input and cache tokens are still exact, but output tokens and cost are marked unknown. Codex runs without a completed-turn usage event and other unsupported harnesses show "not reported".
+- **Codex cost** is a Standard short-context API-equivalent estimate for `gpt-6-astra`, `gpt-6.1-sol`, `gpt-6-sol` and `gpt-6-luna`, using their [published model prices](https://developers.openai.com/api/docs/models) checked on September 30, 2026. The transcript does not report a billed charge or per-request context sizes and service tiers, so the estimate excludes long-context, service-tier and regional premiums. Unknown models retain token counts but show cost as unknown. Pass `--model` even with `--cmd` so the recorded model can be priced.
 
 ## Adding a scenario
 

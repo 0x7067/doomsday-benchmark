@@ -21,7 +21,7 @@ export interface TokenCounts {
 }
 
 export interface RunUsage {
-  harness: 'claude-code' | 'opencode'
+  harness: 'claude-code' | 'opencode' | 'codex'
   /** The exact model id, when the transcript names it. */
   model: string | null
   /** Agent turns or model calls, as the harness counts them. */
@@ -41,7 +41,7 @@ export interface RunDuration {
 
 type Event = Record<string, unknown>
 
-export function readUsage(transcriptFile: string): RunUsage | null {
+export function readUsage(transcriptFile: string, model: string | null = null): RunUsage | null {
   if (!fs.existsSync(transcriptFile)) return null
   const events = fs
     .readFileSync(transcriptFile, 'utf8')
@@ -54,7 +54,7 @@ export function readUsage(transcriptFile: string): RunUsage | null {
         return []
       }
     })
-  return claudeCodeUsage(events) ?? openCodeUsage(events)
+  return claudeCodeUsage(events) ?? openCodeUsage(events) ?? codexUsage(events, model)
 }
 
 /** Launch-to-exit time when the benchmark launched the agent, otherwise the transcript's own figure. */
@@ -179,6 +179,55 @@ function openCodeUsage(events: Event[]): RunUsage | null {
     costUsd: steps.reduce((total, step) => total + (step.cost ?? 0), 0),
     costBasis: "OpenCode's cost at its provider's prices",
     transcriptSeconds: timestamps.length > 1 ? (Math.max(...timestamps) - Math.min(...timestamps)) / 1000 : null,
+  }
+}
+
+interface CodexUsage {
+  input_tokens: number
+  cached_input_tokens: number
+  cache_write_input_tokens?: number
+  output_tokens: number
+  reasoning_output_tokens?: number
+}
+
+const CODEX_PRICES: Record<string, [number, number, number, number]> = {
+  'gpt-6-astra': [10, 1, 12.5, 50],
+  'gpt-6.1-sol': [2, 0.1, 2.5, 10],
+  'gpt-6-sol': [2, 0.2, 2.5, 10],
+  'gpt-6-luna': [0.1, 0.01, 0.125, 0.5],
+}
+
+function codexUsage(events: Event[], model: string | null): RunUsage | null {
+  const completed = events.filter((event) => event.type === 'turn.completed')
+  const usage = completed.at(-1)?.usage as CodexUsage | undefined
+  if (!usage || typeof usage !== 'object') return null
+  const values = [usage.input_tokens, usage.cached_input_tokens, usage.output_tokens,
+    usage.cache_write_input_tokens ?? 0, usage.reasoning_output_tokens ?? 0]
+  if (!values.every((value) => Number.isSafeInteger(value) && value >= 0)) return null
+  const cacheRead = usage.cached_input_tokens
+  const cacheWrite = usage.cache_write_input_tokens ?? 0
+  if (cacheRead + cacheWrite > usage.input_tokens || (usage.reasoning_output_tokens ?? 0) > usage.output_tokens) return null
+  const tokens = counts({
+    input: usage.input_tokens - cacheRead - cacheWrite,
+    cacheRead,
+    cacheWrite,
+    output: usage.output_tokens,
+    reasoning: usage.reasoning_output_tokens ?? null,
+  })
+  const prices = model && Object.hasOwn(CODEX_PRICES, model) ? CODEX_PRICES[model] : undefined
+  const costUsd = prices
+    ? (tokens.input * prices[0] + cacheRead * prices[1] + cacheWrite * prices[2] + usage.output_tokens * prices[3]) / 1e6
+    : null
+  return {
+    harness: 'codex',
+    model,
+    turns: completed.length,
+    tokens,
+    costUsd,
+    costBasis: prices
+      ? 'Standard short-context API-equivalent estimate at OpenAI list prices checked 2026-09-30; not a billed charge. Per-request long-context, service-tier and regional premiums are unavailable in Codex turn totals'
+      : 'unknown: Codex reports tokens but no cost, and no list prices are configured for this model',
+    transcriptSeconds: null,
   }
 }
 

@@ -77,7 +77,7 @@ async function main(): Promise<void> {
       console.log(`\nLaunching ${harness ?? 'agent'} in ${paths.root}:\n  ${agent.command}\n`)
       const record = await launchAgent(paths, agent, timeout)
       writeMeta(paths, { ...readMeta(paths), agent: record })
-      const usage = readUsage(paths.transcript)
+      const usage = readUsage(paths.transcript, agent.model)
       console.log(`\nAgent finished (exit ${record.exitCode}${record.timedOut ? ', timed out' : ''}): ${summarizeRun(runDuration(record, usage), usage)}`)
       console.log('Grade it with:')
       console.log(`  npm run bench -- grade ${path.relative(process.cwd(), paths.root)}`)
