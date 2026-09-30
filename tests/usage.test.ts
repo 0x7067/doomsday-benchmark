@@ -39,6 +39,7 @@ test('Codex prices each requested model using its own cache and output rates', (
   assert.equal(transcriptUsage(events, 'gpt-6.1-sol')?.costUsd, 11.05)
   assert.equal(transcriptUsage(events, 'gpt-6-sol')?.costUsd, 11.1)
   assert.equal(transcriptUsage(events, 'gpt-6-luna')?.costUsd, 0.555)
+  assert.equal(transcriptUsage(events, 'gpt-6-astra')?.costUsd, 55.5)
 })
 
 test('older Codex events retain unknown reasoning and default cache writes to zero', () => {

@@ -191,6 +191,7 @@ interface CodexUsage {
 }
 
 const CODEX_PRICES: Record<string, [number, number, number, number]> = {
+  'gpt-6-astra': [10, 1, 12.5, 50],
   'gpt-6.1-sol': [2, 0.1, 2.5, 10],
   'gpt-6-sol': [2, 0.2, 2.5, 10],
   'gpt-6-luna': [0.1, 0.01, 0.125, 0.5],
