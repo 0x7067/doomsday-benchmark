@@ -33,7 +33,7 @@ export function collectProcessFacts(paths: RunPaths, agent: AgentRecord | null, 
   const shots = readShotLog(paths)
   const lastLooked = shots.at(-1)?.commit ?? snapshots[0].commit
   const transcriptSource = transcriptOverride ? path.resolve(transcriptOverride) : findTranscript(paths)
-  const usage = transcriptSource ? readUsage(transcriptSource) : null
+  const usage = transcriptSource ? readUsage(transcriptSource, agent?.model) : null
 
   return {
     agent,
