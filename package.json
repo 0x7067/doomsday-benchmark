@@ -1,0 +1,24 @@
+{
+  "name": "doomsday-benchmark",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A long-horizon, self-critique benchmark for coding agents: build a Doomsday Clock countdown site from a handful of assets.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "bench": "node src/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint src viewer adapters && knip"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.0",
+    "knip": "^6.38.0",
+    "marked": "^18.0.14",
+    "oxlint": "^1.86.0",
+    "playwright": "^1.63.0",
+    "sharp": "^0.35.5",
+    "typescript": "~6.0.2"
+  }
+}

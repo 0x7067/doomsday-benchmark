@@ -1,0 +1,5 @@
+{
+  "claude-code": "claude -p \"$(cat BRIEF.md)\" --model {model} --dangerously-skip-permissions --output-format stream-json --verbose",
+  "codex": "codex exec --skip-git-repo-check --dangerously-bypass-approvals-and-sandbox --json --model {model} \"$(cat BRIEF.md)\"",
+  "opencode": "opencode run --auto --format json --model {model} \"$(cat BRIEF.md)\""
+}
