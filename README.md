@@ -112,7 +112,7 @@ That writes `report/REPORT.md` and `report/score.json`. `--no-judges` runs only 
 npm run bench -- site --publish
 ```
 
-That builds `_site/` from every graded run and force-pushes it to the `gh-pages` branch as one fresh commit. The site has a leaderboard; each run opens its live countdown with a details panel (scores per category, time, tokens, cost) and the full report. Each app is rebuilt to be served from its subfolder; grading always uses the agent's own build. Transcripts are never published. Without `--publish`, it only builds `_site/` for a local look.
+That builds `_site/` from every graded run, in `runs/` and in the contributed `results/<batch>/<run>/` folders, and force-pushes it to the `gh-pages` branch as one fresh commit. The site has a leaderboard; each run opens its live countdown with a details panel (scores per category, time, tokens, cost) and the full report. Each app is rebuilt to be served from its subfolder; grading always uses the agent's own build. Transcripts are never published. Without `--publish`, it only builds `_site/` for a local look.
 
 ### Preset status
 
