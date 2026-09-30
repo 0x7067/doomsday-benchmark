@@ -1,0 +1,67 @@
+results/codex-2026-09-30/gpt-6-astra/app/tests/countdown.test.ts
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-29
+results/codex-2026-09-30/gpt-6-astra/app/tsconfig.json
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-7
+results/codex-2026-09-30/gpt-6-astra/BRIEF.md
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-45
+results/codex-2026-09-30/gpt-6-astra/app/src/main.tsx
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-10
+results/codex-2026-09-30/gpt-6-astra/app/package.json
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-28
+README.md
+  s_25ce317cebaa8e::t_0873d24d305168 16,123
+results/codex-2026-09-30/gpt-6-astra/HANDOVER.md
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-33
+results/codex-2026-09-30/gpt-6-astra/app/vite.config.ts
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-7
+results/codex-2026-09-30/gpt-6-astra/app/src/index.css
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-58
+results/codex-2026-09-30/gpt-6-astra/app/public/favicon.svg
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1
+results/codex-2026-09-30/gpt-6-astra/app/README.md
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-20
+results/codex-2026-09-30/README.md
+  s_25ce317cebaa8e::t_0873d24d305168 1,3,7,14,19,21,25,31,34,36,44,56
+results/codex-2026-09-30/gpt-6-astra/.bench/run.json
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-49
+results/codex-2026-09-30/gpt-6-astra/app/src/countdown.ts
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-21
+results/codex-2026-09-30/gpt-6-astra/app/.oxlintrc.json
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-8
+results/codex-2026-09-30/gpt-6-astra/app/src/App.tsx
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-301
+results/codex-2026-09-30/gpt-6-astra/app/tsconfig.app.json
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-26
+results/codex-2026-09-30/gpt-6-astra/app/tsconfig.node.json
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-23
+results/codex-2026-09-30/gpt-6-astra/provenance.json
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-114
+results/codex-2026-09-30/gpt-6-astra/report/REPORT.md
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-101
+results/codex-2026-09-30/gpt-6-astra/report/score.json
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-589
+results/codex-2026-09-30/gpt-6-astra/app/index.html
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-18
+results/codex-2026-09-30/gpt-6-astra/app/.gitignore
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-24
+results/codex-2026-09-30/gpt-6-astra/app/src/App.css
+  s_25ce317cebaa8e::t_28305c9d7fbc67 1-630
+results/codex-2026-09-30/gpt-6-astra/app/package-lock.json
+  s_25ce317cebaa8e::t_33356b510dc2ad 1-1369
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6bad2da13cd429bb89f67bfe06901f92ca2c9db6",
+  "prompts": {},
+  "sessions": {
+    "s_25ce317cebaa8e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f2fc-52cc-72e2-9ce4-c07d2cf39244",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Pedro Guimarães <21346846+0x7067@users.noreply.github.com>"
+    }
+  }
+}
