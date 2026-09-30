@@ -1,0 +1,39 @@
+README.md
+  s_25ce317cebaa8e::t_e5561349f3c60d 158-159
+package.json
+  s_25ce317cebaa8e::t_e5561349f3c60d 13
+src/usage.ts
+  s_25ce317cebaa8e::t_e5561349f3c60d 24,44,57,185-215,217-229,231
+  s_25ce317cebaa8e::t_a58827bbd62ea7 216
+  s_f09b484d298132::t_c05d31940c395e 230,232
+tests/usage.test.ts
+  s_25ce317cebaa8e::t_a58827bbd62ea7 1-80
+src/cli.ts
+  s_25ce317cebaa8e::t_e5561349f3c60d 80
+src/grade/process.ts
+  s_25ce317cebaa8e::t_e5561349f3c60d 36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0b440dec8bbd7607e7cc4e054a7d435c40584dac",
+  "prompts": {},
+  "sessions": {
+    "s_25ce317cebaa8e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f2fc-52cc-72e2-9ce4-c07d2cf39244",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Pedro Guimarães <21346846+0x7067@users.noreply.github.com>"
+    },
+    "s_f09b484d298132": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f302-21f7-7ff1-a4f1-e95bf429abf5",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Pedro Guimarães <21346846+0x7067@users.noreply.github.com>"
+    }
+  }
+}
