@@ -1,0 +1,23 @@
+README.md
+  s_25ce317cebaa8e::t_864ff26cc7ed7f 161
+src/usage.ts
+  s_25ce317cebaa8e::t_864ff26cc7ed7f 194
+tests/usage.test.ts
+  s_25ce317cebaa8e::t_864ff26cc7ed7f 42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5c29455c2380891118ba2034f426cf31673c39ab",
+  "prompts": {},
+  "sessions": {
+    "s_25ce317cebaa8e": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f2fc-52cc-72e2-9ce4-c07d2cf39244",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Pedro Guimarães <21346846+0x7067@users.noreply.github.com>"
+    }
+  }
+}
