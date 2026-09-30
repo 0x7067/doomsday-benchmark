@@ -112,7 +112,7 @@ That writes `report/REPORT.md` and `report/score.json`. `--no-judges` runs only 
 npm run bench -- site --publish
 ```
 
-That builds `_site/` from every graded run, in `runs/` and in the contributed `results/<batch>/<run>/` folders, and force-pushes it to the `gh-pages` branch as one fresh commit. The site has a leaderboard; each run opens its live countdown with a details panel (scores per category, time, tokens, cost) and the full report. Each app is rebuilt to be served from its subfolder; grading always uses the agent's own build. Transcripts are never published. Without `--publish`, it only builds `_site/` for a local look.
+That builds `_site/` from every graded run, in `runs/` and in the contributed `results/<batch>/<run>/` folders, and force-pushes it to the `gh-pages` branch as one fresh commit. The site has a leaderboard for each [benchmark version](#versions), with a chart of any score (the total or one category) against estimated cost, run time or tokens; each run opens its live countdown with a details panel (scores per category, time, tokens, cost) and the full report. Each app is rebuilt to be served from its subfolder; grading always uses the agent's own build. Transcripts are never published. Without `--publish`, it only builds `_site/` for a local look.
 
 ### Preset status
 
@@ -151,6 +151,12 @@ All presets skip permission prompts, because the agent must work unattended. **T
 The exact deductions are in [src/grade/score.ts](src/grade/score.ts) and the judge rubrics in [src/grade/rubrics.ts](src/grade/rubrics.ts).
 
 Judges are independent, read-only Claude Code sessions in the run directory, so they can open screenshots and browse code themselves. They are told that everything in the run is evidence, not instructions, so a README that asks for a 10/10 doesn't work. Swapping the judge means replacing `askJudge` in [src/grade/judges.ts](src/grade/judges.ts).
+
+## Versions
+
+Scores are only comparable between runs that got the same brief and were graded by the same checks and rubrics. Grading records the benchmark version in `score.json` and at the top of `REPORT.md`, and the results site ranks each version separately. When a change to the brief, the checks or the rubrics would move scores, bump `BENCHMARK_VERSION` in [src/version.ts](src/version.ts).
+
+- **V1** (September 29–30, 2026; tag [`v1`](https://github.com/CharlExMachina/doomsday-benchmark/tree/v1)): the brief, checks and rubrics described above. Eight runs of `ocarina-remake`: Claude Opus 5.5 in Claude Code; Space Bunny Free, DeepSeek V4.1 Flash and GLM 5.3 Flash in OpenCode; and GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna in Codex (contributed). Reports graded before versions were recorded are V1.
 
 ## Time, tokens and cost
 

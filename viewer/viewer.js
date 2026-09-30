@@ -2,6 +2,9 @@
 // view of one run's site with its scores and report. Data comes from
 // runs.json, written by `npm run bench -- site`.
 
+import { renderChart } from './chart.js'
+import { escape, formatDate, formatDuration, formatPoints, formatTokens, formatUsd, shortName } from './format.js'
+
 const $ = (selector) => document.querySelector(selector)
 
 const leaderboard = $('#leaderboard')
@@ -61,20 +64,39 @@ function showRun(run, now) {
   document.title = `${run.model} · Doomsday Benchmark`
 }
 
+/** Runs are ranked per benchmark version, newest first, and per scenario within it. */
 function renderLeaderboard() {
-  const byScenario = Map.groupBy(runs, (run) => run.scenario.id)
-  $('#scenarios').innerHTML = [...byScenario.values()]
-    .map((scenarioRuns) => {
-      const { title, targetLabel } = scenarioRuns[0].scenario
+  const versions = [...Map.groupBy(runs, (run) => run.benchmarkVersion)].sort(([a], [b]) => b - a)
+  const groups = []
+  $('#versions').innerHTML = versions
+    .map(([version, versionRuns]) => {
+      const scenarios = [...Map.groupBy(versionRuns, (run) => run.scenario.id).values()]
       return `
-        <section class="scenario">
-          <h2>${escape(title)}</h2>
-          <p class="scenario-target">Counting down to ${escape(targetLabel)}</p>
-          ${legendHtml(scenarioRuns[0])}
-          <ol class="runs">${scenarioRuns.map(runRowHtml).join('')}</ol>
+        <section class="version">
+          <header class="version-header">
+            <h2>Benchmark V${version}</h2>
+            <p>${versionRuns.length} ${versionRuns.length === 1 ? 'run' : 'runs'}. Scores are only comparable within a version.</p>
+          </header>
+          ${scenarios.map((scenarioRuns) => scenarioHtml(scenarioRuns, groups.push(scenarioRuns) - 1)).join('')}
         </section>`
     })
     .join('')
+  for (const chart of document.querySelectorAll('[data-chart]')) renderChart(chart, groups[chart.dataset.chart])
+}
+
+function scenarioHtml(scenarioRuns, group) {
+  const { title, targetLabel } = scenarioRuns[0].scenario
+  return `
+    <section class="scenario">
+      <h3>${escape(title)}</h3>
+      <p class="scenario-target">Counting down to ${escape(targetLabel)}</p>
+      ${legendHtml(scenarioRuns[0])}
+      <ol class="runs">${scenarioRuns.map(runRowHtml).join('')}</ol>
+      <div class="chart">
+        <h4>Score against cost, time and tokens</h4>
+        <div data-chart="${group}"></div>
+      </div>
+    </section>`
 }
 
 function runRowHtml(run, index) {
@@ -136,7 +158,7 @@ function detailsHtml(run) {
     ['Judged by', run.judgeModel ?? 'automated checks only'],
   ]
   return `
-    <p class="panel-eyebrow">${escape(run.scenario.title)}</p>
+    <p class="panel-eyebrow">${escape(run.scenario.title)} · V${run.benchmarkVersion}</p>
     <h2 class="panel-title">${escape(run.model)}</h2>
     <p class="chips">${chipsHtml(run)}</p>
     ${incomplete(run) ? `<p class="warning">${escape(incompleteReason(run))}</p>` : ''}
@@ -201,39 +223,4 @@ async function openReport() {
     link.rel = 'noopener'
   }
   body.scrollTop = 0
-}
-
-// Formatting
-
-function shortName(area) {
-  return area.split(/[:,]| and /)[0].trim()
-}
-
-function formatPoints(points) {
-  return Number.isInteger(points) ? String(points) : points.toFixed(1)
-}
-
-function formatDuration(totalSeconds) {
-  const s = Math.round(totalSeconds)
-  const hours = Math.floor(s / 3600)
-  const minutes = Math.floor((s % 3600) / 60)
-  return hours ? `${hours} h ${minutes} min` : `${minutes} min ${s % 60} s`
-}
-
-function formatTokens(count) {
-  if (count >= 1e6) return `${(count / 1e6).toFixed(1)}M`
-  if (count >= 1e3) return `${Math.round(count / 1e3)}K`
-  return String(count)
-}
-
-function formatUsd(amount) {
-  return amount >= 1 ? `$${amount.toFixed(2)}` : `$${amount.toFixed(amount >= 0.01 ? 3 : 4)}`
-}
-
-function formatDate(iso) {
-  return new Date(iso).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })
-}
-
-function escape(text) {
-  return String(text).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char])
 }

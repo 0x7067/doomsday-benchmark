@@ -5,6 +5,7 @@ import { formatDuration, formatTokens, formatUsd } from '../format.ts'
 import type { RunMeta } from '../run-meta.ts'
 import type { RunDuration, RunUsage } from '../usage.ts'
 import { detectHarness } from '../harness.ts'
+import { BENCHMARK_VERSION } from '../version.ts'
 import type { Evidence } from './judges.ts'
 import { RUBRICS } from './rubrics.ts'
 import { describeScore, finalScores, type ScoreCard } from './score.ts'
@@ -21,6 +22,7 @@ export function writeReport(paths: RunPaths, input: ReportInput): string {
   const { evidence, verdicts, card } = input
   const json = {
     run: path.basename(paths.root),
+    benchmarkVersion: BENCHMARK_VERSION,
     gradedAt: new Date().toISOString(),
     judgeModel: verdicts?.model ?? null,
     judgedAt: verdicts?.judgedAt ?? null,
@@ -77,7 +79,7 @@ function markdown(paths: RunPaths, { evidence, verdicts, card }: ReportInput): s
   const relativeToReport = (file: string) => path.relative(paths.report, path.resolve(paths.root, file))
   const out: string[] = []
 
-  out.push(`# Doomsday benchmark: ${path.basename(paths.root)}`, '')
+  out.push(`# Doomsday benchmark V${BENCHMARK_VERSION}: ${path.basename(paths.root)}`, '')
   out.push(`- **Scenario:** ${meta.scenario.title}, counting down to ${meta.scenario.target}`)
   out.push(agent ? `- **Agent:** \`${agent.command}\` (exit ${agent.exitCode}${agent.timedOut ? ', timed out' : ''})` : '- **Agent:** launched manually')
   out.push(`- **Harness:** ${describeHarness(meta)}`)

@@ -26,6 +26,8 @@ const RESULTS_DIR = path.join(BENCH_ROOT, 'results')
 /** One entry of runs.json, everything the viewer shows before opening the full report. */
 export interface SiteRun {
   id: string
+  /** Runs are only ranked against runs of the same benchmark version. */
+  benchmarkVersion: number
   scenario: { id: string; title: string; target: string; targetLabel: string }
   model: string
   variant: string | null
@@ -43,6 +45,8 @@ export interface SiteRun {
 
 /** The parts of report/score.json the site needs. */
 interface GradedRun {
+  /** Missing from reports graded before versions were recorded, which are all V1. */
+  benchmarkVersion?: number
   gradedAt: string
   judgeModel: string | null
   card: SiteRun['score']
@@ -163,6 +167,7 @@ function summarize(paths: RunPaths, id: string): Omit<SiteRun, 'hasApp'> {
   const flag = (name: string) => new RegExp(`--${name}[ =]["']?([^\\s"']+)`).exec(command)?.[1] ?? null
   return {
     id,
+    benchmarkVersion: graded.benchmarkVersion ?? 1,
     scenario: { id: meta.scenario.id, title: meta.scenario.title, target: meta.scenario.target, targetLabel: meta.scenario.targetLabel },
     model: usage?.model ?? flag('model') ?? meta.agent?.model ?? 'unknown model',
     variant: flag('variant') ?? flag('effort'),
