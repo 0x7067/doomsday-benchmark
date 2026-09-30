@@ -1,0 +1,230 @@
+{
+  "generatedAt": "2026-09-30T05:12:13.726Z",
+  "runs": [
+    {
+      "id": "ocarina-remake_opus_2026-09-29T19-53-39",
+      "scenario": {
+        "id": "ocarina-remake",
+        "title": "The Legend of Zelda: Ocarina of Time (remake)",
+        "target": "2026-11-05T00:00:00-05:00",
+        "targetLabel": "November 5, 2026 at midnight Eastern Time"
+      },
+      "model": "claude-opus-5-5",
+      "variant": null,
+      "harness": "claude-code",
+      "gradedAt": "2026-09-30T01:16:13.624Z",
+      "judgeModel": "opus",
+      "score": {
+        "total": 79.4,
+        "max": 100,
+        "lines": [
+          {
+            "area": "Countdown contract",
+            "kind": "automated",
+            "points": 10,
+            "max": 10
+          },
+          {
+            "area": "Code hygiene",
+            "kind": "automated",
+            "points": 14,
+            "max": 15
+          },
+          {
+            "area": "Experience and use of assets",
+            "kind": "judged",
+            "points": 26.8,
+            "max": 35
+          },
+          {
+            "area": "Codebase",
+            "kind": "judged",
+            "points": 10.8,
+            "max": 15
+          },
+          {
+            "area": "Process: self-critique, persistence, verification",
+            "kind": "judged",
+            "points": 17.8,
+            "max": 25
+          }
+        ]
+      },
+      "duration": {
+        "seconds": 4277.966,
+        "source": "launch to exit, measured by the benchmark"
+      },
+      "usage": {
+        "turns": 251,
+        "tokens": {
+          "input": 304,
+          "cacheRead": 48536489,
+          "cacheWrite": 504012,
+          "output": 324593,
+          "reasoning": 168602,
+          "total": 49365398
+        },
+        "costUsd": 20.23246980000001,
+        "costBasis": "Claude Code's estimate at API list prices; on a subscription you aren't billed per run"
+      },
+      "exit": {
+        "code": 0,
+        "timedOut": false
+      },
+      "imageWindow": null,
+      "hasApp": true
+    },
+    {
+      "id": "ocarina-remake_deepseek-v4.1-flash-max_2026-09-30T01-48-42",
+      "scenario": {
+        "id": "ocarina-remake",
+        "title": "The Legend of Zelda: Ocarina of Time (remake)",
+        "target": "2026-11-05T00:00:00-05:00",
+        "targetLabel": "November 5, 2026 at midnight Eastern Time"
+      },
+      "model": "opencode/deepseek-v4.1-flash",
+      "variant": "max",
+      "harness": "opencode",
+      "gradedAt": "2026-09-30T02:44:51.890Z",
+      "judgeModel": "opus",
+      "score": {
+        "total": 70.2,
+        "max": 100,
+        "lines": [
+          {
+            "area": "Countdown contract",
+            "kind": "automated",
+            "points": 10,
+            "max": 10
+          },
+          {
+            "area": "Code hygiene",
+            "kind": "automated",
+            "points": 15,
+            "max": 15
+          },
+          {
+            "area": "Experience and use of assets",
+            "kind": "judged",
+            "points": 21.4,
+            "max": 35
+          },
+          {
+            "area": "Codebase",
+            "kind": "judged",
+            "points": 9,
+            "max": 15
+          },
+          {
+            "area": "Process: self-critique, persistence, verification",
+            "kind": "judged",
+            "points": 14.8,
+            "max": 25
+          }
+        ]
+      },
+      "duration": {
+        "seconds": 3068.53,
+        "source": "launch to exit, measured by the benchmark"
+      },
+      "usage": {
+        "turns": 149,
+        "tokens": {
+          "input": 469316,
+          "cacheRead": 19686982,
+          "cacheWrite": 0,
+          "output": 160558,
+          "reasoning": 90570,
+          "total": 20316856
+        },
+        "costUsd": 0.451586292,
+        "costBasis": "OpenCode's cost at its provider's prices"
+      },
+      "exit": {
+        "code": 0,
+        "timedOut": false
+      },
+      "imageWindow": {
+        "min": 13,
+        "max": 25
+      },
+      "hasApp": true
+    },
+    {
+      "id": "ocarina-remake_glm-5.3-flash-max_2026-09-30T04-38-52",
+      "scenario": {
+        "id": "ocarina-remake",
+        "title": "The Legend of Zelda: Ocarina of Time (remake)",
+        "target": "2026-11-05T00:00:00-05:00",
+        "targetLabel": "November 5, 2026 at midnight Eastern Time"
+      },
+      "model": "opencode/glm-5.3-flash",
+      "variant": "max",
+      "harness": "opencode",
+      "gradedAt": "2026-09-30T05:07:50.822Z",
+      "judgeModel": "opus",
+      "score": {
+        "total": 67.8,
+        "max": 100,
+        "lines": [
+          {
+            "area": "Countdown contract",
+            "kind": "automated",
+            "points": 9.5,
+            "max": 10
+          },
+          {
+            "area": "Code hygiene",
+            "kind": "automated",
+            "points": 15,
+            "max": 15
+          },
+          {
+            "area": "Experience and use of assets",
+            "kind": "judged",
+            "points": 19.8,
+            "max": 35
+          },
+          {
+            "area": "Codebase",
+            "kind": "judged",
+            "points": 10.1,
+            "max": 15
+          },
+          {
+            "area": "Process: self-critique, persistence, verification",
+            "kind": "judged",
+            "points": 13.4,
+            "max": 25
+          }
+        ]
+      },
+      "duration": {
+        "seconds": 1522.903,
+        "source": "launch to exit, measured by the benchmark"
+      },
+      "usage": {
+        "turns": 72,
+        "tokens": {
+          "input": 253050,
+          "cacheRead": 5294080,
+          "cacheWrite": 0,
+          "output": 62488,
+          "reasoning": 37828,
+          "total": 5609618
+        },
+        "costUsd": 0.22802389999999997,
+        "costBasis": "OpenCode's cost at its provider's prices"
+      },
+      "exit": {
+        "code": 0,
+        "timedOut": false
+      },
+      "imageWindow": {
+        "min": 13,
+        "max": 25
+      },
+      "hasApp": true
+    }
+  ]
+}
