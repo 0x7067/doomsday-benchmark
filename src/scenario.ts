@@ -23,6 +23,25 @@ export interface AssetInfo {
   sha256: string
 }
 
+/**
+ * What the grader knows about a scenario that the agent never sees, from
+ * `scenarios/<id>/grading.json`. It stays out of the run directory, so the
+ * agent can't read it.
+ */
+export interface GradingFacts {
+  /** The IANA time zone the moment is announced in, used to check time claims in the page's copy. */
+  timeZone?: string
+  /** What each provided asset is, keyed by its file name, for example "the official logo". */
+  assetRoles?: Record<string, string>
+  /** Facts about the subject's canon that judges check the page's faithfulness against. */
+  reference?: string[]
+}
+
+export function loadGradingFacts(scenarioId: string): GradingFacts {
+  const file = path.join(SCENARIOS_DIR, scenarioId, 'grading.json')
+  return fs.existsSync(file) ? (JSON.parse(fs.readFileSync(file, 'utf8')) as GradingFacts) : {}
+}
+
 export function scenarioAssetsDir(scenarioId: string): string {
   return path.join(SCENARIOS_DIR, scenarioId, 'assets')
 }

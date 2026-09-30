@@ -28,8 +28,8 @@ export interface SiteRun {
   id: string
   /** The run's folder name before it was archived, which was its id while it was published from runs/. */
   formerId: string | null
-  /** Runs are only ranked against runs of the same benchmark version. */
-  benchmarkVersion: number
+  /** Runs are only ranked against runs of the same benchmark version, like "1" or "1.1". */
+  benchmarkVersion: string
   scenario: { id: string; title: string; target: string; targetLabel: string }
   model: string
   variant: string | null
@@ -47,8 +47,8 @@ export interface SiteRun {
 
 /** The parts of report/score.json the site needs. */
 interface GradedRun {
-  /** Missing from reports graded before versions were recorded, which are all V1. */
-  benchmarkVersion?: number
+  /** Missing from reports graded before versions were recorded, which are all V1; a number in the first V1 reports. */
+  benchmarkVersion?: string | number
   gradedAt: string
   judgeModel: string | null
   card: SiteRun['score']
@@ -172,7 +172,7 @@ function summarize(paths: RunPaths, id: string): Omit<SiteRun, 'hasApp'> {
   return {
     id,
     formerId: originalName && originalName !== id ? originalName : null,
-    benchmarkVersion: graded.benchmarkVersion ?? 1,
+    benchmarkVersion: String(graded.benchmarkVersion ?? 1),
     scenario: { id: meta.scenario.id, title: meta.scenario.title, target: meta.scenario.target, targetLabel: meta.scenario.targetLabel },
     model: usage?.model ?? flag('model') ?? meta.agent?.model ?? 'unknown model',
     variant: flag('variant') ?? flag('effort'),

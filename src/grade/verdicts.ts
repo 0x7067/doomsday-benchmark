@@ -37,6 +37,7 @@ export function previousVerdicts(paths: RunPaths): Verdicts {
       throw new Error(`Can't reuse the previous ${rubric.id} verdict: ${detail}. Grade again without --reuse-judges.`)
     }
   }
-  // An earlier reuse keeps the original judging time.
-  return { model: previous.judgeModel, judgedAt: previous.judgedAt ?? previous.gradedAt, results: previous.judges, reused: true }
+  // An earlier reuse keeps the original judging time. Reports from before judges itemized have no lists.
+  const results = previous.judges.map((result) => ({ ...result, findings: result.findings ?? {} }))
+  return { model: previous.judgeModel, judgedAt: previous.judgedAt ?? previous.gradedAt, results, reused: true }
 }

@@ -7,12 +7,16 @@ import { listFiles } from '../fs-walk.ts'
 export interface ShippedFiles {
   /** SHA-256 of every file the build emits. */
   hashes: Set<string>
-  /** Set when the build failed, in which case `hashes` is empty. */
+  /** Every image the build emits, as paths inside the build folder; the caller removes the folder when done. */
+  images: string[]
+  /** Set when the build failed, in which case `hashes` and `images` are empty. */
   error: string | null
 }
 
+const IMAGE = /\.(?:png|jpe?g|gif|webp|avif)$/i
+
 /**
- * Builds the app a second time with asset inlining off, so every image, font
+ * Builds the app into `scratchDir` a second time with asset inlining off, so every image, font
  * or other file the page actually ships lands in the output byte for byte,
  * however it was imported (including `import.meta.glob`). Vite would otherwise
  * inline small files as data URIs.
@@ -23,9 +27,12 @@ export function buildShippedFiles(appDir: string, scratchDir: string): ShippedFi
     cwd: appDir,
     encoding: 'utf8',
   })
-  const hashes = build.status === 0 ? new Set(listFiles(scratchDir).map((file) => hashFile(path.join(scratchDir, file)))) : new Set<string>()
-  fs.rmSync(scratchDir, { recursive: true, force: true })
-  return { hashes, error: build.status === 0 ? null : `Build without inlining failed: ${build.stderr.slice(0, 1_000)}` }
+  if (build.status !== 0) {
+    fs.rmSync(scratchDir, { recursive: true, force: true })
+    return { hashes: new Set(), images: [], error: `Build without inlining failed: ${build.stderr.slice(0, 1_000)}` }
+  }
+  const files = listFiles(scratchDir).map((file) => path.join(scratchDir, file))
+  return { hashes: new Set(files.map(hashFile)), images: files.filter((file) => IMAGE.test(file)), error: null }
 }
 
 export function hashFile(file: string): string {

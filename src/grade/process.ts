@@ -8,6 +8,15 @@ import { readShotLog, type ShotRecord } from '../shot-log.ts'
 import { readUsage, runDuration, type RunDuration, type RunUsage } from '../usage.ts'
 import { cleanTranscript } from './transcript.ts'
 
+/** Where on the page something is, as the grader found it, for matching against the agent's screenshots. */
+export interface PageSpot {
+  viewport: 'desktop' | 'mobile'
+  /** One of the grader's moments: weeks-out, final-hour, final-seconds or arrived, or plain for a visit without `?now`. */
+  moment: string
+  /** Distance from the top of the page, in pixels. */
+  top: number
+}
+
 /** Harness-independent evidence of how the agent worked. */
 export interface ProcessFacts {
   agent: AgentRecord | null
@@ -15,6 +24,8 @@ export interface ProcessFacts {
   /** Tokens and cost as the harness reported them in the transcript. */
   usage: RunUsage | null
   shots: ShotRecord[]
+  /** The pixel height of each screenshot's image, by shot number; full-page shots are as tall as the page was. */
+  shotHeights: Record<number, number>
   /** Minutes between the first and the last screenshot. */
   shotSpanMinutes: number | null
   snapshots: SnapshotStat[]
@@ -40,6 +51,7 @@ export function collectProcessFacts(paths: RunPaths, agent: AgentRecord | null, 
     duration: runDuration(agent, usage),
     usage,
     shots,
+    shotHeights: Object.fromEntries(shots.map((shot) => [shot.n, pngHeight(path.join(paths.root, shot.file)) ?? shot.height])),
     shotSpanMinutes: shots.length ? minutesBetween(shots[0].takenAt, shots.at(-1)!.takenAt) : null,
     snapshots,
     changedAfterLastShot: diffStat(paths, lastLooked, finalCommit),
@@ -47,6 +59,59 @@ export function collectProcessFacts(paths: RunPaths, agent: AgentRecord | null, 
     handover: fs.existsSync(paths.handover) ? fs.readFileSync(paths.handover, 'utf8') : null,
     transcript: transcriptSource ? writeCleanTranscript(paths, transcriptSource) : null,
   }
+}
+
+type ShotMoment = 'weeks-out' | 'final-day' | 'final-seconds' | 'arrived'
+type ShotViewport = 'phone' | 'tablet' | 'desktop'
+
+/** The moment a screenshot showed: its `--now`, a `?now=` in its path, or the time it was taken. */
+function shotMoment(shot: ShotRecord, target: string): ShotMoment {
+  const now = shot.now ?? new URLSearchParams(shot.path.split('?')[1] ?? '').get('now') ?? shot.takenAt
+  const remaining = (Date.parse(target) - Date.parse(now)) / 1000
+  if (Number.isNaN(remaining) || remaining > 86_400) return 'weeks-out'
+  if (remaining > 60) return 'final-day'
+  return remaining > 0 ? 'final-seconds' : 'arrived'
+}
+
+function shotViewport(width: number): ShotViewport {
+  if (width < 600) return 'phone'
+  return width < 1024 ? 'tablet' : 'desktop'
+}
+
+/** How many of the agent's screenshots showed each moment at each viewport size. */
+export function shotCoverage(shots: ShotRecord[], target: string): Record<ShotViewport, Record<ShotMoment, number>> {
+  const empty = () => ({ 'weeks-out': 0, 'final-day': 0, 'final-seconds': 0, arrived: 0 })
+  const coverage = { phone: empty(), tablet: empty(), desktop: empty() }
+  for (const shot of shots) coverage[shotViewport(shot.width)][shotMoment(shot, target)] += 1
+  return coverage
+}
+
+/**
+ * The agent's screenshots that showed a spot the grader found: same kind of
+ * viewport, same moment, and either a full-page shot or a spot inside the
+ * first screen. Layouts differ a little between widths in the same class, so
+ * this is an estimate.
+ */
+export function shotsShowing(facts: Pick<ProcessFacts, 'shots' | 'shotHeights'>, target: string, spot: PageSpot): number[] {
+  const viewport: ShotViewport = spot.viewport === 'mobile' ? 'phone' : 'desktop'
+  // A visit without ?now happens weeks out, like the agent's own screenshots without one.
+  const moment: ShotMoment = spot.moment === 'final-hour' ? 'final-day' : spot.moment === 'plain' ? 'weeks-out' : (spot.moment as ShotMoment)
+  return facts.shots
+    .filter((shot) => shotViewport(shot.width) === viewport && shotMoment(shot, target) === moment && spot.top < (facts.shotHeights[shot.n] ?? shot.height))
+    .map((shot) => shot.n)
+}
+
+/** A PNG's height from its header, without decoding it. */
+function pngHeight(file: string): number | null {
+  if (!fs.existsSync(file)) return null
+  const header = Buffer.alloc(24)
+  const fd = fs.openSync(file, 'r')
+  try {
+    fs.readSync(fd, header, 0, 24, 0)
+  } finally {
+    fs.closeSync(fd)
+  }
+  return header.toString('ascii', 12, 16) === 'IHDR' ? header.readUInt32BE(20) : null
 }
 
 function minutesBetween(from: string, to: string): number {

@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { runPaths } from '../paths.ts'
 import { readMeta } from '../run-meta.ts'
-import { scenarioAssetsDir } from '../scenario.ts'
+import { loadGradingFacts, scenarioAssetsDir } from '../scenario.ts'
 import { writeAssetPreviews } from './asset-previews.ts'
 import { analyzeAssets } from './assets.ts'
 import { checkExperience } from './experience.ts'
@@ -41,19 +41,21 @@ export async function gradeRun(runDir: string, options: GradeOptions): Promise<{
   if (!fs.existsSync(originalAssets)) console.warn(`warning: ${originalAssets} no longer exists; judges won't see the original assets`)
 
   console.log('Build, type-check, lint and dead-code checks ...')
-  const shipped = buildShippedFiles(paths.app, path.join(paths.bench, 'shipped-build'))
+  const buildDir = path.join(paths.bench, 'shipped-build')
+  const shipped = buildShippedFiles(paths.app, buildDir)
   const statics = runStaticChecks(paths.app, { shipped, providedAssets: new Set(meta.assets.map((asset) => asset.sha256)) })
-  console.log('Browser checks ...')
-  const experience = await checkExperience(paths.app, path.join(paths.report, 'captures'), meta.scenario.target)
-  const assets = analyzeAssets(meta.assets, paths.app, shipped)
+  console.log('Browser checks and sound recordings ...')
+  const experience = await checkExperience(paths.app, path.join(paths.report, 'captures'), path.join(paths.report, 'audio'), meta.scenario.target)
+  console.log('Matching provided assets ...')
+  const assets = await analyzeAssets(meta.assets, originalAssets, paths.app, shipped, buildDir).finally(() => fs.rmSync(buildDir, { recursive: true, force: true }))
   const processFacts = collectProcessFacts(paths, meta.agent ?? null, options.transcript)
-  const evidence: Evidence = { paths, meta, statics, experience, assets, assetViews, processFacts }
+  const evidence: Evidence = { paths, meta, statics, experience, assets, assetViews, processFacts, grading: loadGradingFacts(meta.scenario.id) }
 
   let verdicts: Verdicts | null = reused
   if (reused) {
     console.log(`Reusing the ${reused.model} verdicts from ${reused.judgedAt}`)
   } else if (options.judgeModel) {
-    console.log(`Judging with ${options.judgeModel} (three judges in parallel; this takes a while) ...`)
+    console.log(`Judging with ${options.judgeModel} (experience and code in parallel, then process; this takes a while) ...`)
     const judgedAt = new Date().toISOString()
     verdicts = { model: options.judgeModel, judgedAt, results: await runJudges(evidence, options.judgeModel), reused: false }
   }

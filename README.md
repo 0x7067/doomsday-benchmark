@@ -140,13 +140,19 @@ All presets skip permission prompts, because the agent must work unattended. **T
 
 ## Scoring (100 points)
 
+This is V1.1. V1's scoring is at the [`v1`](https://github.com/CharlExMachina/doomsday-benchmark/tree/v1) tag.
+
 | Area | Points | How |
 | --- | --- | --- |
-| Countdown contract | 10 | Automated. The production build is loaded at four moments (37 days out, 42 minutes out, 8 seconds out, 3 hours after) on desktop and phone. Checks the `<time>` contract, correct remaining time, ticking, reaching zero on time, console errors, horizontal overflow at 390px, and requests to other origins. |
-| Code hygiene | 15 | Automated, starting from 15 with capped deductions: `npm run build` / `npm run lint` failing, type errors, oxlint findings using the scaffold's original config (so editing the config doesn't help), dead code via knip, unreferenced files, `eslint-disable` / `@ts-ignore` / `any`, disabled compiler checks, untouched scaffold boilerplate, stray screenshots or logs, leftover `console.log`. Zero if `src/` is still the scaffold. |
-| Experience and assets | 35 | Judged from the grader's screenshots (moments, viewports, motion frames, pointer and click reactions, focus) and the original assets: cohesion with the subject 7, visual craft 7, legibility 4, motion and interaction 4, phone and edge states 3, asset selection 5, asset treatment 5. Craft and motion are capped at the cohesion score + 2, so polish can't rescue a page in the wrong idiom. |
+| Countdown contract | 5 | Automated. The production build is loaded at four moments (37 days out, 42 minutes out, 8 seconds out, 3 hours after) on desktop and phone. Checks the `<time>` contract, correct remaining time, ticking, reaching zero on time, console errors, horizontal overflow at 390px, scrolling to an empty page, and requests to other origins. |
+| Code hygiene | 10 | Automated, starting from 10 with capped deductions: `npm run build` / `npm run lint` failing, type errors, oxlint findings using the scaffold's original config (so editing the config doesn't help), dead code via knip, unreferenced files, `eslint-disable` / `@ts-ignore` / `any`, disabled compiler checks, untouched scaffold boilerplate, stray screenshots or logs, leftover `console.log`. Zero if `src/` is still the scaffold. |
+| Experience and assets | 45 | Judged from the grader's screenshots (moments, viewports, motion frames, pointer and click reactions, focus, close-ups of layout findings), the page's recorded sound and the original assets: cohesion with the subject 7, visual craft 7, legibility 4, motion and interaction 4, phone and edge states 3, asset selection 5, asset treatment 5, concept 3, initiative ±4 and sound ±3. Craft and motion are capped at the cohesion score + 2, so polish can't rescue a page in the wrong idiom. Initiative and sound are net-effect criteria: 0 when the page has none, positive when what it adds makes it better, negative when it makes it worse. Lines of copy that aren't for the visitor cost up to 10 points, and replacing a provided asset with a homemade imitation caps asset selection and costs 3. |
 | Codebase | 15 | Judged by reading `app/`: navigability 4, separation of concerns 3, readability 4, finish 4. |
-| Process | 25 | Judged from the transcript, the agent's own screenshots, the code snapshots between them, and `HANDOVER.md` checked against the measured facts: verification 5, critique quality 6, follow-through 5, persistence 5, honest handover 4. |
+| Process | 25 | Judged from the transcript, the agent's own screenshots, the code snapshots between them, and `HANDOVER.md` checked against the measured facts: verification 5, critique quality 6, follow-through 5, iteration 5, self-assessment 4. Critique and follow-through are judged by outcome: each problem in the final page is traced back through the agent's own screenshots. |
+
+Judges score each criterion by asking whether the client would ship it: 10 means ship it as it is, 8 a couple of small requests, 6–7 changes a reviewer would send back. Besides scores, they itemize: the experience judge lists the changes it would ask for before release, every line of copy that isn't for the visitor, and what happened to each provided asset; the process judge keeps a ledger of the final page's problems (first screenshot that showed each, whether the agent raised, disclosed or claimed to fix it) and a verdict on every claim in the handover. The code in [src/grade/score.ts](src/grade/score.ts) counts the lists, and the report shows them.
+
+The grader measures what judges can't see for themselves: layout probes (text touching a panel's edge, backdrops that end before the page, scrolling to nothing, the smallest and faintest text, measured against the pixels behind it), every visible line of copy with hints for words that leaked from the brief, the page's sound recorded through Web Audio and drawn as spectrograms with the notes each control plays, provided assets recognised in the build even after resizing or cropping, and which moments and screen sizes the agent's own screenshots covered.
 
 The exact deductions are in [src/grade/score.ts](src/grade/score.ts) and the judge rubrics in [src/grade/rubrics.ts](src/grade/rubrics.ts).
 
@@ -156,7 +162,8 @@ Judges are independent, read-only Claude Code sessions in the run directory, so 
 
 Scores are only comparable between runs that got the same brief and were graded by the same checks and rubrics. Grading records the benchmark version in `score.json` and at the top of `REPORT.md`, and the results site ranks each version separately. When a change to the brief, the checks or the rubrics would move scores, bump `BENCHMARK_VERSION` in [src/version.ts](src/version.ts).
 
-- **V1** (September 29–30, 2026; tag [`v1`](https://github.com/CharlExMachina/doomsday-benchmark/tree/v1)): the brief, checks and rubrics described above. Eight runs of `ocarina-remake`, all archived in [results/](results/): Claude Opus 5.5 in Claude Code; Space Bunny Free, DeepSeek V4.1 Flash and GLM 5.3 Flash in OpenCode; and GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna in Codex (contributed). Reports graded before versions were recorded are V1.
+- **V1** (September 29–30, 2026; tag [`v1`](https://github.com/CharlExMachina/doomsday-benchmark/tree/v1)): the original brief, checks and rubrics. Eight runs of `ocarina-remake`, all archived in [results/](results/): Claude Opus 5.5 in Claude Code; Space Bunny Free, DeepSeek V4.1 Flash and GLM 5.3 Flash in OpenCode; and GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna in Codex (contributed). Reports graded before versions were recorded are V1.
+- **V1.1**: the scoring described above, with the same brief. It changes only how runs are graded, so earlier runs can be regraded under it: the judges' scale, judging by outcome, itemized findings, the new automated evidence, and the weights (countdown 5, hygiene 10, experience 45, codebase 15, process 25).
 
 ## Time, tokens and cost
 
@@ -182,9 +189,21 @@ Create `scenarios/<id>/scenario.json` and put the assets in `scenarios/<id>/asse
 
 `target` needs an explicit offset. Runs record a hash of every asset, so later runs are only comparable if the assets are unchanged.
 
+Optionally, add `scenarios/<id>/grading.json` with facts only the grader uses. It stays out of the run directory, so the agent never sees it:
+
+```json
+{
+  "timeZone": "America/New_York",
+  "assetRoles": { "logo.png": "the official logo" },
+  "reference": ["Facts about the subject's canon that judges check the page's faithfulness against."]
+}
+```
+
+`timeZone` lets judges check time claims in the page's copy (including daylight saving), `assetRoles` tells the asset judge which file is the official logo, and `reference` lists canon facts, such as a melody's notes, to check the page against.
+
 ## Known limitations
 
 - Judges are LLMs and therefore noisy. Compare runs graded by the same judge model, and grade a run more than once before trusting a small difference.
 - Claude judging Claude may be biased. The judge backend is one function, so an OpenRouter or other-provider judge is a small addition.
-- Audio can't be evaluated; only its presence in the code is visible to the code judge.
+- Judges can't listen: sound is recorded through Web Audio and judged from spectrograms, measurements and detected notes. `<audio>` and `<video>` elements aren't recorded yet. Without a feature tour from the agent, the grader finds sounds by pressing every control once, which can miss interactions that need a sequence.
 - Motion is judged from still frames, not video.

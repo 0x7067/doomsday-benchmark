@@ -35,7 +35,7 @@ async function main() {
 function route() {
   const params = new URLSearchParams(location.hash.slice(1))
   const id = params.get('run')
-  const run = runs.find((r) => r.id === id || r.formerId === id)
+  const run = id && runs.find((r) => r.id === id || r.formerId === id)
   if (!run) return showLeaderboard()
   // Links shared before a run was archived use its old id; show the current one from then on.
   if (run.id !== id) {
@@ -72,7 +72,7 @@ function showRun(run, now) {
 
 /** Runs are ranked per benchmark version, newest first, and per scenario within it. */
 function renderLeaderboard() {
-  const versions = [...Map.groupBy(runs, (run) => run.benchmarkVersion)].sort(([a], [b]) => b - a)
+  const versions = [...Map.groupBy(runs, (run) => run.benchmarkVersion)].sort(([a], [b]) => b.localeCompare(a, undefined, { numeric: true }))
   const groups = []
   $('#versions').innerHTML = versions
     .map(([version, versionRuns]) => {

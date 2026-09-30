@@ -6,7 +6,7 @@ import type { RunMeta } from '../run-meta.ts'
 import type { RunDuration, RunUsage } from '../usage.ts'
 import { detectHarness } from '../harness.ts'
 import { BENCHMARK_VERSION } from '../version.ts'
-import type { Evidence } from './judges.ts'
+import type { Evidence, JudgeResult } from './judges.ts'
 import { RUBRICS } from './rubrics.ts'
 import { describeScore, finalScores, type ScoreCard } from './score.ts'
 import type { Verdicts } from './verdicts.ts'
@@ -60,6 +60,18 @@ function timeTokensAndCost(duration: RunDuration | null, usage: RunUsage | null)
   return lines
 }
 
+/** The lists a judge itemized, as Markdown sections. */
+function findingsMarkdown({ findings }: JudgeResult): string[] {
+  const section = (title: string, items: string[] | undefined) => (items?.length ? ['', `### ${title}`, '', ...items] : [])
+  return [
+    ...section(`Changes before shipping (${findings.changes?.length ?? 0})`, findings.changes?.map((c) => `- [${c.severity}, ${c.effort}] ${c.request} (${c.where})`)),
+    ...section('Copy that isn’t for the visitor', findings.copy?.map((c) => `- ${c.category}: ${c.problem} (${c.lines.map((line) => `“${line}”`).join(', ')}) — ${c.reason}`)),
+    ...section('Asset ledger', findings.assets?.map((a) => `- \`${a.file}\`: ${a.outcome}. ${a.note}`)),
+    ...section('Defect ledger', findings.ledger?.map((l) => `- ${l.outcome}, in ${l.seenIn} of its screenshots${l.firstVisibleIn ? ` from shot ${l.firstVisibleIn}` : ''}: ${l.problem}. ${l.note}`)),
+    ...section('Claims', findings.claims?.map((c) => `- ${c.verdict}: ${c.claim} — ${c.evidence}`)),
+  ]
+}
+
 function describeVerdicts(verdicts: Verdicts | null): string {
   if (!verdicts) return 'skipped (automated checks only)'
   const when = `${verdicts.judgedAt.slice(0, 16).replace('T', ' ')} UTC`
@@ -95,15 +107,32 @@ function markdown(paths: RunPaths, { evidence, verdicts, card }: ReportInput): s
     if (result?.criteria) {
       out.push(result.summary, '')
       const rubric = RUBRICS.find((r) => r.id === result.rubric)!
-      const scores = finalScores(rubric, result.criteria)
+      const scores = finalScores(rubric, { criteria: result.criteria, findings: result.findings })
       for (const criterion of rubric.criteria) {
         out.push(`- **${criterion.title}: ${describeScore(scores[criterion.id], criterion)}.** ${result.criteria[criterion.id].evidence}`)
       }
+      // Deductions counted from the judge's lists come after the criteria in the score line.
+      out.push(...line.details.slice(rubric.criteria.length).map((detail) => `- **${detail}**`))
+      out.push(...findingsMarkdown(result))
     } else {
       out.push(...line.details.map((detail) => `- ${detail}`))
     }
     out.push('')
   }
+
+  const { probes, sound } = experience
+  if (probes.findings.length) {
+    out.push('## Layout findings', '', ...probes.findings.map((f) => `- ${f.kind} (${f.viewport}): ${f.description}${f.capture ? ` ([close-up](${relativeToReport(f.capture)}))` : ''}`), '')
+  }
+  out.push('## Sound', '')
+  if (sound.recordings.length === 0 && sound.contexts === 0) out.push('- The page makes no sound through Web Audio.')
+  for (const r of sound.recordings) {
+    const a = r.analysis
+    const measured = a.activeShare < 0.02 ? 'silent' : `${a.seconds} s, ${Math.round(a.activeShare * 100)}% active, ${a.rmsDb} dBFS average, dynamic range ${a.dynamicRangeDb ?? '–'} dB, spectral change ${a.spectralChange ?? '–'}`
+    out.push(`- **${r.label}:** ${measured}${r.image ? ` ([spectrogram](${relativeToReport(r.image)}))` : ''}`)
+  }
+  if (sound.controls.length) out.push('', 'Notes each control played:', '', ...sound.controls.map((c) => `- ${c.control}: ${c.notes.join(' ')}`))
+  out.push('')
 
   out.push('## Process facts', '')
   out.push(`- Screenshots taken by the agent: ${facts.shots.length}, spanning ${facts.shotSpanMinutes ?? 0} minutes`)

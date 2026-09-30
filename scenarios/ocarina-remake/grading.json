@@ -1,0 +1,20 @@
+{
+  "timeZone": "America/New_York",
+  "assetRoles": {
+    "8a1enblo1b6h1.png": "the official logo: The Legend of Zelda: Ocarina of Time, with the Master Sword and Hylian Shield",
+    "f55hr5n4xdoh1.jpg": "portrait key art: young Link holding the Ocarina of Time, with Navi",
+    "link-on-epona-with-death-mountain-in-the-distance-in-zelda-ocarina-of-time-remake.avif": "key art: Link on Epona with Death Mountain in the distance",
+    "link-standing-before-the-great-deku-tree-in-the-ocarina-of-time-remake-on-switch-2.avif": "key art: Link before the Great Deku Tree",
+    "thumb-1920-1414762.png": "key art: young Link in Kokiri Forest holding the Ocarina of Time, with Navi"
+  },
+  "reference": [
+    "The ocarina plays five notes, one per button: A = D4, C-down = F4, C-right = A4, C-left = B4, C-up = D5.",
+    "Song of Time: C-right, A, C-down, twice (A4 D4 F4, A4 D4 F4).",
+    "Song of Storms: A, C-down, C-up, twice (D4 F4 D5, twice).",
+    "Zelda's Lullaby: C-left, C-up, C-right, twice (B4 D5 A4, twice).",
+    "Epona's Song: C-up, C-left, C-right, twice (D5 B4 A4, twice).",
+    "Saria's Song: C-down, C-right, C-left, twice (F4 A4 B4, twice).",
+    "Sun's Song: C-right, C-down, C-up, twice (A4 F4 D5, twice).",
+    "The Ocarina of Time is a blue ocarina; young Link holds it in the Kokiri Forest key art (thumb-1920-1414762.png)."
+  ]
+}
