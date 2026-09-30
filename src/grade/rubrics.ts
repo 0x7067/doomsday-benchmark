@@ -131,7 +131,7 @@ export const PROCESS_RUBRIC: Rubric = {
       title: 'Critique quality',
       points: 6,
       lookFor:
-        'When it looked at its screenshots, were its critiques specific, visual and honest, naming real problems a design lead would agree with? Or generic ("looks great", "polished and modern") and self-congratulatory?',
+        'When it looked at its screenshots, were its critiques specific, visual and honest, naming real problems a design lead would agree with? Or generic ("looks great", "polished and modern") and self-congratulatory? Its reasoning may be in the transcript in full, summarized or not at all, depending on the harness: judge what it noticed and acted on, not how much it wrote.',
     },
     {
       id: 'follow_through',

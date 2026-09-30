@@ -130,6 +130,10 @@ For **OpenCode runs only**, setup installs [adapters/opencode/recent-images.js](
 
 The harness is read from the launch command (`opencode ...`, `claude ...`, `codex ...`). For runs you drive by hand, pass it to setup: `npm run bench -- setup --scenario <id> --harness opencode`. Every other harness is left exactly as it is: Claude Code runs get no plugin and keep every image. Each run records its harness and image window in `.bench/run.json`, and the report shows both.
 
+### Reasoning in transcripts
+
+The process judge reads the agent's reasoning when the transcript has it, so the presets ask for it: `--thinking` for OpenCode (the model's full reasoning) and `--thinking-display summarized` for Claude Code (Anthropic's API returns a summary, not the raw reasoning; the flag isn't in `claude --help`). Add the same flag when you launch either with `--cmd`. The judge is told to score what the agent noticed and acted on, not how much reasoning it wrote.
+
 All presets skip permission prompts, because the agent must work unattended. **The agent runs with full access to your machine.** Run it in a VM or container if that matters to you.
 
 ## Scoring (100 points)
