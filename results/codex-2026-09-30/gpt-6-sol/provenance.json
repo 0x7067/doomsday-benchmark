@@ -1,0 +1,95 @@
+{
+  "run": "ocarina-remake_codex-sol-6-medium_2026-09-30T15-49-28",
+  "transcriptSha256": "15fcf8150194ecf263ac3da6747df63a94c3be31e0e9f3ee20c991f2c7a091b7",
+  "finalUsage": {
+    "type": "turn.completed",
+    "usage": {
+      "input_tokens": 1421737,
+      "cached_input_tokens": 1362688,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 17081,
+      "reasoning_output_tokens": 2322
+    }
+  },
+  "appFiles": {
+    ".gitignore": "fe718e7babb14f3cbad2d97f08889b9ce5215ed3fe0e43b2b8cfbfb3b9b844e8",
+    ".oxlintrc.json": "b4d344818a1e1bf43997e4744a9153c8eef770c98b58229cd86363dabb85ded4",
+    "README.md": "1ee47006d913ce997d7e7af40c4842c5a9ab782e59b2a41178ca80f10567ff3e",
+    "index.html": "5cf3f9a6f15c3ca4256889bc5cef6a34dd5a5f318a5d422498078b9bb5f3460a",
+    "package-lock.json": "89e16f94d0aaebdb2ba20940c10ffc14205b9828c98269e37912b3abeb8ff453",
+    "package.json": "38c85d7b83a7b096588748387e8348f87064e5a4d5fb8eb1109d6eaf3e231bad",
+    "public/images/deku-tree.avif": "6adf7b519a1d031ac14d28a0a778c29c12e7aa6592b674ab22b4d1c00046a6ad",
+    "public/images/hyrule-field.avif": "f82f05315d537d43a91836f9ae8b473e1763b96ebff83e59212e0cd81f2707ad",
+    "public/images/zelda-logo.png": "82f71f02db6e8a983cf230995aeac755dc1a3dd3fa91bdb4380938779e28a047",
+    "src/App.css": "2ff15b4e835676d4ed96b0959d3b20f00bdf55f21448aae1587c7ecc00fccce6",
+    "src/App.tsx": "3f6dcadea22ab92ea2ec9e4130aa8b7b69c79a57076965427e4f8c01c8e17d22",
+    "src/index.css": "b21ed973e19210ccfba1de8ce5711e229c64d67be72a338d89af84c6946afa7e",
+    "src/main.tsx": "6e9e5807fcbd48b75a96db5cbef36c996262196be42e6d4760dc86babbe61ad2",
+    "tsconfig.app.json": "8e5d12ba330e7d86409edec74b95451e0db22ee09b9426c94b5bf817571eddb0",
+    "tsconfig.json": "770b4140bbb581e2dfd9ea9946ffc9c75a1d86ba7d2db5f77c83e37cbdf9d808",
+    "tsconfig.node.json": "d366cc0827139db39c61815f22491bbfda56c654354a42ad7795143d314e45e8",
+    "vite.config.ts": "e1eefd0ed1639c88d1213884ef760516884db9e168190e223fee6b063ad3e088"
+  },
+  "captures": {
+    "01-weeks-out-desktop.webp": {
+      "originalPngSha256": "877c2a913072416b03e726012b78102d2f66e70801fa166e7c71ab3ed40a8f85",
+      "webpSha256": "8d178d1d5cf741fde769d2bd0e115fbaa31f30333f735b706b91d5418866a35f"
+    },
+    "02-motion-a.webp": {
+      "originalPngSha256": "21cade6899b2d0ab4b3b49a6dc2cd1e8046b0c5030f62744bfc5d8fe59b114d2",
+      "webpSha256": "c33554e6d2d1c02d6ac95a204265d0428005ed73b78bd62be931272249084d90"
+    },
+    "03-motion-b.webp": {
+      "originalPngSha256": "404ea0d1700cc269858ccad85e8ec534e0455bbda86837ae95a6063aced80b21",
+      "webpSha256": "54c430afeaf3d3ac777c050c8e8dd76a1e91c9c38428cdecd4033bb473781ead"
+    },
+    "04-pointer-upper-left.webp": {
+      "originalPngSha256": "c28619e87db769e203e931c5842cdd416ed466d999835468972a4a296ac3ec70",
+      "webpSha256": "85681e6aa4c73b583f9635fa01db195e861addbb197e9fbabf085569124d47b3"
+    },
+    "05-pointer-lower-right.webp": {
+      "originalPngSha256": "a09f49891da7568207f31076aa4813ed0fb45e51f20268c5f439028ef4b4c686",
+      "webpSha256": "af4b8d792d4f3d81fa4e66d5c58ff4941dcc4df18c7732dee38d241d56245c66"
+    },
+    "06-final-hour-desktop.webp": {
+      "originalPngSha256": "f9c9b5b667f91d309f375476e9f5e53d50baa23dfbfb51fb868eef43baba0bee",
+      "webpSha256": "e50de4a8a012a73a8cbbe483d5c042c59c34e7a2dbe0edaacdd7601e6708aa60"
+    },
+    "07-final-seconds-desktop.webp": {
+      "originalPngSha256": "05be03ce037821bc852f23ee8bfe1aa381fe3a43855951c70cc1168d9c50c479",
+      "webpSha256": "41769c40a0edcb513199b1618b70de388f76cf2ccf9241624b88dcfb7939b497"
+    },
+    "08-arrived-desktop.webp": {
+      "originalPngSha256": "e2f37323eee939803e026b5bd0476fd7a84039d7347c3c04b75af277de176771",
+      "webpSha256": "6bf4da36862488b51581aec57b65c56cc6bc402aa31d6695077357c4edf35fec"
+    },
+    "09-weeks-out-mobile.webp": {
+      "originalPngSha256": "1fdcb3490ba31aafeedfc957c1ad91c695d9470de6d488d945cbfb43d06d9ce6",
+      "webpSha256": "a38c4ef4208e6adbb9579b5f16d586bb73cf14042f90d07786d78a87e4a0b616"
+    },
+    "10-final-hour-mobile.webp": {
+      "originalPngSha256": "6c769b1f8c9f571328837f24d0ee6d2a17b6e5d9fdb3077484593a184e9e6fb8",
+      "webpSha256": "621ab4d665cecfe045453204e8214d5fc55f2c867b837a1aca732624014c05be"
+    },
+    "11-final-seconds-mobile.webp": {
+      "originalPngSha256": "9e632e9495ebb970c27893633a40ad4de0362d8c8cce656052d1d4d1d927c404",
+      "webpSha256": "887e6c87d82d22ca15066b0b9635b9e33c615f8be04d6ca902ec6a2c8f388207"
+    },
+    "12-arrived-mobile.webp": {
+      "originalPngSha256": "66296c758bb1918505eb36141ac9055234199d44a046a548da2e242655cbd647",
+      "webpSha256": "5197ecbd590117f14ed9cc3fc683d432a89904d440ab0993aefd1240936e23ff"
+    },
+    "13-zero-crossing.webp": {
+      "originalPngSha256": "3dddfe0b65ad6874b017649d2478a8dec2ab1ff26f2bcd48b539e78682201394",
+      "webpSha256": "70eb13ea7790c4f6b86cc686dfbeef6026e1b84da0a3c60c5e611aedce1da5bf"
+    },
+    "14-click-1.webp": {
+      "originalPngSha256": "24332116889aac519fb6464d365f25407f4bf9a1e6553e0afe1835720288b8a5",
+      "webpSha256": "772aef0330a4156c3950fe4c83ee9e1a2e3663a6f0322a03324e44d64002f3c1"
+    },
+    "15-keyboard-focus.webp": {
+      "originalPngSha256": "0699a48b3b56889fa67ac1fd361ed2a525b99d0175ec1478083bea5076f9c027",
+      "webpSha256": "a63fdde450bbd6b6785137128acf40f89ea14f677e3153fa9f5e84352aca9712"
+    }
+  }
+}

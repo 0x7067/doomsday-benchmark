@@ -1,0 +1,110 @@
+{
+  "run": "ocarina-remake_codex-luna-6-medium_2026-09-30T15-49-44",
+  "transcriptSha256": "31b7011e002f039652ece93d4bc6d70841dea686158a129cbbdd7d406d6e8b55",
+  "finalUsage": {
+    "type": "turn.completed",
+    "usage": {
+      "input_tokens": 1232696,
+      "cached_input_tokens": 1170560,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 11516,
+      "reasoning_output_tokens": 1991
+    }
+  },
+  "appFiles": {
+    ".gitignore": "fe718e7babb14f3cbad2d97f08889b9ce5215ed3fe0e43b2b8cfbfb3b9b844e8",
+    ".oxlintrc.json": "b4d344818a1e1bf43997e4744a9153c8eef770c98b58229cd86363dabb85ded4",
+    "README.md": "fa8aac78b8be1993010b57f41000a243ecba006f6731513fe4ec91e788bf2517",
+    "index.html": "db28eda7663143a11e99b6f97760e4bd78ba21087a5078fce57cac9670b97918",
+    "package-lock.json": "89e16f94d0aaebdb2ba20940c10ffc14205b9828c98269e37912b3abeb8ff453",
+    "package.json": "38c85d7b83a7b096588748387e8348f87064e5a4d5fb8eb1109d6eaf3e231bad",
+    "public/art/deku-tree.avif": "6adf7b519a1d031ac14d28a0a778c29c12e7aa6592b674ab22b4d1c00046a6ad",
+    "public/art/hyrule.avif": "f82f05315d537d43a91836f9ae8b473e1763b96ebff83e59212e0cd81f2707ad",
+    "public/art/ocarina-logo.png": "82f71f02db6e8a983cf230995aeac755dc1a3dd3fa91bdb4380938779e28a047",
+    "public/favicon.svg": "61bc9a161de58248288e6905425d7180f0624c2865007b97d763fdac12043a66",
+    "public/fonts/Cinzel-OFL.txt": "f2b3029aba64c378bf0963b62945eee15e564fe4330b934c8f2eb058282b5e83",
+    "public/fonts/DM-Mono-OFL.txt": "2bada5ea45c3c63b7f1ea1f88ce9672c9e4f0c42b2c3b7378949084fe55a3066",
+    "public/fonts/cinzel-regular.ttf": "a0242f6698ae0d3220a29986a09274f9d1eddb4a24da4e50faf387fd1804eb7b",
+    "public/fonts/cinzel-semibold.ttf": "5150b3609eeaaa9c6d7e093cb9b16ab8ec2f7110ddf0cbe751887e6f158398af",
+    "public/fonts/dm-mono-medium.ttf": "dd60d0861a3efd540efc3f2f85e7a7fd69a7ece7eadf44aaffa5fc5c86adda0e",
+    "public/fonts/dm-mono-regular.ttf": "c97fcd822f825e9e731867b650a39ee678b609bead29385e320171b573ec0910",
+    "public/icons.svg": "b45fa506195cfcdef406ba9f0c77b36ddc1a7c224040926ec70abc2fdea7b93a",
+    "src/App.css": "3fade82522ee9928eee9f7dcd527f226a5d7c2bec322c02e9d83e70ded7c84bf",
+    "src/App.tsx": "6d6bf20fd67aa0133efec865096e9b56a96886566ecc82e06bbc3d6db393df08",
+    "src/assets/hero.png": "881ffbcaafc212e49addad08846a5b82761355fa20624253af3477ba33262c5c",
+    "src/assets/react.svg": "35ef61ed53b323ae94a16a8ec659b3d0af3880698791133f23b084085ab1c2e5",
+    "src/assets/vite.svg": "5be21acd42eb7b896e517f4e0f0f11eb5c5d9e54fbbcebe9453f033008fcca6f",
+    "src/index.css": "4eb50740690121783836d908ca4c6d4336f43c27bada346f5b474164c6ccc9a5",
+    "src/main.tsx": "6e9e5807fcbd48b75a96db5cbef36c996262196be42e6d4760dc86babbe61ad2",
+    "tsconfig.app.json": "8e5d12ba330e7d86409edec74b95451e0db22ee09b9426c94b5bf817571eddb0",
+    "tsconfig.json": "770b4140bbb581e2dfd9ea9946ffc9c75a1d86ba7d2db5f77c83e37cbdf9d808",
+    "tsconfig.node.json": "d366cc0827139db39c61815f22491bbfda56c654354a42ad7795143d314e45e8",
+    "vite.config.ts": "e1eefd0ed1639c88d1213884ef760516884db9e168190e223fee6b063ad3e088"
+  },
+  "captures": {
+    "01-weeks-out-desktop.webp": {
+      "originalPngSha256": "4467f87a5c89712237e1e7c13992a3ffd2ec1be1f034213bb0b1e4e4660ce6da",
+      "webpSha256": "36a2173c058eac1ebbfc9e95043dfe95c37473f8dd5b6fd3ebbb5af5cf608afd"
+    },
+    "02-motion-a.webp": {
+      "originalPngSha256": "996ef16c563e9d2a926b37f820b910f94be76dbfbaa999608e6aa43425b54e1c",
+      "webpSha256": "5e6dc2f3393b274200156b18f9f040f567f098ac79f52ddd1a92e5dbbbd3e2ce"
+    },
+    "03-motion-b.webp": {
+      "originalPngSha256": "d4eed5812bc60d438d372456e1abce9336a16de49149a5f03a09099ad53d4a73",
+      "webpSha256": "a47120901ec53629c9388787dae705be6375be9f86498dd87fdfd4e753c7ef46"
+    },
+    "04-pointer-upper-left.webp": {
+      "originalPngSha256": "81a618eb0cb4dabb2ab912b76676ca201f516e602421b3752eaa372ba7a5b804",
+      "webpSha256": "f77b60d7048ace6d987cd454acc7ad936f03fc9c9ef271b476d9f00e729cea4b"
+    },
+    "05-pointer-lower-right.webp": {
+      "originalPngSha256": "070bdac04237c9e6d64ff8d66489c2c57b82f413ba47caf14805631116435d5a",
+      "webpSha256": "aeff87a36608613744174f3b9387e61e062589d4a19aee8032964399051692a8"
+    },
+    "06-final-hour-desktop.webp": {
+      "originalPngSha256": "2d161d0a7b846e17f0252b174f7149792a8afb2120bea2710d5bd66e766b3f61",
+      "webpSha256": "b46fee43431e99c0bb32f359f2664c0cf5835ef9fc635d11312ab233e8499cad"
+    },
+    "07-final-seconds-desktop.webp": {
+      "originalPngSha256": "85b3f9c25950d72fd51e4d99174b039e3267635fa932125d2774038d139d46e5",
+      "webpSha256": "214bd6e74227bad1f96e005558c10f43cea8863d03673c9bcdd6c0c39deb86d7"
+    },
+    "08-arrived-desktop.webp": {
+      "originalPngSha256": "44d98b030565faf3650698401c4defb1bc5e1c54e0d0b7e110757ea2803eb248",
+      "webpSha256": "35ea6f1afab0f18c62decb6c716003285c974d9011084566e9f0d0636578faad"
+    },
+    "09-weeks-out-mobile.webp": {
+      "originalPngSha256": "b8ce383fc0deb09fcc942989a3406958d2dad6a4531b799050196629a3881a71",
+      "webpSha256": "a3aa150cb7b2dd0248e58fe1651e196bf4f28574d2cd9b6467f9f41f96855bfb"
+    },
+    "10-final-hour-mobile.webp": {
+      "originalPngSha256": "0071eea9fe95428f60785c421d79b42d32ff684ecbc1455707ddd94171f9e654",
+      "webpSha256": "76e17b8d845f08ce3c774bd61741d83cbbd428fe317e5b64588eddb7de2302d0"
+    },
+    "11-final-seconds-mobile.webp": {
+      "originalPngSha256": "221dfe430f21e73b38159a3236a6d372ca178a628fc917e1c02109ef4082f81a",
+      "webpSha256": "fa25c55e547c03eec91fce486c90021da925906950ca362b0df47d7397b1725a"
+    },
+    "12-arrived-mobile.webp": {
+      "originalPngSha256": "e92620bf1088acd40ecdf4de7aebb9faf85f94982260c03e1e0139b73d951e56",
+      "webpSha256": "5aca163f3697d50eb8b27288ab4883988696ce108708142e531b1d0e09e1fffa"
+    },
+    "13-zero-crossing.webp": {
+      "originalPngSha256": "689a6359cc674b36f7417590b8baae0a6e333170cea898d1766d947682bf6952",
+      "webpSha256": "f7862106f8302b0992bf7b7d7e701df11fe1abff5399004f67532bc724e2ad3e"
+    },
+    "14-click-1.webp": {
+      "originalPngSha256": "ae37c49704bcc403f0eb1fb086f328793168f4d565a0ba8be6e6b697fe838492",
+      "webpSha256": "606b88a1fcba78ddc869dc4ed8b33dedf1e405ca3f875610ef371bd73f3f8dea"
+    },
+    "15-click-2.webp": {
+      "originalPngSha256": "8d92b8727aa4796360ac3540dfa31bf20b01aa7f7fa01a47c497638705144996",
+      "webpSha256": "a87ad9252fb91a8d0ac2c92751590515d961814b0ed1e0d3adb06fb8d65ec0a9"
+    },
+    "16-keyboard-focus.webp": {
+      "originalPngSha256": "b5bbbcc148c3dc3a3749d57d9fb8bf4e48a7f035603a59dc40999f1818df5e7b",
+      "webpSha256": "76ca5c49accb9218675951b0b090e094d444caede4b4103b44647d8ab0b64a78"
+    }
+  }
+}

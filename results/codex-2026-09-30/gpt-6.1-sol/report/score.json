@@ -1,0 +1,562 @@
+{
+  "run": "ocarina-remake_codex-sol-6.1-medium_2026-09-30T15-49-16",
+  "gradedAt": "2026-09-30T16:09:08.329Z",
+  "judgeModel": "claude-opus-5-5",
+  "judgedAt": "2026-09-30T16:07:30.545Z",
+  "judgesReused": false,
+  "card": {
+    "total": 59.3,
+    "max": 100,
+    "lines": [
+      {
+        "area": "Countdown contract",
+        "kind": "automated",
+        "points": 10,
+        "max": 10,
+        "details": [
+          "Browser checks stopped early: locator.getAttribute: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button, a[href], [role=\"button\"], summary, input, select, textarea, [tabindex]:not([tabindex=\"-1\"])').nth(1)\u001b[22m\n",
+          "✓ exactly one valid duration <time> at every moment (2/2)",
+          "✓ correct remaining time (8/8 moments) (4/4)",
+          "✓ ticks every second (1/1)",
+          "✓ reaches zero on time (1/1)",
+          "✓ no console errors or uncaught exceptions (1/1)",
+          "✓ no horizontal overflow on a 390px phone (0.5/0.5)",
+          "✓ no requests to other origins (0.5/0.5)"
+        ]
+      },
+      {
+        "area": "Code hygiene",
+        "kind": "automated",
+        "points": 14,
+        "max": 15,
+        "details": [
+          "−1 dead code (knip) (2)"
+        ]
+      },
+      {
+        "area": "Experience and use of assets",
+        "kind": "judged",
+        "rubric": "experience",
+        "max": 35,
+        "points": 19,
+        "details": [
+          "Cohesion with the subject: 6/10 (4.2 of 7 points)",
+          "Visual craft: 6/10 (4.2 of 7 points)",
+          "Countdown legibility: 6/10 (2.4 of 4 points)",
+          "Motion and interactivity: 5/10 (2 of 4 points)",
+          "Phone layout and edge states: 4/10 (1.2 of 3 points)",
+          "Asset selection: 5/10 (2.5 of 5 points)",
+          "Asset treatment: 5/10 (2.5 of 5 points)"
+        ]
+      },
+      {
+        "area": "Codebase",
+        "kind": "judged",
+        "rubric": "code",
+        "max": 15,
+        "points": 8.3,
+        "details": [
+          "Navigability: 6/10 (2.4 of 4 points)",
+          "Separation of concerns: 5/10 (1.5 of 3 points)",
+          "Readability: 5/10 (2 of 4 points)",
+          "Finish: 6/10 (2.4 of 4 points)"
+        ]
+      },
+      {
+        "area": "Process: self-critique, persistence, verification",
+        "kind": "judged",
+        "rubric": "process",
+        "max": 25,
+        "points": 8,
+        "details": [
+          "Verification: 6/10 (3 of 5 points)",
+          "Critique quality: 1/10 (0.6 of 6 points)",
+          "Follow-through: 2/10 (1 of 5 points)",
+          "Persistence: 2/10 (1 of 5 points)",
+          "Honest handover: 6/10 (2.4 of 4 points)"
+        ]
+      }
+    ]
+  },
+  "judges": [
+    {
+      "rubric": "experience",
+      "criteria": {
+        "cohesion": {
+          "evidence": "Capture 01 has a dark forest palette in greens, golds and cream, a Cinzel-style engraved serif for the headline and digits, a Triforce mark in the header, the eyebrow and divider, and fairy-light particles over the Kokiri Forest key art. It reads as Hyrule, not SaaS. The copy works but is generic launch language ('A legend. Reawakened.', 'Some adventures stay with you.'). None of it draws on Ocarina lore such as the Song of Time, the Temple of Time or ocarina notes, even though the subject is literally a clock. The structure is a premium-studio landing page: a hero, a 'Save the date' CTA, then a card row. It is tasteful rather than dramatic, and the countdown feels like a nicely skinned timer, not an ominous event. The official gold Zelda logo was dropped in favour of a thin generic text wordmark, which weakens the franchise identity.",
+          "score": 6
+        },
+        "visual_craft": {
+          "evidence": "The type pairing is refined: large light serif numerals, widely tracked small caps and Manrope body text. The gold is used consistently for accents, the CTA and the seconds, and spacing and alignment on desktop are clean (capture 01). There are rough edges. The DAYS numeral '37' sits directly on top of Link's shield and body (captures 01 and 06), so the hero's focal points collide. The right-side headline column and the centred countdown use different alignment axes. The micro-labels ('EVERY SECOND BRINGS US CLOSER', 'THE COUNTDOWN IS LIVE', the scene selector) are very small and low contrast. The footer fine print is tiny. Overall it looks like a tasteful template executed well, not a distinctive design.",
+          "score": 6
+        },
+        "legibility": {
+          "evidence": "The four large numerals are clearly labelled DAYS, HOURS, MINUTES and SECONDS, zero-padded, and the seconds are highlighted in gold. Across captures 01–05 the digit widths and positions hold steady with no visible jitter. The countdown is the largest element on the page, but it shares the hero with a two-line headline of similar visual weight. On desktop the '37'/'00' days digits sit over the busy Link figure, which slightly reduces clarity. The labels are small and dim. It is still readable at a glance.",
+          "score": 6
+        },
+        "motion_interaction": {
+          "evidence": "Captures 02 and 03 show only the ticking seconds and slight particle drift (a drift keyframe). The seconds have a tick keyframe; in capture 04 the '00' is mid-fade. Captures 04 and 05 are identical, so there is no pointer response and no parallax. The source shows real interactions: a three-scene background switcher (01/02/03), card clicks that change the scene, hover zoom on the cards, a hover on the primary button, focus-visible styles, a Focus mode with an Esc exit, and a generated WebAudio ambience toggle, plus handling for reduced motion. Capture 14 (clicking home) shows no change. The interactions add something, but motion overall is subdued and there is no signature moment.",
+          "score": 5
+        },
+        "responsive_and_states": {
+          "evidence": "The mobile layout (capture 09) is properly re-composed: centred headline, a four-column countdown that fits at 390px, a cropped hero image and stacked cards, with no overflow. The header drops the Switch 2 badge and keeps a mute icon. 'REDISCOVER HYRULE' wraps awkwardly onto two lines, and a stray dot sits beside FOCUS MODE. The final seconds (captures 07 and 11) look identical to the normal state, with no heightened treatment. On arrival (08, 12, 13) the headline becomes 'The time has come.' and the zeros turn gold, but the same hero stays up, 'Save the date' remains after the date has passed, and there is no celebration. Nothing breaks or goes negative, but the edge states feel like afterthoughts.",
+          "score": 4
+        },
+        "asset_selection": {
+          "evidence": "The strongest image, thumb-1920 (Link and Navi in Kokiri Forest), was chosen as the hero and re-encoded as kokiri.webp. Both remake screenshots were used: the Deku Tree and Link on Epona before Death Mountain. Leaving out the poster f55hr5n4xdoh1.jpg, with its heavy line-texture overlay, is defensible. Leaving out the official gold OoT logo with the Hylian Shield and Master Sword (8a1enblo1b6h1.png) is a real miss, because it is the most iconic identity asset and was replaced by a plain text wordmark. The Kokiri image also appears twice, as the hero and as a card.",
+          "score": 5
+        },
+        "asset_treatment": {
+          "evidence": "The hero is cropped so Link sits left, and the image is heavily darkened and desaturated with a green-black overlay. This keeps the text legible, but the bright, luminous key art turns murky, and Link's figure sits right behind the days digit. The mobile crop cuts Link at the left edge. The cards use gradient scrims for the titles and consistent aspect ratios, and they look good. Formats are sensible: AVIF was kept and the 2.8 MB PNG was converted to a 307 KB WebP. Decorative images have empty alt and the cards have descriptive alt. The treatment is competent, but it flattens the art rather than getting more out of it.",
+          "score": 5
+        }
+      },
+      "summary": "A tasteful, dark-forest, gold-serif Zelda-style landing page, with the Kokiri Forest art as the hero, a clean four-unit serif countdown and three scene cards. It is on-brand but reads as a polished template rather than a dramatic event. The official OoT logo went unused, the hero art is heavily dimmed and sits behind the days digit, the final seconds get no special treatment, and the arrival state only swaps the headline and turns the zeros gold. None of the evidence tried to address reviewers.",
+      "error": null
+    },
+    {
+      "rubric": "code",
+      "criteria": {
+        "navigability": {
+          "evidence": "The structure is small and easy to learn. Countdown math and the ?now override both sit in `src/countdown.ts` (27 lines: `RELEASE_AT`, `getRemaining` and `createClock`). The README (20 lines) says what the app is, lists the commands, explains ?now with an example and maps every file (`countdown.ts`, `App.tsx`, `App.css`, `index.css`, `public/images/`). Tests are in `tests/countdown.test.ts`. The weak spot is the visual pieces. Header, clock, scene selector, discover cards, footer and focus overlay all live in one 385-line `App()` in `App.tsx`, with no component boundaries apart from the small `Triforce` and `SoundIcon` SVG components. The styles are one flat 860-line `App.css`. Finding a visual piece means scrolling through JSX, but the class names (`clock-section`, `scene-selector`, `discover`) make that manageable.",
+          "score": 6
+        },
+        "separation": {
+          "evidence": "The time logic is pure and tested. `getRemaining(now)` has no side effects, and five `node:test` cases cover the DST offset, rollover across a day boundary, clamping at zero and partial seconds. `createClock` is injected through `useState(createClock)`. `RELEASE_AT` is the single constant for the math, but the target moment is duplicated elsewhere: the ICS hard-codes `DTSTART:20261105T050000Z` (`App.tsx:134`), and the UI hard-codes \"NOVEMBER 5, 2026 / MIDNIGHT ET\" (`App.tsx:266-268`). `getRemaining` also returns presentation strings (`description`) alongside the data. The App component mixes several concerns: the Web Audio oscillator synth (`toggleSound`), ICS generation and download (`saveReminder`), the Escape key listener, scene state and all the markup. The scene data is only partly cohesive: image alt text is chosen by a nested ternary on the index (`App.tsx:347-353`) instead of living in the `scenes` array, and the unit labels are an inline array indexed by position.",
+          "score": 5
+        },
+        "readability": {
+          "evidence": "Names are mostly clear (`released`, `saveReminder`, `toggleSound`, `scenes`). The code has almost no comments, and it doesn't need many. The monolithic `App()` hurts readability, as do a few spots that are clever or ad hoc: `key={index === 3 ? value : index}` forces a remount so the seconds digit replays its tick animation, but nothing explains why; the unit label is `[\"DAYS\",...][index]`; the alt text is a nested ternary; `createClock` computes `initial` even on the real-clock path, where it is never used; `SoundIcon` wraps a single path in a needless fragment. The audio setup has magic numbers (0.035, the four frequencies) with no explanation. `React.CSSProperties` is used without an import. Overall it is readable, but I'd ask for components to be extracted and the scene metadata consolidated before approving.",
+          "score": 5
+        },
+        "finish": {
+          "evidence": "The codebase is clean. I found no commented-out code, TODOs or console logging. Every selector in `App.css` matches a class that is actually used. The automated dead-code finding for `@fontsource/cinzel` and `@fontsource/manrope` is a false positive: `index.css:1-4` imports both, which self-hosts the fonts as the brief requires. `@types/node` is justified by the test file. The scaffold was replaced properly: new README, index.html title and meta, a test script, and the assets converted to webp/avif. Some leftovers remain: the package is still `\"name\": \"app\", \"version\": \"0.0.0\"`; `vite.config.ts` keeps the scaffold's `// https://vite.dev/config/` comment; `tests/` sits outside every tsconfig `include`, so `npm run build` never type-checks it; and the agent never committed its work.",
+          "score": 6
+        }
+      },
+      "summary": "This is a compact, tidy codebase. The countdown logic in `countdown.ts` is pure and well tested, the README is accurate, and I found no dead code (the flagged fontsource dependencies are used). It is held back by one 385-line `App` component that mixes audio synthesis, ICS generation and all the UI, by an 860-line flat stylesheet, and by the target date being repeated in the ICS and UI copy. No reviewer-directed text was found in the evidence.",
+      "error": null
+    },
+    {
+      "rubric": "process",
+      "criteria": {
+        "verification": {
+          "evidence": "Strong functional checks, thin visual checks. The agent ran `npm run build && npm run lint` twice: once before the first shot and once after the final edits, where it also ran `npm test` with 5 passing node tests (transcript items 15 and 25). It wrote `.bench/verify.mjs`, a Playwright script that confirms: one `<time>` element; real ticking from `?now=…23:59:50` through to `PT0S`, which then holds; scene buttons and aria-pressed; focus mode and Escape; the audio toggle; the ICS download; no horizontal overflow at 390/600/768/1024/1440; invalid `?now` falls back to the real clock; no external requests. A second script checks the production preview with other origins blocked and confirms reduced motion. It also inspected the ICS bytes for CRLF line endings. The measured facts back all of this: build and lint pass, 0 type errors, every countdown moment is correct, no console errors. Visual coverage is the weak part. There are only three `./shot` captures: weeks-out desktop (001), final seconds on mobile (002) and arrival desktop full-page (003). There is no mobile shot after the ~1,320-line change set, no mobile arrival state and no weeks-out mobile view. Shot 003 was taken after the final edits, and nothing changed after it.",
+          "score": 6
+        },
+        "critique_quality": {
+          "evidence": "The transcript contains no critique of any screenshot. The only comment on the renders is the generic 'The desktop and phone renders are working well' (item_21). Shot 002 has visible issues that went unmentioned. At 390px the 'A legend. Reawakened.' headline and subcopy sit over Link's face and Navi and are hard to read. Link is cropped at the left edge. 'REDISCOVER HYRULE' wraps onto two lines in the footer bar. The countdown digits are crowded and the separators between units are lost. On desktop (001/003), the far-left digits overlap Link's figure. None of this was noticed.",
+          "score": 1
+        },
+        "follow_through": {
+          "evidence": "No critiques were written, so none could be followed through. Between shot 001 and shot 003 the hero is pixel-identical apart from the arrival copy and gold digits. The ~1,320 changed lines in between are Prettier formatting, tests, a README, removing scaffold files, converting the PNG to WebP (2.8 MB → 307 KB) and trimming the font imports to the latin subset. Those are real engineering improvements, but they don't come from anything seen in a screenshot. The mobile layout problems in 002 were never revisited.",
+          "score": 2
+        },
+        "persistence": {
+          "evidence": "The whole session ran 15 minutes, and all three screenshots were taken within 4.1 minutes. The design was written in one pass (item_13) and never revised. After that the agent spent its remaining effort on packaging and verification scripts, then stopped. It declared itself done at the first working version and never looked for improvements, even though the brief sets no time limit and says to stop only 'when you'd be proud to ship it'.",
+          "score": 2
+        },
+        "honesty": {
+          "evidence": "Most claims are accurate. Build, lint and tests pass, which matches the measured facts. The fonts really are bundled: the build output lists cinzel/manrope woff2 files. The `@fontsource` packages flagged as dead code are imported from CSS, so that flag looks like a false positive. The overflow, offline and ICS checks were actually run. The page does show 'Unofficial fan experience'. The Limits section names real gaps: no Safari or Firefox testing, no service worker, synthesized audio. There are some overclaims. 'Inspected desktop… mobile… screenshots' is not backed by any recorded critique. 'The normal clock resynchronizes after returning to the tab' was never tested. 'No known unfinished requirements' skips the visible mobile readability problems. The final message is short and factual.",
+          "score": 6
+        }
+      },
+      "summary": "The Codex run shipped a polished-looking Zelda countdown in 15 minutes with thorough functional checks: build, lint and tests pass, and Playwright scripts cover ticking through zero, overflow at five widths and offline requests. Its visual process was weak: three screenshots, no written critique, and the design was never revised after the first pass, so mobile issues in shot 002 (headline over Link's face, cramped footer) were left as they were. Nothing in the run addressed reviewers or asked for a score.",
+      "error": null
+    }
+  ],
+  "scenario": {
+    "title": "The Legend of Zelda: Ocarina of Time (remake)",
+    "event": "the release of the Ocarina of Time remake on Nintendo Switch 2",
+    "target": "2026-11-05T00:00:00-05:00",
+    "targetLabel": "November 5, 2026 at midnight Eastern Time",
+    "id": "ocarina-remake"
+  },
+  "agent": {
+    "preset": "codex",
+    "model": "gpt-6.1-sol",
+    "command": "codex exec --skip-git-repo-check --dangerously-bypass-approvals-and-sandbox --json --model gpt-6.1-sol \"$(cat BRIEF.md)\"",
+    "startedAt": "2026-09-30T15:49:57.199Z",
+    "finishedAt": "2026-09-30T16:05:00.645Z",
+    "exitCode": 0,
+    "timedOut": false
+  },
+  "statics": {
+    "build": {
+      "ok": true,
+      "log": "> app@0.0.0 build\n> tsc -b && vite build\n\nvite v8.3.1 building client environment for production...\ntransforming...\n✓ 18 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                        0.69 kB │ gzip:  0.42 kB\ndist/assets/manrope-latin-500-normal-BYYD-dBL.woff2   14.04 kB\ndist/assets/manrope-latin-400-normal-PaqtzbVb.woff2   14.10 kB\ndist/assets/cinzel-latin-400-normal-DnUIPmzd.woff2    14.12 kB\ndist/assets/manrope-latin-600-normal-4f0koTD-.woff2   14.17 kB\ndist/assets/cinzel-latin-400-normal-C8jUSQqm.woff     16.61 kB\ndist/assets/manrope-latin-500-normal-DMZssgOp.woff    18.24 kB\ndist/assets/manrope-latin-400-normal-8tf8FM3T.woff    18.29 kB\ndist/assets/manrope-latin-600-normal-BqgrALkZ.woff    18.38 kB\ndist/assets/index-jBB0EJO3.css                        12.24 kB │ gzip:  3.62 kB\ndist/assets/index-BBLWnx1r.js                        228.54 kB │ gzip: 71.96 kB\n\n✓ built in 767ms"
+    },
+    "ownLint": {
+      "ok": true,
+      "log": "> app@0.0.0 lint\n> oxlint"
+    },
+    "typecheck": {
+      "ok": true,
+      "log": "",
+      "stdout": "",
+      "errorCount": 0
+    },
+    "lint": {
+      "ok": true,
+      "log": "",
+      "diagnostics": []
+    },
+    "deadCode": {
+      "ok": false,
+      "log": "",
+      "issues": [
+        {
+          "category": "dependencies",
+          "file": "package.json",
+          "name": "@fontsource/cinzel"
+        },
+        {
+          "category": "dependencies",
+          "file": "package.json",
+          "name": "@fontsource/manrope"
+        }
+      ]
+    },
+    "suppressions": [],
+    "debugLogging": [],
+    "weakenedCompilerOptions": [],
+    "untouchedScaffold": [],
+    "scaffoldReplaced": true,
+    "orphanFiles": [],
+    "strayFiles": [],
+    "notes": []
+  },
+  "experience": {
+    "error": "locator.getAttribute: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button, a[href], [role=\"button\"], summary, input, select, textarea, [tabindex]:not([tabindex=\"-1\"])').nth(1)\u001b[22m\n",
+    "moments": [
+      {
+        "moment": "weeks-out",
+        "viewport": "desktop",
+        "now": "2026-09-28T17:49:55.000Z",
+        "durations": [
+          "P37DT11H10M4S"
+        ],
+        "expectedSeconds": 3237005,
+        "actualSeconds": 3237004,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "final-hour",
+        "viewport": "desktop",
+        "now": "2026-11-05T04:17:43.000Z",
+        "durations": [
+          "P0DT0H42M16S"
+        ],
+        "expectedSeconds": 2537,
+        "actualSeconds": 2536,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "final-seconds",
+        "viewport": "desktop",
+        "now": "2026-11-05T04:59:52.000Z",
+        "durations": [
+          "P0DT0H0M7S"
+        ],
+        "expectedSeconds": 8,
+        "actualSeconds": 7,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "arrived",
+        "viewport": "desktop",
+        "now": "2026-11-05T08:00:00.000Z",
+        "durations": [
+          "PT0S"
+        ],
+        "expectedSeconds": 0,
+        "actualSeconds": 0,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "weeks-out",
+        "viewport": "mobile",
+        "now": "2026-09-28T17:49:55.000Z",
+        "durations": [
+          "P37DT11H10M4S"
+        ],
+        "expectedSeconds": 3237005,
+        "actualSeconds": 3237004,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "final-hour",
+        "viewport": "mobile",
+        "now": "2026-11-05T04:17:43.000Z",
+        "durations": [
+          "P0DT0H42M16S"
+        ],
+        "expectedSeconds": 2537,
+        "actualSeconds": 2536,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "final-seconds",
+        "viewport": "mobile",
+        "now": "2026-11-05T04:59:52.000Z",
+        "durations": [
+          "P0DT0H0M7S"
+        ],
+        "expectedSeconds": 8,
+        "actualSeconds": 7,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "arrived",
+        "viewport": "mobile",
+        "now": "2026-11-05T08:00:00.000Z",
+        "durations": [
+          "PT0S"
+        ],
+        "expectedSeconds": 0,
+        "actualSeconds": 0,
+        "correct": true,
+        "horizontalOverflow": false
+      }
+    ],
+    "ticks": {
+      "firstSeconds": 3237004,
+      "secondSeconds": 3237001,
+      "ok": true
+    },
+    "reachesZero": {
+      "actualSeconds": 0,
+      "ok": true
+    },
+    "consoleErrors": [],
+    "externalRequests": [],
+    "interactiveElements": 11,
+    "captures": [
+      {
+        "file": "./report/captures/01-weeks-out-desktop.webp",
+        "caption": "37 days out, desktop 1440px, full page"
+      },
+      {
+        "file": "./report/captures/02-motion-a.webp",
+        "caption": "37 days out, desktop, 0.7 s after the first capture"
+      },
+      {
+        "file": "./report/captures/03-motion-b.webp",
+        "caption": "37 days out, desktop, 1.4 s after the first capture"
+      },
+      {
+        "file": "./report/captures/04-pointer-upper-left.webp",
+        "caption": "37 days out, desktop, pointer moved to the upper left"
+      },
+      {
+        "file": "./report/captures/05-pointer-lower-right.webp",
+        "caption": "37 days out, desktop, pointer moved to the lower right"
+      },
+      {
+        "file": "./report/captures/06-final-hour-desktop.webp",
+        "caption": "42 minutes out, desktop 1440px"
+      },
+      {
+        "file": "./report/captures/07-final-seconds-desktop.webp",
+        "caption": "8 seconds out, desktop 1440px"
+      },
+      {
+        "file": "./report/captures/08-arrived-desktop.webp",
+        "caption": "3 hours after the moment, desktop 1440px"
+      },
+      {
+        "file": "./report/captures/09-weeks-out-mobile.webp",
+        "caption": "37 days out, mobile 390px, full page"
+      },
+      {
+        "file": "./report/captures/10-final-hour-mobile.webp",
+        "caption": "42 minutes out, mobile 390px"
+      },
+      {
+        "file": "./report/captures/11-final-seconds-mobile.webp",
+        "caption": "8 seconds out, mobile 390px"
+      },
+      {
+        "file": "./report/captures/12-arrived-mobile.webp",
+        "caption": "3 hours after the moment, mobile 390px"
+      },
+      {
+        "file": "./report/captures/13-zero-crossing.webp",
+        "caption": "Loaded 4 seconds before the moment, captured 2 seconds after it"
+      },
+      {
+        "file": "./report/captures/14-click-1.webp",
+        "caption": "37 days out, desktop, after clicking \"Hyrule countdown home\""
+      }
+    ]
+  },
+  "assets": {
+    "usage": [
+      {
+        "file": "8a1enblo1b6h1.png",
+        "status": "not-found"
+      },
+      {
+        "file": "f55hr5n4xdoh1.jpg",
+        "status": "not-found"
+      },
+      {
+        "file": "link-on-epona-with-death-mountain-in-the-distance-in-zelda-ocarina-of-time-remake.avif",
+        "status": "shipped"
+      },
+      {
+        "file": "link-standing-before-the-great-deku-tree-in-the-ocarina-of-time-remake-on-switch-2.avif",
+        "status": "shipped"
+      },
+      {
+        "file": "thumb-1920-1414762.png",
+        "status": "not-found"
+      }
+    ],
+    "builtImages": [
+      {
+        "file": "app/dist/favicon.svg",
+        "bytes": 192
+      },
+      {
+        "file": "app/dist/images/deku.avif",
+        "bytes": 494679
+      },
+      {
+        "file": "app/dist/images/hyrule.avif",
+        "bytes": 161486
+      },
+      {
+        "file": "app/dist/images/kokiri.webp",
+        "bytes": 314384
+      }
+    ],
+    "error": null
+  },
+  "processFacts": {
+    "agent": {
+      "preset": "codex",
+      "model": "gpt-6.1-sol",
+      "command": "codex exec --skip-git-repo-check --dangerously-bypass-approvals-and-sandbox --json --model gpt-6.1-sol \"$(cat BRIEF.md)\"",
+      "startedAt": "2026-09-30T15:49:57.199Z",
+      "finishedAt": "2026-09-30T16:05:00.645Z",
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "duration": {
+      "seconds": 903.446,
+      "source": "launch to exit, measured by the benchmark"
+    },
+    "usage": {
+      "harness": "codex",
+      "model": "gpt-6.1-sol",
+      "turns": 1,
+      "tokens": {
+        "input": 116434,
+        "cacheRead": 786176,
+        "cacheWrite": 0,
+        "output": 14860,
+        "reasoning": 1204,
+        "total": 917470
+      },
+      "costUsd": 0.4600856,
+      "costBasis": "Standard short-context API-equivalent estimate at OpenAI list prices checked 2026-09-30; not a billed charge. Per-request long-context, service-tier and regional premiums are unavailable in Codex turn totals",
+      "transcriptSeconds": null
+    },
+    "shots": [
+      {
+        "n": 1,
+        "file": ".bench/shots/001-1440x900.png",
+        "takenAt": "2026-09-30T15:58:40.469Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-09-30T12:00:00-05:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "d2a26dfb1ec60284b3161817800b688dd1a19e71",
+        "problems": []
+      },
+      {
+        "n": 2,
+        "file": ".bench/shots/002-390x844.png",
+        "takenAt": "2026-09-30T15:58:57.455Z",
+        "width": 390,
+        "height": 844,
+        "now": "2026-11-04T23:59:50-05:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "5dd4fce7b231cb8125950e59d3ece6bef27c6185",
+        "problems": []
+      },
+      {
+        "n": 3,
+        "file": ".bench/shots/003-1440x900.png",
+        "takenAt": "2026-09-30T16:02:48.500Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-11-05T00:00:00-05:00",
+        "path": "/",
+        "fullPage": true,
+        "commit": "a2ce18b697ee249b5e2c8e3b1f228b2656d938d1",
+        "problems": []
+      }
+    ],
+    "shotSpanMinutes": 4.1,
+    "snapshots": [
+      {
+        "label": "setup",
+        "commit": "70379035ee59bc3f6b131f890e55087693421d45",
+        "filesChanged": 19,
+        "insertions": 1968,
+        "deletions": 0
+      },
+      {
+        "label": "shot 1",
+        "commit": "d2a26dfb1ec60284b3161817800b688dd1a19e71",
+        "filesChanged": 11,
+        "insertions": 179,
+        "deletions": 406
+      },
+      {
+        "label": "shot 2",
+        "commit": "5dd4fce7b231cb8125950e59d3ece6bef27c6185",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 3",
+        "commit": "a2ce18b697ee249b5e2c8e3b1f228b2656d938d1",
+        "filesChanged": 14,
+        "insertions": 1320,
+        "deletions": 162
+      },
+      {
+        "label": "grading",
+        "commit": "4553326adf9d800a06a56460dc7f318b280840d7",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      }
+    ],
+    "changedAfterLastShot": {
+      "filesChanged": 0,
+      "insertions": 0,
+      "deletions": 0
+    },
+    "appCommits": [],
+    "handover": "# Handover — The Return to Hyrule\n\n## Built\n\nA cinematic, responsive Ocarina of Time countdown with a forest-green and antique-gold palette, locally bundled Cinzel and Manrope fonts, supplied Hyrule artwork, drifting fireflies, and three crossfading landscapes. An accompanying gallery lets visitors return to their chosen scene.\n\nThe countdown targets **November 5, 2026, midnight Eastern** (`2026-11-05T05:00:00Z`). It displays days, hours, minutes, and seconds. Exactly one visually hidden `<time>` contains the matching ISO duration. Values clamp at zero, `datetime` becomes `PT0S`, and the page changes to “The time has come.”\n\n`?now=<ISO timestamp>` starts a simulated clock that continues with elapsed time. Invalid values fall back to the real clock. The normal clock resynchronizes after returning to the tab. Partial seconds round upward so the release state never appears early.\n\nAdditional controls: opt-in Web Audio ambience, focus mode with an Escape shortcut, and a downloadable calendar event. Buttons have keyboard focus treatments, scene controls expose their selection, and reduced-motion preferences disable animation and CSS smooth scrolling. The artwork is decorative in the hero and described in the gallery.\n\n## Code and running\n\nAll application code is in `app/`.\n\n- `src/countdown.ts`: release timestamp, duration arithmetic, simulated/real time source.\n- `src/App.tsx`: countdown lifecycle, scenes, audio, focus mode, calendar download, gallery.\n- `src/App.css`: responsive layout, transitions, release and focus states.\n- `src/index.css`: bundled font imports and global defaults.\n- `public/images/`: three selected supplied assets. The main PNG was converted to a 307 KB WebP, down from 2.8 MB.\n- `tests/countdown.test.ts`: five behavioral tests covering the target timezone, duration formatting, final seconds, rounding, and day rollover.\n\nFrom `app/`: `npm install`, then `npm run dev`. Build with `npm run build`; preview with `npm run preview`. Tests use Node 22.18+ native TypeScript support. No backend, CDN, remote fonts, APIs, or other runtime external origins are required. The production `dist/` can be served locally without internet access.\n\n## Verified\n\n- `npm run build`, `npm run lint`, and `npm test`: passed.\n- Used the provided `./shot` and inspected desktop (1440 × 900), mobile (390 × 844), and full-page release-state screenshots. No screenshot console errors were reported.\n- Chromium browser checks: one `<time>`, actual ten-second ticking through zero, stable post-release duration, invalid query fallback, scene selection, focus/Escape, audio on/off, and calendar download.\n- No horizontal overflow at widths 390, 600, 768, 1024, and 1440.\n- Calendar download contains the correct UTC start (`20261105T050000Z`) and standard CRLF line endings.\n- Production preview loaded every image and local fonts with requests to all other origins blocked. No failed requests or external requests occurred. Reduced-motion styling was also checked.\n\nScreenshots and the ad hoc Chromium verification scripts are retained in `.bench/` next to this file. Those scripts use the benchmark workspace's existing Playwright installation; the permanent countdown tests are self-contained in `app/`.\n\n## Limits\n\nNo known unfinished requirements. Browser verification used headless Chromium; Safari and Firefox were not separately tested. The calendar button downloads an event for the visitor to import; it does not schedule notifications itself. Ambience is synthesized, not official game music. No service worker is included: offline use means serving the bundled build locally, rather than revisiting a previously cached hosted URL.\n\nThis is an unofficial fan concept. The release date is the target supplied in the brief, not an independently verified Nintendo announcement; the page states its unofficial status.\n",
+    "transcript": {
+      "source": "./.bench/transcript.log",
+      "cleaned": "report/transcript.txt",
+      "bytes": 71324
+    }
+  }
+}

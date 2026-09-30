@@ -13,6 +13,8 @@ It works with any model and any harness: Claude Code, Codex, OpenCode, Copilot, 
 
 **Results:** [charlexmachina.github.io/doomsday-benchmark](https://charlexmachina.github.io/doomsday-benchmark/)
 
+**Contributed runs:** [Codex: GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna (September 30, 2026)](results/codex-2026-09-30/README.md).
+
 ## Quick start
 
 You need Node 24+, git, and the [Claude Code](https://claude.com/claude-code) CLI (the judges run on it).
@@ -118,7 +120,7 @@ That builds `_site/` from every graded run and force-pushes it to the `gh-pages`
 | --- | --- |
 | `claude-code` | Uses your Claude Code login. It loads your global `~/.claude/CLAUDE.md`, plugins and settings like any session, so account for that when comparing. |
 | `opencode` | Smoke-tested with OpenCode 1.18: runs headless, calls `./shot` and sees the PNG. `--model` takes `provider/model` (see `opencode models`). |
-| `codex` | Written from Codex CLI docs; not installed on the machine this was built on, so unverified. |
+| `codex` | Completed headless runs with Codex CLI 0.159.2 on GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna, including screenshots and JSONL usage capture. Loads the normal Codex user configuration, hooks and plugins. |
 
 The agent can only critique what it can see, so use models that accept images. In OpenCode, `opencode models --verbose` shows `"attachment": true` for those.
 
