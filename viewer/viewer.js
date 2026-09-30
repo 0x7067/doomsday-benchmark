@@ -18,6 +18,8 @@ const dialog = $('#report-dialog')
 const CATEGORY_COLORS = ['var(--c-countdown)', 'var(--c-hygiene)', 'var(--c-experience)', 'var(--c-code)', 'var(--c-process)']
 
 let runs = []
+/** Every benchmark version with results, newest first; the first is the default. */
+let versions = []
 let current = null
 
 main()
@@ -36,7 +38,7 @@ function route() {
   const params = new URLSearchParams(location.hash.slice(1))
   const id = params.get('run')
   const run = id && runs.find((r) => r.id === id || r.formerId === id)
-  if (!run) return showLeaderboard()
+  if (!run) return showLeaderboard(params.get('version'))
   // Links shared before a run was archived use its old id; show the current one from then on.
   if (run.id !== id) {
     params.set('run', run.id)
@@ -45,7 +47,14 @@ function route() {
   showRun(run, params.get('now'))
 }
 
-function showLeaderboard() {
+/** Shows one version's leaderboard: the requested one, or the latest. */
+function showLeaderboard(requested) {
+  const version = versions.includes(requested) ? requested : versions[0]
+  for (const section of document.querySelectorAll('.version')) section.hidden = section.dataset.version !== version
+  for (const link of document.querySelectorAll('#version-switch a')) {
+    if (link.dataset.version === version) link.setAttribute('aria-current', 'page')
+    else link.removeAttribute('aria-current')
+  }
   current = null
   frame.removeAttribute('src')
   closePanel()
@@ -65,20 +74,27 @@ function showRun(run, now) {
   $('#no-app').hidden = run.hasApp
   if (run.hasApp && frame.getAttribute('src') !== appUrl) frame.src = appUrl
   $('#open-site').href = appUrl
+  $('#all-runs').href = versionHref(run.benchmarkVersion)
   $('#fab-score').textContent = formatPoints(run.score.total)
   $('#details-body').innerHTML = detailsHtml(run)
   document.title = `${run.model} · Doomsday Benchmark`
 }
 
-/** Runs are ranked per benchmark version, newest first, and per scenario within it. */
+/** Runs are ranked per benchmark version, one version at a time, and per scenario within it. */
 function renderLeaderboard() {
-  const versions = [...Map.groupBy(runs, (run) => run.benchmarkVersion)].sort(([a], [b]) => b.localeCompare(a, undefined, { numeric: true }))
+  const byVersion = [...Map.groupBy(runs, (run) => run.benchmarkVersion)].sort(([a], [b]) => b.localeCompare(a, undefined, { numeric: true }))
+  versions = byVersion.map(([version]) => version)
+  const toggle = $('#version-switch')
+  toggle.hidden = versions.length < 2
+  toggle.innerHTML = versions
+    .map((version, i) => `<a href="${versionHref(version)}" data-version="${escape(version)}">V${escape(version)}${i === 0 ? ' <small>latest</small>' : ''}</a>`)
+    .join('')
   const groups = []
-  $('#versions').innerHTML = versions
+  $('#versions').innerHTML = byVersion
     .map(([version, versionRuns]) => {
       const scenarios = [...Map.groupBy(versionRuns, (run) => run.scenario.id).values()]
       return `
-        <section class="version">
+        <section class="version" data-version="${escape(version)}">
           <header class="version-header">
             <h2>Benchmark V${version}</h2>
             <p>${versionRuns.length} ${versionRuns.length === 1 ? 'run' : 'runs'}. Scores are only comparable within a version.</p>
@@ -88,6 +104,11 @@ function renderLeaderboard() {
     })
     .join('')
   for (const chart of document.querySelectorAll('[data-chart]')) renderChart(chart, groups[chart.dataset.chart])
+}
+
+/** The latest version is the leaderboard's default, so it needs no address of its own. */
+function versionHref(version) {
+  return version === versions[0] ? '#' : `#version=${encodeURIComponent(version)}`
 }
 
 function scenarioHtml(scenarioRuns, group) {

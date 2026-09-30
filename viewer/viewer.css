@@ -97,8 +97,50 @@ small {
   text-decoration: underline;
 }
 
+.version-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 40px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.version-switch a {
+  padding: 6px 16px;
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.version-switch a:hover {
+  color: var(--text);
+}
+
+.version-switch a[aria-current='page'] {
+  background: var(--accent);
+  color: #1a1305;
+}
+
+.version-switch a[aria-current='page'] small {
+  color: inherit;
+  opacity: 0.75;
+}
+
+.version-switch[hidden] {
+  display: none;
+}
+
 .version {
   margin-top: 56px;
+}
+
+.version-switch:not([hidden]) + #versions .version {
+  margin-top: 32px;
 }
 
 .version-header {

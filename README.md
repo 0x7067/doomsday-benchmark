@@ -112,7 +112,7 @@ That writes `report/REPORT.md` and `report/score.json`. `--no-judges` runs only 
 npm run bench -- site --publish
 ```
 
-That builds `_site/` from every graded run, in `runs/` and in the archived `results/<batch>/<run>/` folders, and force-pushes it to the `gh-pages` branch as one fresh commit. The site has a leaderboard for each [benchmark version](#versions), with a chart of any score (the total or one category) against estimated cost, run time or tokens; each run opens its live countdown with a details panel (scores per category, time, tokens, cost) and the full report. Each app is rebuilt to be served from its subfolder; grading always uses the agent's own build. Transcripts are never published. Without `--publish`, it only builds `_site/` for a local look.
+That builds `_site/` from every graded run, in `runs/` and in the archived `results/<batch>/<run>/` folders, and force-pushes it to the `gh-pages` branch as one fresh commit. The site has a leaderboard for each [benchmark version](#versions), with a toggle that opens on the latest, with a chart of any score (the total or one category) against estimated cost, run time or tokens; each run opens its live countdown with a details panel (scores per category, time, tokens, cost) and the full report. Each app is rebuilt to be served from its subfolder; grading always uses the agent's own build. Transcripts are never published. Without `--publish`, it only builds `_site/` for a local look.
 
 ### Preset status
 
@@ -160,7 +160,15 @@ Judges are independent, read-only Claude Code sessions in the run directory, so 
 
 ## Versions
 
-Scores are only comparable between runs that got the same brief and were graded by the same checks and rubrics. Grading records the benchmark version in `score.json` and at the top of `REPORT.md`, and the results site ranks each version separately. When a change to the brief, the checks or the rubrics would move scores, bump `BENCHMARK_VERSION` in [src/version.ts](src/version.ts).
+Scores are only comparable between runs that got the same brief and were graded by the same checks and rubrics. Grading records the benchmark version in `score.json` and at the top of `REPORT.md`, and the results site ranks each version separately. When a change to the brief, the checks or the rubrics would move scores, bump `BENCHMARK_VERSION` in [src/version.ts](src/version.ts) and tag the release (`v1.1`).
+
+`setup`, `run` and `grade` always use the latest version. To use an earlier one, add `--version`:
+
+```bash
+npm run bench -- grade runs/<run-dir> --version 1
+```
+
+That runs the earlier version's own code, exactly as it was tagged: the first time, the tag is checked out into `.versions/` and its dependencies installed. Runs it sets up or grades go in the same `runs/` folder. `site` always uses the latest version, since the site shows every version.
 
 - **V1** (September 29–30, 2026; tag [`v1`](https://github.com/CharlExMachina/doomsday-benchmark/tree/v1)): the original brief, checks and rubrics. Eight runs of `ocarina-remake`, all archived in [results/](results/): Claude Opus 5.5 in Claude Code; Space Bunny Free, DeepSeek V4.1 Flash and GLM 5.3 Flash in OpenCode; and GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna in Codex (contributed). Reports graded before versions were recorded are V1.
 - **V1.1**: the scoring described above, with the same brief. It changes only how runs are graded, so earlier runs can be regraded under it: the judges' scale, judging by outcome, itemized findings, the new automated evidence, and the weights (countdown 5, hygiene 10, experience 45, codebase 15, process 25).

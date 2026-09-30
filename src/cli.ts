@@ -9,6 +9,8 @@ import { buildSite, SITE_DIR } from './site/build-site.ts'
 import { pagesBasePath, publishSite } from './site/publish-site.ts'
 import { summarizeRun } from './format.ts'
 import { readUsage, runDuration } from './usage.ts'
+import { BENCHMARK_VERSION } from './version.ts'
+import { normalizeVersion, runWithVersion, withoutVersionFlag } from './versions.ts'
 
 const USAGE = `Usage:
   npm run bench -- setup --scenario <id> [--label <name>] [--harness <name>]
@@ -26,7 +28,10 @@ const USAGE = `Usage:
 
   npm run bench -- site [--publish]
       Build the results site from every graded run into _site/. --publish pushes it
-      to the repository's gh-pages branch.`
+      to the repository's gh-pages branch.
+
+setup, run and grade use the latest benchmark version (v${BENCHMARK_VERSION}). Add --version <v>
+to use an earlier one, such as --version 1; it runs that version's own code from its git tag.`
 
 const DEFAULT_TIMEOUT_MINUTES = 240
 const DEFAULT_JUDGE_MODEL = 'opus'
@@ -47,6 +52,7 @@ async function main(): Promise<void> {
       transcript: { type: 'string' },
       harness: { type: 'string' },
       publish: { type: 'boolean', default: false },
+      version: { type: 'string' },
       help: { type: 'boolean', short: 'h', default: false },
     },
   })
@@ -54,6 +60,13 @@ async function main(): Promise<void> {
 
   if (values.help || !command) {
     console.log(USAGE)
+    return
+  }
+  const version = values.version === undefined ? BENCHMARK_VERSION : normalizeVersion(values.version)
+  if (version !== BENCHMARK_VERSION) {
+    // The site shows every version side by side, so it's always built by the latest code.
+    if (command === 'site') throw new Error('site always uses the latest version; drop --version')
+    process.exitCode = runWithVersion(version, withoutVersionFlag(process.argv.slice(2)))
     return
   }
 
