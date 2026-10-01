@@ -34,6 +34,10 @@ Everything is in your current directory:
 7. It must look right on everything from a 390px-wide phone to a 1440px desktop.
 8. `npm run build` and `npm run lint` pass in `app/`.
 
+## Ground rules
+
+Stay inside this directory: don't read, search, run or change anything outside it. `./shot` is the only tool from outside it you need, and you only need to run it, not read it.
+
 ## The bar
 
 This will be reviewed like a real launch. People will judge the experience itself: design, motion, interactivity and how it uses the assets. Engineers will read the codebase you hand over. Work the way a staff engineer paired with a great designer would.

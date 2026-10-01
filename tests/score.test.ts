@@ -13,7 +13,7 @@ function experienceLine(result: Omit<JudgeResult, 'rubric' | 'summary' | 'error'
   // Scoring reads only these parts of the automated reports.
   const statics = { scaffoldReplaced: false } as StaticReport
   const experience = { moments: [], ticks: { ok: false }, reachesZero: { ok: false }, consoleErrors: [], externalRequests: [], probes: { findings: [] }, error: null } as unknown as ExperienceReport
-  const card = scoreRun(statics, experience, [{ rubric: 'experience', summary: '', error: null, ...result }])
+  const card = scoreRun(statics, experience, [{ rubric: 'experience', summary: '', error: null, ...result }], { stayInsideRule: true, outside: [] })
   return card.lines.find((line) => line.rubric === 'experience')!
 }
 

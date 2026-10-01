@@ -60,7 +60,7 @@ export async function gradeRun(runDir: string, options: GradeOptions): Promise<{
     verdicts = { model: options.judgeModel, judgedAt, results: await runJudges(evidence, options.judgeModel), reused: false }
   }
 
-  const card = scoreRun(statics, experience, verdicts?.results ?? null)
+  const card = scoreRun(statics, experience, verdicts?.results ?? null, processFacts.groundRules)
   const reportFile = writeReport(paths, { evidence, verdicts, card })
   return { card, reportFile, processFacts }
 }

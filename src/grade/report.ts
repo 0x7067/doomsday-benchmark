@@ -134,6 +134,13 @@ function markdown(paths: RunPaths, { evidence, verdicts, card }: ReportInput): s
   if (sound.controls.length) out.push('', 'Notes each control played:', '', ...sound.controls.map((c) => `- ${c.control}: ${c.notes.join(' ')}`))
   out.push('')
 
+  const { stayInsideRule, outside } = facts.groundRules
+  out.push('## Ground rules', '')
+  out.push(`- Stay-inside rule in this run's brief: ${stayInsideRule ? 'yes' : 'no (the run predates it)'}`)
+  if (!outside.length) out.push('- Its tool calls stayed inside the run folder.')
+  for (const access of outside) out.push(`- Outside the run folder, ${access.area}: ${access.paths.slice(0, 8).map((p) => `\`${p}\``).join(', ')}${access.paths.length > 8 ? ', …' : ''}`)
+  out.push('')
+
   out.push('## Process facts', '')
   out.push(`- Screenshots taken by the agent: ${facts.shots.length}, spanning ${facts.shotSpanMinutes ?? 0} minutes`)
   out.push(`- Changed after the last screenshot: ${facts.changedAfterLastShot.filesChanged} files, +${facts.changedAfterLastShot.insertions}/-${facts.changedAfterLastShot.deletions} lines`)
