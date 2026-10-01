@@ -25,6 +25,11 @@ const SHOT_TOOL_FILES = ['shot.ts', 'history.ts', 'paths.ts', 'shot-log.ts', 'vi
 /** Claude Code keeps its subscription login in the macOS Keychain, which a container can't reach; `claude setup-token` makes one it can use. */
 const CLAUDE_TOKEN_VARIABLE = 'CLAUDE_CODE_OAUTH_TOKEN'
 const CLAUDE_TOKEN_FILE = path.join(os.homedir(), '.config', 'doomsday-benchmark', 'claude-oauth-token')
+/** Where each harness writes its log inside the container. */
+const HARNESS_LOG_DIRS: Partial<Record<Harness, string>> = {
+  opencode: `${CONTAINER_HOME}/.local/share/opencode/log`,
+  codex: `${CONTAINER_HOME}/.codex/log`,
+}
 
 export interface IsolatedLaunch {
   command: string
@@ -81,6 +86,12 @@ export function isolatedLaunch(paths: RunPaths, agentCommand: string, harness: H
     '-e', 'AGENT_COMMAND',
   ]
   for (const [hostFile, containerFile] of loginFiles(harness)) args.push('-v', `${hostFile}:${containerFile}:ro`)
+  // The harness's own log would go with the container; kept, it can explain a run that died.
+  const logDir = harness ? HARNESS_LOG_DIRS[harness] : undefined
+  if (logDir) {
+    fs.mkdirSync(path.join(paths.root, '.bench', 'harness-log'), { recursive: true })
+    args.push('-v', `${path.join(paths.root, '.bench', 'harness-log')}:${logDir}`)
+  }
   const token = harness === 'claude-code' ? claudeToken() : null
   if (token) {
     env[CLAUDE_TOKEN_VARIABLE] = token
