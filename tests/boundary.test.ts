@@ -40,3 +40,34 @@ test('ignores tool output, running ./shot, the run folder itself and text that o
     assert.deepEqual(findOutsideAccess(transcript, [root]), [])
   })
 })
+
+test('counts paths on the machine the run was made on, when it is regraded on another', () => {
+  withRun((root) => {
+    const theirHome = '/Users/someone-else'
+    const theirBench = `${theirHome}/dev/doomsday-benchmark`
+    const theirRun = `${theirBench}/runs/ocarina-remake_jcode_2026-10-01T17-12-20`
+    fs.writeFileSync(path.join(root, 'shot'), `#!/bin/sh\nexec node "${theirBench}/src/shot.ts" --run "${theirRun}" "$@"\n`)
+    const transcript = [
+      { type: 'tool_use', part: { tool: 'write', state: { input: { filePath: `${theirHome}/.jcode/scratch/preview.png` } } } },
+      { type: 'tool_use', part: { tool: 'read', state: { input: { filePath: `${theirBench}/src/grade/rubrics.ts` } } } },
+      { type: 'tool_use', part: { tool: 'read', state: { input: { filePath: `${theirRun}/BRIEF.md` } } } },
+      { type: 'tool_use', part: { tool: 'bash', state: { input: { command: `ls ${theirHome}/.npm/_cacache` } } } },
+    ].map((event) => JSON.stringify(event)).join('\n')
+    assert.deepEqual(findOutsideAccess(transcript, [root, theirRun]), [
+      { area: 'home directory', paths: [`${theirHome}/.jcode/scratch/preview.png`] },
+      { area: 'grading internals', paths: [`${theirBench}/src/grade/rubrics.ts`] },
+    ])
+  })
+})
+
+test("counts the folders a harness hands the agent in a variable, like Jcode's scratch folder", () => {
+  withRun((root) => {
+    const command = 'mkdir -p $JCODE_SCRATCH_DIR/v && sips -s format jpeg assets/a.avif --out ${JCODE_SCRATCH_DIR}/v/a.jpg; echo $HOME'
+    const transcript = [
+      { type: 'tool_start', id: 'toolu_1', name: 'bash' },
+      { type: 'tool_input', delta: JSON.stringify({ command }) },
+      { type: 'tool_exec', id: 'toolu_1', name: 'bash' },
+    ].map((event) => JSON.stringify(event)).join('\n')
+    assert.deepEqual(findOutsideAccess(transcript, [root]), [{ area: 'home directory', paths: ['~/.jcode/scratch/v', '~/.jcode/scratch/v/a.jpg'] }])
+  })
+})

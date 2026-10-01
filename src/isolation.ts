@@ -64,8 +64,9 @@ export function ensureImage(): string {
   return tag
 }
 
-/** Fails early, before a run is set up, when the harness has no login it could use inside a container. */
+/** Fails early, before a run is set up, when the harness isn't in the image or has no login it could use inside a container. */
 export function checkContainerLogin(harness: Harness | null): void {
+  if (harness === 'jcode') throw new Error("The agent image doesn't include Jcode yet. Pass --no-isolation to run it on this machine directly.")
   if (harness === 'claude-code' && !claudeToken()) {
     throw new Error(
       `Isolated Claude Code runs need a login token. Run \`claude setup-token\` and save the token it prints to ${CLAUDE_TOKEN_FILE} (or set ${CLAUDE_TOKEN_VARIABLE}).`,

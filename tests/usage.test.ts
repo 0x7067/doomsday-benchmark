@@ -79,3 +79,19 @@ test('Claude and OpenCode usage readers preserve their existing accounting', () 
   assert.equal(opencode?.tokens.total, 185)
   assert.equal(opencode?.costUsd, 0.5)
 })
+
+test("Jcode's token counts add up across its model responses", () => {
+  const usage = transcriptUsage([
+    { type: 'start', model: 'claude-sonnet-5-5', provider: 'Claude', session_id: 'session_a' },
+    { type: 'tokens', input: 1894, cache_read_input: 0, cache_creation_input: 27879, output: 211 },
+    { type: 'message_end', stop_reason: 'tool_use' },
+    { type: 'tokens', input: 301, cache_read_input: 179221, cache_creation_input: 988, output: 594 },
+    // The final usage is the last response's alone, not the session's.
+    { type: 'done', usage: { input_tokens: 301, cache_read_input_tokens: 179221, cache_creation_input_tokens: 988, output_tokens: 594 } },
+  ])
+  assert.equal(usage?.harness, 'jcode')
+  assert.equal(usage?.model, 'claude-sonnet-5-5')
+  assert.equal(usage?.turns, 2)
+  assert.deepEqual(usage?.tokens, { input: 2195, cacheRead: 179221, cacheWrite: 28867, output: 805, reasoning: null, total: 211088 })
+  assert.equal(usage?.costUsd, null)
+})

@@ -5,7 +5,7 @@
  * error message or a directory listing isn't something the agent touched.
  */
 
-/** Keys whose values are paths or commands in the tool calls of Claude Code, OpenCode and Codex. */
+/** Keys whose values are paths or commands in the tool calls of Claude Code, OpenCode, Codex and Jcode. */
 const INPUT_KEYS = new Set(['command', 'cmd', 'file_path', 'filePath', 'path', 'paths', 'pattern', 'directory', 'cwd', 'workdir'])
 /** Keys that hold tool results, which the agent didn't write. */
 const OUTPUT_KEYS = new Set(['output', 'result', 'aggregated_output'])
@@ -30,13 +30,22 @@ export function toolCallInputs(transcript: string): string[] {
       else if (!OUTPUT_KEYS.has(key)) visit(value, inInput)
     }
   }
+  // Jcode streams each call's input as JSON fragments between its tool_start and tool_exec events.
+  let streamed: string | null = null
   for (const line of transcript.split('\n')) {
-    if (/^\s*[[{]/.test(line)) visit(parseJson(line), false)
+    if (!/^\s*[[{]/.test(line)) continue
+    const event = parseJson(line) as { type?: unknown; delta?: unknown } | undefined
+    if (event?.type === 'tool_start') streamed = ''
+    else if (event?.type === 'tool_input' && streamed !== null) streamed += typeof event.delta === 'string' ? event.delta : ''
+    else if (event?.type === 'tool_exec' && streamed !== null) {
+      visit(parseJson(streamed), true)
+      streamed = null
+    } else visit(event, false)
   }
   return values
 }
 
-/** Codex passes tool arguments as a JSON string; other harnesses as an object. */
+/** Codex passes tool arguments as a JSON string, Jcode as streamed pieces of one; other harnesses as an object. */
 function parseJson(text: string): unknown {
   try {
     return JSON.parse(text)

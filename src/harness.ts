@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { BENCH_ROOT, type RunPaths } from './paths.ts'
 
-export const HARNESSES = ['claude-code', 'codex', 'opencode'] as const
+export const HARNESSES = ['claude-code', 'codex', 'opencode', 'jcode'] as const
 export type Harness = (typeof HARNESSES)[number]
 
 /** How many of the newest images the harness keeps in the agent's context. */
@@ -11,7 +11,7 @@ export interface ImageWindow {
   max: number
 }
 
-const HARNESS_BY_EXECUTABLE: Record<string, Harness> = { claude: 'claude-code', codex: 'codex', opencode: 'opencode' }
+const HARNESS_BY_EXECUTABLE: Record<string, Harness> = { claude: 'claude-code', codex: 'codex', opencode: 'opencode', jcode: 'jcode' }
 
 /** The harness a shell command starts, judged by its executable; null when it can't tell. */
 export function detectHarness(command: string): Harness | null {

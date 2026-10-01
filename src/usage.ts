@@ -21,7 +21,7 @@ export interface TokenCounts {
 }
 
 export interface RunUsage {
-  harness: 'claude-code' | 'opencode' | 'codex'
+  harness: 'claude-code' | 'opencode' | 'codex' | 'jcode'
   /** The exact model id, when the transcript names it. */
   model: string | null
   /** Agent turns or model calls, as the harness counts them. */
@@ -54,7 +54,7 @@ export function readUsage(transcriptFile: string, model: string | null = null): 
         return []
       }
     })
-  return claudeCodeUsage(events) ?? openCodeUsage(events) ?? codexUsage(events, model)
+  return claudeCodeUsage(events) ?? openCodeUsage(events) ?? codexUsage(events, model) ?? jcodeUsage(events)
 }
 
 /** Launch-to-exit time when the benchmark launched the agent, otherwise the transcript's own figure. */
@@ -227,6 +227,29 @@ function codexUsage(events: Event[], model: string | null): RunUsage | null {
     costBasis: prices
       ? 'Standard short-context API-equivalent estimate at OpenAI list prices checked 2026-09-30; not a billed charge. Per-request long-context, service-tier and regional premiums are unavailable in Codex turn totals'
       : 'unknown: Codex reports tokens but no cost, and no list prices are configured for this model',
+    transcriptSeconds: null,
+  }
+}
+
+/** Jcode's `--ndjson` stream has a `tokens` event for every model response, and its `start` event names the model. */
+function jcodeUsage(events: Event[]): RunUsage | null {
+  const responses = events.filter((e) => e.type === 'tokens')
+  if (responses.length === 0) return null
+  const sum = (key: string) => responses.reduce((total, e) => total + (typeof e[key] === 'number' ? e[key] : 0), 0)
+  const start = events.find((e) => e.type === 'start')
+  return {
+    harness: 'jcode',
+    model: typeof start?.model === 'string' ? start.model : null,
+    turns: responses.length,
+    tokens: counts({
+      input: sum('input'),
+      cacheRead: sum('cache_read_input'),
+      cacheWrite: sum('cache_creation_input'),
+      output: sum('output'),
+      reasoning: null,
+    }),
+    costUsd: null,
+    costBasis: 'unknown: Jcode reports tokens but no cost',
     transcriptSeconds: null,
   }
 }
