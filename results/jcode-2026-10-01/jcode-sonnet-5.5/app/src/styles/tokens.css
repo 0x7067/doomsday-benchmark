@@ -1,0 +1,27 @@
+:root {
+  --ink: #03100b;
+  --ink-2: #082016;
+  --paper: #f5ecd0;
+  --paper-dim: rgb(245 236 208 / 0.72);
+  --paper-faint: rgb(245 236 208 / 0.5);
+
+  --gold-1: #fff3c4;
+  --gold-2: #f0cd6c;
+  --gold-3: #c99a36;
+  --gold-4: #6d4a12;
+  --gold-line: rgb(240 205 108 / 0.4);
+  --emerald: #7cf0b0;
+  --navi: #c6ecff;
+  --ember: #ff6a3d;
+
+  --font-display: 'Cinzel Variable', 'Trajan Pro', 'Times New Roman', serif;
+  --font-body: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+
+  --gold-gradient: linear-gradient(180deg, var(--gold-1) 0%, var(--gold-2) 38%, var(--gold-3) 70%, var(--gold-4) 100%);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --gutter: clamp(16px, 3.4vw, 48px);
+  --glass: rgb(4 16 11 / 0.58);
+}

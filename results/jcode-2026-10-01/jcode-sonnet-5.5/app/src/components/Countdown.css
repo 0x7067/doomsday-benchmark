@@ -1,0 +1,181 @@
+.clock {
+  container: clock / inline-size;
+  width: 100%;
+}
+
+.clock__grid {
+  --cols: 4;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  column-gap: clamp(8px, 2.4cqw, 36px);
+  row-gap: clamp(8px, 3svh, 28px);
+  /* Digit size: as large as the unit column allows, capped by viewport height. */
+  --em: min(
+    calc(100cqw / var(--cols) * 0.86 / (var(--n) * 0.7)),
+    calc(var(--cap-h, 25svh))
+  );
+}
+
+.unit {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+.unit__digits {
+  display: flex;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--em);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.digit {
+  position: relative;
+  display: inline-block;
+  width: 0.7em;
+  height: 1.04em;
+  text-align: center;
+}
+
+.digit__glyph {
+  position: absolute;
+  inset: 0;
+  display: block;
+  line-height: 1.04;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 calc(0.02em + var(--tension, 0) * 0.07em) rgb(255 205 90 / calc(0.25 + var(--tension, 0) * 0.55)))
+    drop-shadow(0 0.03em 0.04em rgb(0 0 0 / 0.65));
+  will-change: transform, opacity;
+}
+
+.digit__glyph--in {
+  animation: digit-in 0.55s var(--ease-out) both;
+}
+
+.digit__glyph--out {
+  animation: digit-out 0.42s var(--ease-soft) both;
+  pointer-events: none;
+}
+
+@keyframes digit-in {
+  from {
+    transform: translateY(-38%) scale(1.04);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes digit-out {
+  to {
+    transform: translateY(42%);
+    opacity: 0;
+    filter: blur(5px);
+  }
+}
+
+.unit__label {
+  margin-top: clamp(4px, 1svh, 12px);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(10px, 1.05cqw + 6px, 16px);
+  letter-spacing: 0.42em;
+  padding-left: 0.42em; /* optically recentre tracked text */
+  text-transform: uppercase;
+  color: var(--paper);
+  text-shadow: 0 0 2px rgb(0 0 0 / 0.9), 0 1px 10px rgb(0 0 0 / 0.95), 0 0 24px rgb(0 0 0 / 0.7);
+}
+
+/* Colon-style separators between units on the one-row layout. */
+.unit + .unit::before {
+  content: '';
+  position: absolute;
+  left: calc(clamp(8px, 2.4cqw, 36px) / -2);
+  top: calc(var(--em) * 0.3);
+  width: calc(var(--em) * 0.07);
+  height: calc(var(--em) * 0.07);
+  min-width: 3px;
+  min-height: 3px;
+  border-radius: 50%;
+  background: var(--gold-2);
+  box-shadow:
+    0 calc(var(--em) * 0.3) 0 var(--gold-2),
+    0 0 12px rgb(255 205 90 / 0.8),
+    0 calc(var(--em) * 0.3) 12px rgb(255 205 90 / 0.8);
+  transform: translateX(-50%);
+  animation: colon 2s ease-in-out infinite;
+}
+
+@keyframes colon {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.hundredths {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 2px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(14px, calc(var(--em) * 0.24), 28px);
+  font-variant-numeric: tabular-nums;
+  color: var(--navi);
+  text-shadow: 0 0 14px rgb(150 215 255 / 0.9);
+  white-space: nowrap;
+}
+
+/* Narrow: two by two, digits get far bigger. */
+@container clock (max-width: 639px) {
+  .clock__grid {
+    --cols: 2;
+    row-gap: 6px;
+    column-gap: clamp(16px, 8cqw, 48px);
+    --cap-h: 12.2svh;
+  }
+  .unit + .unit::before {
+    display: none;
+  }
+  .unit__label {
+    font-size: 11px;
+    letter-spacing: 0.38em;
+  }
+  .hundredths {
+    font-size: 15px;
+  }
+}
+
+/* After zero: one quiet row at every width. */
+.clock[data-compact="true"] .clock__grid {
+  --cols: 4;
+  --cap-h: 8svh;
+  column-gap: clamp(10px, 3cqw, 32px);
+}
+.clock[data-compact="true"] .unit + .unit::before {
+  display: block;
+}
+.clock[data-compact="true"] .unit__label {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+}
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .clock__grid {
+    --cap-h: 30svh;
+  }
+}

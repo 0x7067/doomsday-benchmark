@@ -1,0 +1,121 @@
+.arrival {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(6px, 1.4svh, 14px);
+}
+
+.arrival__logo {
+  width: clamp(150px, 26svh, 300px);
+  height: auto;
+  filter: drop-shadow(0 6px 30px rgb(0 0 0 / 0.7)) drop-shadow(0 0 40px rgb(255 205 90 / 0.5));
+}
+
+.arrival__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(26px, 5.4vw + 4px, 72px);
+  line-height: 1.04;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  filter: drop-shadow(0 4px 24px rgb(0 0 0 / 0.7));
+}
+
+.arrival__line {
+  margin: 0;
+  font-size: clamp(19px, 1.6vw + 12px, 28px);
+  color: var(--paper);
+  text-shadow: 0 2px 16px rgb(0 0 0 / 0.9);
+  text-wrap: balance;
+}
+
+.arrival[data-live='true'] .arrival__logo {
+  animation: arrive 2.4s var(--ease-out) 0.6s both;
+}
+.arrival[data-live='true'] .arrival__title {
+  animation: arrive 2.4s var(--ease-out) 1s both;
+}
+.arrival[data-live='true'] .arrival__line {
+  animation: arrive 2.4s var(--ease-out) 1.5s both;
+}
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+    filter: blur(10px);
+  }
+}
+
+/* The Door of Time: two leaves part around a seam of light. Only plays live. */
+.arrival__door {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  display: none;
+}
+.arrival[data-live='true'] .arrival__door {
+  display: block;
+  animation: door-life 3.4s linear forwards;
+}
+.arrival__leaf {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  background: linear-gradient(90deg, #02100a, #0b2a1c);
+  transition: none;
+}
+.arrival__leaf--l {
+  left: 0;
+  animation: leaf-l 2.6s var(--ease-soft) 0.5s forwards;
+  border-right: 1px solid var(--gold-2);
+}
+.arrival__leaf--r {
+  right: 0;
+  animation: leaf-r 2.6s var(--ease-soft) 0.5s forwards;
+  border-left: 1px solid var(--gold-2);
+}
+.arrival__light {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(40% 70% at 50% 50%, #fffbe6, rgb(255 226 140 / 0.9) 30%, transparent 70%);
+  opacity: 0;
+  animation: light 3.2s ease-out forwards;
+}
+
+@keyframes leaf-l {
+  to {
+    transform: translateX(-102%);
+  }
+}
+@keyframes leaf-r {
+  to {
+    transform: translateX(102%);
+  }
+}
+@keyframes light {
+  0% {
+    opacity: 0;
+  }
+  22% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes door-life {
+  0%,
+  99% {
+    visibility: visible;
+  }
+  100% {
+    visibility: hidden;
+  }
+}

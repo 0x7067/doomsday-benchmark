@@ -13,7 +13,7 @@ It works with any model and any harness: Claude Code, Codex, OpenCode, Copilot, 
 
 **Results:** [charlexmachina.github.io/doomsday-benchmark](https://charlexmachina.github.io/doomsday-benchmark/)
 
-**Archived runs:** [Claude Code: Claude Opus 5.5 (September 29, 2026)](results/claude-code-2026-09-29/README.md), [OpenCode: Space Bunny Free, DeepSeek V4.1 Flash and GLM 5.3 Flash (September 30, 2026)](results/opencode-2026-09-30/README.md), and [Codex: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna (September 30, 2026, contributed)](results/codex-2026-09-30/README.md).
+**Archived runs:** [Claude Code: Claude Opus 5.5 (September 29, 2026)](results/claude-code-2026-09-29/README.md), [OpenCode: Space Bunny Free, DeepSeek V4.1 Flash and GLM 5.3 Flash (September 30, 2026)](results/opencode-2026-09-30/README.md), [Codex: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna (September 30, 2026, contributed)](results/codex-2026-09-30/README.md), and [Jcode: Claude Opus 5.5 and Claude Sonnet 5.5 (October 1, 2026, contributed)](results/jcode-2026-10-01/README.md).
 
 ## Quick start
 
