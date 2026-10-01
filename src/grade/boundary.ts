@@ -22,8 +22,12 @@ export interface OutsideAccess {
 
 /** Keys whose values are paths or commands in the tool calls of Claude Code, OpenCode and Codex. */
 const INPUT_KEYS = new Set(['command', 'cmd', 'file_path', 'filePath', 'path', 'paths', 'pattern', 'directory', 'cwd', 'workdir'])
-/** Places in the home directory every toolchain uses: caches, package managers, browsers. */
-const TOOL_CACHES = ['.npm', '.cache', '.local', '.nvm', '.bun', '.cargo', '.rustup', '.pnpm-store', '.yarn', 'Library/Caches']
+/**
+ * Places in the home directory every toolchain uses: caches, package managers,
+ * browsers. Not ~/.local/share or ~/.claude, where harnesses keep every
+ * session's transcript, including other runs'.
+ */
+const TOOL_CACHES = ['.npm', '.cache', '.local/bin', '.local/lib', '.nvm', '.bun', '.cargo', '.rustup', '.pnpm-store', '.yarn', 'Library/Caches']
 const PATH_PATTERN = /(?:~\/|\/)[^\s'"`;|&<>(){}$\\,]+/g
 
 /**
