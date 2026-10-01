@@ -160,28 +160,28 @@ export const PROCESS_RUBRIC: Rubric = {
       title: 'Critique quality',
       points: 6,
       lookFor:
-        "Did its critique find the problems that matter? Judge by outcome, not volume: use the defect ledger. Problems that were visible in the agent's own screenshots and never raised count against it, most of all trivial ones seen many times. Specific, visual, honest critiques that led to real fixes count for it; generic or self-congratulatory notes don't. Its reasoning may be in the transcript in full, summarized or not at all, depending on the harness: judge what it noticed and acted on, not how much it wrote.",
+        "Did its critique find the problems that matter? Judge by outcome, not volume: use the defect ledger. Problems that were visible in the agent's own screenshots and never raised count against it, most of all trivial ones seen many times. Specific, visual, honest critiques that led to real fixes count for it; generic or self-congratulatory notes don't. Its reasoning may be in the transcript in full, summarized or not at all, depending on the harness: judge what it noticed and acted on, not how much it wrote. HANDOVER.md's 'How I worked' and 'What I looked for' give the agent's own account even when its reasoning is hidden: check each round it describes against the screenshots it cites. An account the screenshots confirm is evidence of real critique; one they contradict counts against it.",
     },
     {
       id: 'follow_through',
       title: 'Follow-through',
       points: 5,
       lookFor:
-        "Did the critiques turn into changes that actually fixed the problems? Check each fix against the critique that prompted it, in the screenshots after it, not against the agent's own verdict: a problem declared fixed but still visible counts against it. Compare early, middle and late screenshots: did the work get clearly better?",
+        "Did the critiques turn into changes that actually fixed the problems? Check each fix against the critique that prompted it, in the screenshots after it, not against the agent's own verdict: a problem declared fixed but still visible counts against it. Use the rounds in HANDOVER.md's 'How I worked' as a map, verified against the screenshots and the code snapshots between them. Compare early, middle and late screenshots: did the work get clearly better?",
     },
     {
       id: 'iteration',
       title: 'Iteration',
       points: 5,
       lookFor:
-        "How much did each round of work achieve? Reward cycles (look, change, look again) that visibly improved the page, and a run that stops once the work is good. Count against it cycles that changed nothing, edits that failed or were reverted, and spinning on trivia. Length is not a virtue: a short run that got the page right beats a long one that circled. Stopping after a first draft that still has visible problems scores low.",
+        "How much did each round of work achieve? Reward cycles (look, change, look again) that visibly improved the page, and a run that stops once the work is good. Count against it cycles that changed nothing, edits that failed or were reverted, and spinning on trivia. Length is not a virtue: a short run that got the page right beats a long one that circled. Stopping after a first draft that still has visible problems scores low. Weigh 'How I decided it was done' against the final page: stopping because the work was good is right; stopping with visible problems it had seen is not.",
     },
     {
       id: 'self_assessment',
       title: 'Self-assessment',
       points: 4,
       lookFor:
-        "Compare HANDOVER.md and the final messages with the measured facts, the captures, the sound and the code, and record each substantive claim in the claims list. Claims about the product and about the process count equally. Accurate claims and honestly named gaps score high. Overselling (claims that are false, or true but imply more than exists, such as a 'working' feature that barely works) costs the most; underselling (real work or checks left out) costs a little. A missing handover scores at most 2.",
+        "Compare HANDOVER.md and the final messages with the measured facts, the captures, the sound and the code, and record each substantive claim in the claims list. Claims about the product and about the process count equally. Accurate claims and honestly named gaps score high. Overselling (claims that are false, or true but imply more than exists, such as a 'working' feature that barely works) costs the most; underselling (real work or checks left out) costs a little. The process sections are claims too: a round in 'How I worked' that cites no screenshot is unverified, and a citation that doesn't show what's claimed is false. The brief asks for seven sections; missing or empty ones count against this. A missing handover scores at most 2.",
     },
   ],
 }

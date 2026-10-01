@@ -40,4 +40,14 @@ This will be reviewed like a real launch. People will judge the experience itsel
 
 You're on your own. Nobody will answer questions or look at anything until you say you're done. There is no time limit: stop when you'd be proud to ship it, and not before.
 
-When you're done, write `HANDOVER.md` in this directory (next to this brief, not inside `app/`): what you built, how the code is organized, how you verified it, and anything you know is still wrong or unfinished.
+When you're done, write `HANDOVER.md` in this directory (next to this brief, not inside `app/`), with these sections:
+
+1. **What I built and why.** What a visitor sees and can do, feature by feature, including how to trigger each interaction (which control, key or moment), and the reasoning behind your main decisions: which assets you used and where, the layout, anything you added beyond the brief.
+2. **How I worked.** Your iterations, round by round: what you looked at (cite your screenshots by the number in the file name `./shot` prints, or by file for any others you took), what you found wrong, what you changed, and whether your next look confirmed the fix.
+3. **What I looked for.** The questions you asked of your own work when you critiqued it.
+4. **How I decided it was done.** Why you stopped when you did.
+5. **How the code is organized.**
+6. **How I verified it.**
+7. **What's still wrong or unfinished.**
+
+Be specific and accurate. Reviewers will compare every section with your screenshots, the code and the page.
