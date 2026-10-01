@@ -122,6 +122,8 @@ That builds `_site/` from every graded run, in `runs/` and in the archived `resu
 | `opencode` | Smoke-tested with OpenCode 1.18: runs headless, calls `./shot` and sees the PNG. `--model` takes `provider/model` (see `opencode models`). |
 | `codex` | Completed headless runs with Codex CLI 0.159.2 on GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna, including screenshots and JSONL usage capture. Loads the normal Codex user configuration, hooks and plugins. |
 
+There is no preset for [Jcode](https://github.com/1jehuang/jcode) yet; its October 1, 2026 runs (see the archived results) were launched with `--cmd 'jcode -p claude -m <model> run --ndjson "$(cat BRIEF.md)"'`. It streams its own NDJSON transcript, so tokens and cost aren't reported until the benchmark gains a reader for that format.
+
 The agent can only critique what it can see, so use models that accept images. In OpenCode, `opencode models --verbose` shows `"attachment": true` for those.
 
 ### Image limits
