@@ -87,8 +87,20 @@ function gradedRuns(): { id: string; dir: string }[] {
     subfolders(path.join(RESULTS_DIR, batch)).map((name) => ({ id: `${batch}_${name}`, dir: path.join(RESULTS_DIR, batch, name) })),
   )
   return [...local, ...archived]
-    .filter((run) => fs.existsSync(path.join(run.dir, 'report', 'score.json')))
+    .filter((run) => fs.existsSync(path.join(run.dir, 'report', 'score.json')) && !killedByTheMachine(run))
     .sort((a, b) => a.id.localeCompare(b.id))
+}
+
+/**
+ * An agent stopped by a signal it didn't ask for, such as the memory killer
+ * when the machine runs low, left no result worth ranking. A run that hit the
+ * time limit did: it's published, marked incomplete.
+ */
+function killedByTheMachine(run: { id: string; dir: string }): boolean {
+  const agent = readMeta(runPaths(run.dir)).agent
+  const killed = !!agent && !agent.timedOut && (agent.exitCode === 137 || agent.exitCode === 143)
+  if (killed) console.warn(`  skipping ${run.id}: its agent was killed (exit ${agent.exitCode}), so there's no result to publish`)
+  return killed
 }
 
 function subfolders(dir: string): string[] {
