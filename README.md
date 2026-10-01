@@ -13,7 +13,7 @@ It works with any model and any harness: Claude Code, Codex, OpenCode, Copilot, 
 
 **Results:** [charlexmachina.github.io/doomsday-benchmark](https://charlexmachina.github.io/doomsday-benchmark/)
 
-**Archived runs:** [Claude Code: Claude Opus 5.5 (September 29, 2026)](results/claude-code-2026-09-29/README.md), [OpenCode: Space Bunny Free, DeepSeek V4.1 Flash and GLM 5.3 Flash (September 30, 2026)](results/opencode-2026-09-30/README.md), and [Codex: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna (September 30, 2026, contributed)](results/codex-2026-09-30/README.md).
+**Archived runs:** [Claude Code: Claude Opus 5.5 (September 29, 2026)](results/claude-code-2026-09-29/README.md), [OpenCode: Space Bunny Free, DeepSeek V4.1 Flash and GLM 5.3 Flash (September 30, 2026)](results/opencode-2026-09-30/README.md), [Codex: GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna (September 30, 2026, contributed)](results/codex-2026-09-30/README.md), and [Jcode: Claude Opus 5.5 and Claude Sonnet 5.5 (October 1, 2026, contributed)](results/jcode-2026-10-01/README.md).
 
 ## Quick start
 
@@ -132,6 +132,8 @@ Each harness gets its login and nothing else:
 | `claude-code` | Uses your Claude Code login. It loads your global `~/.claude/CLAUDE.md`, plugins and settings like any session, so account for that when comparing. |
 | `opencode` | Smoke-tested with OpenCode 1.18: runs headless, calls `./shot` and sees the PNG. `--model` takes `provider/model` (see `opencode models`). |
 | `codex` | Completed headless runs with Codex CLI 0.159.2 on GPT-6 Astra, GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna, including screenshots and JSONL usage capture. Loads the normal Codex user configuration, hooks and plugins. |
+
+There is no preset for [Jcode](https://github.com/1jehuang/jcode) yet; its October 1, 2026 runs (see the archived results) were launched with `--cmd 'jcode -p claude -m <model> run --ndjson "$(cat BRIEF.md)"'`. It streams its own NDJSON transcript, so tokens and cost aren't reported until the benchmark gains a reader for that format.
 
 The agent can only critique what it can see, so use models that accept images. In OpenCode, `opencode models --verbose` shows `"attachment": true` for those.
 

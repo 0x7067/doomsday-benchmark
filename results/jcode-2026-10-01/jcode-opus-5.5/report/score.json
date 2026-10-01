@@ -1,0 +1,1603 @@
+{
+  "run": "ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35",
+  "benchmarkVersion": "1.1",
+  "gradedAt": "2026-10-01T17:06:22.967Z",
+  "judgeModel": "opus",
+  "judgedAt": "2026-10-01T17:02:23.275Z",
+  "judgesReused": false,
+  "card": {
+    "total": 77.6,
+    "max": 100,
+    "lines": [
+      {
+        "area": "Countdown contract",
+        "kind": "automated",
+        "points": 5,
+        "max": 5,
+        "details": [
+          "✓ exactly one valid duration <time> at every moment (1/1)",
+          "✓ correct remaining time (8/8 moments) (2/2)",
+          "✓ ticks every second (0.5/0.5)",
+          "✓ reaches zero on time (0.5/0.5)",
+          "✓ no console errors or uncaught exceptions (0.3/0.25)",
+          "✓ no horizontal overflow on a 390px phone (0.3/0.25)",
+          "✓ no scrolling to an empty page (0.3/0.25)",
+          "✓ no requests to other origins (0.3/0.25)"
+        ]
+      },
+      {
+        "area": "Code hygiene",
+        "kind": "automated",
+        "points": 8.3,
+        "max": 10,
+        "details": [
+          "−0.7 dead code (knip) (2)",
+          "−1 unreferenced files in src/ or public/ (3)"
+        ]
+      },
+      {
+        "area": "Experience and use of assets",
+        "kind": "judged",
+        "rubric": "experience",
+        "max": 45,
+        "points": 33.7,
+        "details": [
+          "Cohesion with the subject: 9/10 (6.3 of 7 points)",
+          "Visual craft: 8/10 (5.6 of 7 points)",
+          "Legibility: 8/10 (3.2 of 4 points)",
+          "Motion and interactivity: 8/10 (3.2 of 4 points)",
+          "Phone layout and edge states: 7/10 (2.1 of 3 points)",
+          "Asset selection: 9/10 (4.5 of 5 points)",
+          "Asset treatment: 8/10 (4 of 5 points)",
+          "Concept: 8/10 (2.4 of 3 points)",
+          "Initiative: +3 on −5 to +5 (2.4 of 4 points)",
+          "Sound: 0 on −5 to +5 (0 of 3 points)"
+        ]
+      },
+      {
+        "area": "Codebase",
+        "kind": "judged",
+        "rubric": "code",
+        "max": 15,
+        "points": 12.7,
+        "details": [
+          "Navigability: 9/10 (3.6 of 4 points)",
+          "Separation of concerns: 9/10 (2.7 of 3 points)",
+          "Readability: 8/10 (3.2 of 4 points)",
+          "Finish: 8/10 (3.2 of 4 points)"
+        ]
+      },
+      {
+        "area": "Process: self-critique, iteration, verification",
+        "kind": "judged",
+        "rubric": "process",
+        "max": 25,
+        "points": 17.9,
+        "details": [
+          "Verification: 8/10 (4 of 5 points)",
+          "Critique quality: 6/10 (3.6 of 6 points)",
+          "Follow-through: 8/10 (4 of 5 points)",
+          "Iteration: 7/10 (3.5 of 5 points)",
+          "Self-assessment: 7/10 (2.8 of 4 points)"
+        ]
+      }
+    ]
+  },
+  "judges": [
+    {
+      "rubric": "experience",
+      "criteria": {
+        "cohesion": {
+          "evidence": "The page reads as Hyrule. It uses the official logo with the Master Sword and shield (01), with Kokiri Forest key art full-bleed under a dark green shade. The digits and small caps are in a gold engraved serif that matches the logo's gilt. The ocarina pad uses N64-style controls: a blue A and yellow C-buttons with the right glyphs (01). A Navi-like fairy drifts across the scene (02, 05, 15) and green fireflies float over it. The songbook lists six songs, and every button sequence in it matches canon (16). Each song is themed to its place (Saria's → Kokiri Forest, Epona's → Hyrule Field, Zelda's Lullaby → Deku Tree). The arrival line 'The legend awakens' (08) keeps the tone. One thing keeps it from 10: the final seconds (07, 11) look almost identical to weeks out, so the countdown's climax doesn't feel like an event until zero.",
+          "score": 9
+        },
+        "visual_craft": {
+          "evidence": "Finish is generally refined: the gold gradient digits are well spaced, the ghost buttons are consistent, the ocarina panel is glassy and the songbook modal is well set (16). Rough edges: the local-time italic line ('Thursday, November 5 at 2:00 AM GMT-3 where you are') sits over Link's busy shield and path, so it reads poorly (01, 09; contrast 6.5 on mobile with no backing). On desktop the '37' digits sit on top of Link's backpack and shield, so the art and the numbers fight (01). On mobile, Link is hidden behind the Add to calendar button and the ocarina panel (09), and 'Arrives on Nintendo Switch 2 in' measures only 4.9 contrast. The arrival state's dimmed 00:00:00:00 under the headline (08) looks like a leftover.",
+          "score": 8
+        },
+        "legibility": {
+          "evidence": "The countdown is clearly the hero: very large gold digits with dot separators and DAYS/HOURS/MINUTES/SECONDS labels, readable at a glance (01, 06). The digits hold their width across ticks (01 → 02 → 05) and the time element is correct at every moment. Weaknesses: the unit labels and the 'Songs' and 'Kokiri Forest' labels are 10–11.5px with wide tracking. On mobile the labels sit under the digits at 10px (09). The italic local-time line is faint over busy art.",
+          "score": 8
+        },
+        "motion_interaction": {
+          "evidence": "There is ambient motion: fireflies and a wandering fairy, which moves to the clicked control (15, 17, 18). Pressing a button puts a note glyph on the five-line staff (17: A on the bottom line, 18: C-down on the next line up), so playing has visible feedback. The songbook opens as a dimmed, blurred modal with Play buttons (16). Keyboard focus shows a clear gold ring (19). The sound toggle changes its label and icon (14). In code, songs crossfade to new scenes, night or rain. What's missing: the final ten seconds have no visual escalation (07), and the zero crossing (13) is a state swap with only a firefly burst.",
+          "score": 8
+        },
+        "responsive_and_states": {
+          "evidence": "The 390px layout is designed, not squeezed: it swaps to the portrait key art, restacks the clock, puts the CTA on its own row, keeps a full-width ocarina pad and shrinks the sound button to an icon (09). Nothing overlaps or goes negative. The arrival is designed on both viewports: headline, 'Available now', a swarm of motes and a dimmed clock (08, 12). The final hour and final seconds are visually the same as weeks out on both viewports (10, 11), so the last seconds aren't a designed moment. On mobile the portrait art's subject is buried under the UI.",
+          "score": 7
+        },
+        "asset_selection": {
+          "evidence": "All five assets are used, each in a distinct role. The official logo is the hero mark. The Kokiri landscape is the desktop default scene. The Kokiri portrait is the mobile scene. Epona/Hyrule Field and the Deku Tree art are scene changes unlocked by playing Epona's Song and Zelda's Lullaby. That is a smart way to use the redundant key art without crowding the page. The strongest asset, the Kokiri art with the blue ocarina, gets the default slot. Nothing is imitated.",
+          "score": 9
+        },
+        "asset_treatment": {
+          "evidence": "Images are re-encoded to responsive WebP at several widths, with separate tall crops for portrait screens. A shade gradient darkens the edges for text, and scenes crossfade after decode. The logo is crisp with a soft glow, and decorative images have empty alt text while the logo has real alt text. Placement issues: on desktop the countdown overlaps Link's body (01). On mobile the portrait art's Link and the ocarina are covered by the CTA and the panel (09), which wastes the art's focal point. The source's hatched texture shows at full strength on mobile.",
+          "score": 8
+        },
+        "concept": {
+          "evidence": "The page has a real central idea: the visitor plays the ocarina, and the songs change the world around the clock. Saria's, Epona's and Zelda's songs travel to their places, Sun's Song toggles night, the Song of Storms brings rain, and the Song of Time opens the Door of Time for a glimpse of launch night. A live location label names the current place. This goes well beyond the default, and the songbook (16) and staff (17) show it working.",
+          "score": 8
+        },
+        "initiative": {
+          "evidence": "Useful extras that all work: Add to calendar (an .ics download), the launch time in the visitor's own zone (correct: 05:00Z is 2:00 AM GMT-3), a tab title that counts down, keyboard play (A and the arrow keys), a songbook with demo Play buttons and canon-correct sequences, a screen-reader live region in the last ten seconds, and a sound toggle. All are faithful to the subject and none clutter the page.",
+          "score": 3
+        },
+        "sound": {
+          "evidence": "The code has a synthesised ocarina voice at the canon pitches (D4 293.66, F4 349.23, A4 440, B4 493.88, D5 587.33) plus final-seconds ticks and a fanfare. The grader's recording shows no AudioContext, though: no audio was captured for the sound toggle or the note clicks (14, 17, 18). With nothing measurable to judge, this scores as silent.",
+          "score": 0
+        }
+      },
+      "findings": {
+        "changes": [
+          {
+            "request": "Make the final ten seconds a visible moment: escalate the digits' glow or scale, pulse the separators, or brighten the fairy and motes. Right now 8 seconds out looks identical to 37 days out.",
+            "severity": "medium",
+            "effort": "moderate",
+            "where": "07, 11"
+          },
+          {
+            "request": "Reposition or recrop the desktop scene so the countdown digits don't sit over Link's backpack and shield, for example by shifting the focal point left or pushing the clock right.",
+            "severity": "medium",
+            "effort": "moderate",
+            "where": "01, 06"
+          },
+          {
+            "request": "On mobile, reveal Link and the blue ocarina instead of covering them with the CTA and the ocarina panel. Tighten the stack or move the art's focus up.",
+            "severity": "medium",
+            "effort": "moderate",
+            "where": "09"
+          },
+          {
+            "request": "Give the local-time italic line and the mobile eyebrow a backing scrim or stronger shadow. They're hard to read over the busy art.",
+            "severity": "small",
+            "effort": "trivial",
+            "where": "01, 09 (hero__local, eyebrow)"
+          },
+          {
+            "request": "Raise the unit labels and small UI labels from about 10–11px to at least 12–13px.",
+            "severity": "small",
+            "effort": "trivial",
+            "where": "01, 09"
+          },
+          {
+            "request": "Drop or restyle the dimmed 00:00:00:00 under the arrival headline. It reads as a leftover.",
+            "severity": "small",
+            "effort": "trivial",
+            "where": "08, 12"
+          },
+          {
+            "request": "Make sure a note press creates and resumes the AudioContext, so the ocarina is actually audible on the first click. No audio was captured.",
+            "severity": "medium",
+            "effort": "moderate",
+            "where": "14, 17, 18 (audio unlock)"
+          }
+        ],
+        "copy": [],
+        "assets": [
+          {
+            "file": "report/assets/8a1enblo1b6h1.png",
+            "outcome": "used",
+            "note": "Official logo as the hero h1 mark, above the clock."
+          },
+          {
+            "file": "report/assets/thumb-1920-1414762.png",
+            "outcome": "used",
+            "note": "Default Kokiri Forest backdrop on desktop and landscape screens."
+          },
+          {
+            "file": "report/assets/f55hr5n4xdoh1.jpg",
+            "outcome": "used",
+            "note": "Portrait Kokiri backdrop on phones; Link ends up mostly covered by the UI."
+          },
+          {
+            "file": "report/assets/link-on-epona-with-death-mountain-in-the-distance-in-zelda-ocarina-of-time-remake.avif.png",
+            "outcome": "used",
+            "note": "Hyrule Field scene, reached by playing Epona's Song."
+          },
+          {
+            "file": "report/assets/link-standing-before-the-great-deku-tree-in-the-ocarina-of-time-remake-on-switch-2.avif.png",
+            "outcome": "used",
+            "note": "Great Deku Tree scene, reached by playing Zelda's Lullaby."
+          }
+        ]
+      },
+      "summary": "A polished, on-subject Ocarina of Time countdown: official logo, Kokiri Forest art, gold serif digits and a playable N64-style ocarina. Its strong concept is that canon-correct songs change the scene, weather and time of day around the clock, so all five assets get distinct roles. It falls short on the final seconds, which have no escalation; on art that collides with the UI (the digits over Link on desktop, Link buried on mobile); and on sound, which exists in code but was never captured. No run text addressed reviewers.",
+      "error": null
+    },
+    {
+      "rubric": "code",
+      "criteria": {
+        "navigability": {
+          "evidence": "The layout is clear and fits the project's size. `src/lib/countdown.ts` holds the time math and says at the top that it is pure. `src/hooks/useClock.ts` handles `?now` through `clockOffsetFromSearch`, and its doc comment says so. Each visual piece has its own named component (`Backdrop`, `Atmosphere`, `Countdown`, `OcarinaPanel`, `Songbook`), and `art.ts` is the image manifest. The README says what the app is, lists the dev, build, lint, test and art commands, has a URL-parameter table that separates `?now` from the dev-only params, and maps the folder layout, including `art-src/` and `scripts/build-art.mjs`. A newcomer could find the clock math, the override and each visual piece in under two minutes. What keeps it below 10: `App.tsx` mixes composition with world state, dev hooks, sound cues and the tab title, so a few behaviours (the final-ten-seconds ticks, the title countdown) take reading to find. The README also never explains the songs or interactions to someone working on them.",
+          "score": 9
+        },
+        "separation": {
+          "evidence": "The time logic is pure and well tested. `remainingUntil`, `toIsoDuration`, `clockOffsetFromSearch` and `msUntilNextTick` take the time as a parameter, and `countdown.test.ts` covers rounding, zero, negative times, `+` decoding and tick alignment. The target moment has one source of truth: `LAUNCH_ISO` and `LAUNCH_MS` in `countdown.ts`, imported by `useClock`, `calendar.ts` and `App`. World rules sit in a pure reducer (`lib/world.ts`), song matching is pure (`lib/songs.ts`), and audio lives behind an `Ocarina` class with an `attach(ctx)` seam for offline rendering in tests. Ocarina state is in `useOcarina`, and `Atmosphere` reads its props through a ref so the canvas loop never restarts. What keeps it below 10: `App.tsx` still does presentation formatting inline. The tab title rebuilds `padStart` logic even though `pad2` and `toSpokenDuration` exist, and the doc comment on `toSpokenDuration` claims the title uses it. The final-seconds sound side effects in `App` could have lived in a small hook.",
+          "score": 9
+        },
+        "readability": {
+          "evidence": "Names are clear throughout (`msUntilNextTick`, `clockOffsetFromSearch`, `worldReducer`, `dropOld`, `EFFECT_DELAY_MS`). Components and modules are mostly small, and comments explain why: the timer is aligned to second boundaries to avoid drift, `+` is restored after URLSearchParams decodes it, pointerdown is used instead of click, `detail === 0` marks keyboard activation, and state is adjusted during render in `Backdrop`. Idioms are consistent: memo, data-attributes for CSS state, and `useSyncExternalStore` for reduced motion. Review comments I'd leave: `App.tsx` (224 lines) is busy, with a long inline title template on line 84 and a nested ternary in the live region on line 194. `msUntilNextTick` ends with a slightly clever `1000 + remainder || 1000`. The `Backdrop` img ref callback calls setState during commit. The 233-line `Atmosphere` canvas loop is one large effect, though it is sectioned with comments. I'd approve it after a couple of small requests.",
+          "score": 8
+        },
+        "finish": {
+          "evidence": "The build and lint pass. There is no commented-out code, debug logging, suppression or stale TODO, and the scaffold was fully replaced (custom favicon, index.html meta tags, README). The automated dead-code report on the `@fontsource` packages is a false positive: `index.css:1-4` imports them. Every dev dependency is used: sharp by the art script, `node-web-audio-api` by the audio tests, jsdom and Testing Library by `App.test.tsx`. Leftovers I confirmed: `build-art.mjs` writes an LQIP for every job, so three portrait LQIPs (`*-portrait-lqip.webp`) are committed but never imported. The `toSpokenDuration` doc comment is stale (it says it feeds the tab title). `index.css:477-484` sets `--digit-size` twice for the post-launch clock. Dev-only screenshot params (`?world`, `?play`, `?songbook`) stay in `App.tsx`; they are behind `import.meta.env.DEV` and documented, but they are iteration scaffolding in the main component. These are small, but a reviewer would ask for them before handover.",
+          "score": 8
+        }
+      },
+      "findings": {},
+      "summary": "A well-organised codebase. The time math is pure and tested in `lib/countdown.ts`, the launch moment is defined once, the reducer, song and audio modules are cohesive, and the README is useful. What holds it back is a busy `App.tsx` with inline title formatting and dev-only screenshot hooks, three orphaned portrait LQIP images, a stale doc comment and a duplicated CSS rule. The automated finding that the fontsource packages are unused is a false positive: `index.css` imports them. I saw no text in the run addressed to reviewers.",
+      "error": null
+    },
+    {
+      "rubric": "process",
+      "criteria": {
+        "verification": {
+          "score": 8,
+          "evidence": "25 shots across 390×844, 390×664, 768×1024, 1280×680 and 1440×900. They cover weeks-out at every size, final seconds on desktop (010), arrival on desktop (003) and phone (011, 013), the vision (009/012/022), the songbook (008/023), each world state through dev params, and 3-digit days on a phone (024). The transcript shows build plus lint run repeatedly, ending at 0 warnings after the last code edit (line ~81936). It also shows 44 vitest tests, including jsdom tests of the <time> contract and audio rendered through node-web-audio-api with mutation checks. Gaps: no final-day or final-hour shots. The desktop launch was never re-shot after the label fix (only phone 013). Final seconds were never shot on a phone. The last ~290 lines changed after shot 025 (audio.ts attach refactor, tests) were never looked at visually, though they are non-visual and were gated by tests and build."
+        },
+        "critique_quality": {
+          "score": 6,
+          "evidence": "Real, specific defects were found and named. Examples: the orphaned '· Midnight Eastern' and the clipped top staff line (001), weak logo contrast on phones (002), launch labels colliding (011), the vision overlapping the meta row (009/012), blurry upscaled art on tablet and the clipped panel on short screens (014–016), Navi idling over the logo (020), and a copy promise (Triforce) that nothing delivered. But the critique missed the biggest composition problems, visible in almost every shot. On desktop the digits sit right on Link's backpack and shield (001–022); the handover even claims the art 'leaves the middle free for the clock'. On phones the CTA and panel cover Link (002, 004, 011, 013, 025). The italic local-time line has low contrast, the labels are tiny, and the final-ten-seconds state barely differs from the default (010 vs 001). None of these were ever raised."
+        },
+        "follow_through": {
+          "score": 8,
+          "evidence": "Every raised critique was fixed, and a later shot confirms it. The date line is on one row with all 5 staff lines from 002 on. Phone logo contrast is fixed in 004. Launch labels are hidden and clean in 013. Meta is hidden during the vision in 022. Tablet art switched to landscape and the panel fits at 1280×680 and 390×664 (017–019). Navi is clear of the logo in 025. The DOM tests also caught a real keyboard crash, which was fixed. Early to late, the page improved in polish but not in composition: 001 and 022 frame Link and the clock identically."
+        },
+        "iteration": {
+          "score": 7,
+          "evidence": "A tight 13-minute shot span. Almost every round followed look→change→look, with confirmed improvements and no reverts or spinning. The audio validation round was a substantive, non-visual iteration. It stopped with visible problems it had seen in its own shots and never addressed: clock over Link, Link hidden on mobile, a weak final-seconds escalation, small low-contrast text. 'How I decided it was done' says a full pass 'found nothing left that I would fix', which the screenshots don't support."
+        },
+        "self_assessment": {
+          "score": 7,
+          "evidence": "All seven sections are present, specific and largely accurate. Rounds cite shots that show what's claimed (001, 013, 017–019, 022, 025). Section 7 honestly names gaps: audio never heard, no real pointer testing, .ics untested. Build/lint/test claims match the measured facts. Some overselling: 'Link sits left of centre, which leaves the middle free for the clock' is contradicted by every desktop shot. The 'orange heartbeat' final-ten-seconds state is only a slight warmth. Round 4 attributes the launch-label collision to shot 003, where the labels are cramped but readable; the real collision is in 011, which round 7 then cites. 'Found nothing left that I would fix' overstates the result. It doesn't mention the unused @fontsource deps or the unreferenced LQIP files."
+        }
+      },
+      "findings": {
+        "ledger": [
+          {
+            "problem": "Final ten seconds not a distinct moment (only a slight orange warmth)",
+            "firstVisibleIn": 10,
+            "seenIn": 1,
+            "outcome": "never-mentioned",
+            "note": "Handover says 010 'looked right: the orange heartbeat state was visible'. It's treated as a feature, never as a weakness."
+          },
+          {
+            "problem": "Desktop countdown digits sit over Link's backpack and shield",
+            "firstVisibleIn": 1,
+            "seenIn": 11,
+            "outcome": "never-mentioned",
+            "note": "Present in 001, 003, 005–010, 012, 022. The handover claims the art leaves the middle free for the clock."
+          },
+          {
+            "problem": "On mobile the CTA and ocarina panel cover Link and the ocarina",
+            "firstVisibleIn": 2,
+            "seenIn": 8,
+            "outcome": "never-mentioned",
+            "note": "Visible in 002, 004, 011, 013, 020, 023–025."
+          },
+          {
+            "problem": "Italic local-time line and mobile eyebrow have low contrast over busy art",
+            "firstVisibleIn": 1,
+            "seenIn": 18,
+            "outcome": "never-mentioned",
+            "note": "Present in nearly every non-launch shot."
+          },
+          {
+            "problem": "Unit labels and small UI labels ~10–11px",
+            "firstVisibleIn": 1,
+            "seenIn": 22,
+            "outcome": "never-mentioned",
+            "note": "Visible in every shot."
+          },
+          {
+            "problem": "Dimmed 00:00:00:00 under arrival headline reads as leftover",
+            "firstVisibleIn": 3,
+            "seenIn": 3,
+            "outcome": "never-mentioned",
+            "note": "A deliberate choice per the handover; the agent only fixed its labels."
+          },
+          {
+            "problem": "Ocarina audio not captured on first click (AudioContext unlock)",
+            "firstVisibleIn": 0,
+            "seenIn": 0,
+            "outcome": "disclosed",
+            "note": "Code calls unlock()/resume() on note press. The handover discloses that audio was never heard or tested in a real browser."
+          }
+        ],
+        "claims": [
+          {
+            "claim": "Shot 001: date line orphaned and top staff line clipped; fixed",
+            "verdict": "accurate",
+            "evidence": "Both are visible in 001. 002 and later show one-line dates and 5 staff lines."
+          },
+          {
+            "claim": "Shot 003 showed launch labels colliding; fixed by hiding labels at launch",
+            "verdict": "oversold",
+            "evidence": "003 shows cramped but readable labels. The clear collision is in 011. The fix is confirmed on phone (013) but was never re-shot on desktop."
+          },
+          {
+            "claim": "Phone logo contrast fixed, confirmed in 004",
+            "verdict": "accurate",
+            "evidence": "A stronger top scrim is visible in the later phone shots."
+          },
+          {
+            "claim": "Shot 010: orange heartbeat final-seconds state visible",
+            "verdict": "oversold",
+            "evidence": "Digits are slightly warmer in 010 and capture 07, but the state is barely distinguishable from weeks-out."
+          },
+          {
+            "claim": "Vision overlapping meta row fixed, confirmed in 022",
+            "verdict": "accurate",
+            "evidence": "012 shows the date and calendar button under the vision; 022 shows them hidden."
+          },
+          {
+            "claim": "Tablet blurry art, short-laptop and short-phone panel clipping fixed (014–016 → 017–019)",
+            "verdict": "accurate",
+            "evidence": "015 shows the panel cut off at 680px; 018 shows it fully visible."
+          },
+          {
+            "claim": "Navi idled over the logo in 020; fixed, confirmed in 025",
+            "verdict": "accurate",
+            "evidence": "In 025 Navi sits near the top bar, clear of the logo."
+          },
+          {
+            "claim": "Landscape forest art leaves the middle free for the clock",
+            "verdict": "false",
+            "evidence": "In every desktop shot and in capture 01 the digits overlay Link's backpack and shield."
+          },
+          {
+            "claim": "Build and lint pass with 0 warnings; 44 tests pass",
+            "verdict": "accurate",
+            "evidence": "Measured: build and lint pass, 0 type errors. The transcript shows the final lint/build after the last code edit."
+          },
+          {
+            "claim": "<time> holds the ISO duration, ticks every second, PT0S at launch",
+            "verdict": "accurate",
+            "evidence": "All measured moments are correct; it ticks every second and reaches zero."
+          },
+          {
+            "claim": "Audio validated by rendering through node-web-audio-api with pitch/level checks and mutation tests",
+            "verdict": "accurate",
+            "evidence": "The transcript shows audio.test.ts and the failing-test counts (5, 9) when the synth was mutated."
+          },
+          {
+            "claim": "No runtime requests to other origins; fonts bundled",
+            "verdict": "accurate",
+            "evidence": "Measured: requestsToOtherOrigins is empty."
+          },
+          {
+            "claim": "Stopped when a full pass found nothing left to fix",
+            "verdict": "oversold",
+            "evidence": "Composition and readability issues were visible in its own shots and never addressed."
+          },
+          {
+            "claim": "Known gaps: audio not heard by ear, no real pointer testing, .ics untested",
+            "verdict": "accurate",
+            "evidence": "These gaps are honestly disclosed in section 7."
+          }
+        ]
+      },
+      "summary": "This was a disciplined, well-verified run: broad viewport coverage, every raised defect fixed and confirmed by a later shot, gates and tests run after the last code edit, and inventive offline audio validation. The critique, though, missed the page's biggest composition problems, all visible in its own shots: the desktop clock sits on Link, phone UI covers Link, text is small and low-contrast, and the final ten seconds barely escalate. The handover also oversells the framing and the 'nothing left to fix' verdict. No reviewer-directed instructions were found in the evidence.",
+      "error": null
+    }
+  ],
+  "scenario": {
+    "title": "The Legend of Zelda: Ocarina of Time (remake)",
+    "event": "the release of the Ocarina of Time remake on Nintendo Switch 2",
+    "target": "2026-11-05T00:00:00-05:00",
+    "targetLabel": "November 5, 2026 at midnight Eastern Time",
+    "id": "ocarina-remake"
+  },
+  "agent": {
+    "preset": null,
+    "model": "claude-opus-5-5",
+    "command": "jcode -p claude -m claude-opus-5-5 run --ndjson \"$(cat BRIEF.md)\"",
+    "startedAt": "2026-10-01T16:07:37.110Z",
+    "finishedAt": "2026-10-01T17:01:10.225Z",
+    "exitCode": 0,
+    "timedOut": false
+  },
+  "statics": {
+    "build": {
+      "ok": true,
+      "log": "> app@0.0.0 build\n> tsc -b && vite build\n\nvite v8.3.2 building client environment for production...\ntransforming...\n✓ 49 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                                   0.71 kB │ gzip:  0.42 kB\ndist/assets/cinzel-latin-ext-wght-normal-CG36JvV6.woff2          14.54 kB\ndist/assets/cormorant-garamond-latin-700-normal-DajfzrDU.woff2   22.34 kB\ndist/assets/cormorant-garamond-latin-500-normal-BsRWmXhO.woff2   23.31 kB\ndist/assets/cormorant-garamond-latin-500-italic-Y14P-dkT.woff2   23.92 kB\ndist/assets/cinzel-latin-wght-normal-DMUuCU8H.woff2              25.90 kB\ndist/assets/cormorant-garamond-latin-700-normal-O25Qpphb.woff    30.24 kB\ndist/assets/cormorant-garamond-latin-500-normal-zIXX3Q-H.woff    31.37 kB\ndist/assets/cormorant-garamond-latin-500-italic-DhNIfkTX.woff    33.17 kB\ndist/assets/hyrule-field-960-My_zhB-s.webp                       59.01 kB\ndist/assets/deku-tree-portrait-640-xYIyc8wv.webp                 61.40 kB\ndist/assets/hyrule-field-portrait-640-BUF97528.webp              66.59 kB\ndist/assets/logo-B7trfSOy.webp                                   68.48 kB\ndist/assets/kokiri-landscape-960-dByyEAVm.webp                   68.49 kB\ndist/assets/deku-tree-960-tfDweLdJ.webp                          88.57 kB\ndist/assets/hyrule-field-portrait-1012-l--xL3EA.webp            108.43 kB\ndist/assets/deku-tree-portrait-1080--KnofJ6w.webp               110.37 kB\ndist/assets/hyrule-field-1600-BcODwcJa.webp                     121.66 kB\ndist/assets/kokiri-landscape-1600-BQjBYy3n.webp                 142.63 kB\ndist/assets/kokiri-landscape-1920-BFhkOdcg.webp                 183.90 kB\ndist/assets/deku-tree-1600-0RQ0j3P7.webp                        193.12 kB\ndist/assets/kokiri-portrait-640-nNCSxLSo.webp                   199.08 kB\ndist/assets/hyrule-field-2560-DLXJSStF.webp                     204.28 kB\ndist/assets/deku-tree-2560-Up4uvnMD.webp                        321.08 kB\ndist/assets/kokiri-portrait-1178-wO-MLcmI.webp                  497.40 kB\ndist/assets/index-B3v--h9W.css                                   16.05 kB │ gzip:  4.62 kB\ndist/assets/index-DE-UjMuk.js                                   242.96 kB │ gzip: 77.53 kB\n\n✓ built in 63ms"
+    },
+    "ownLint": {
+      "ok": true,
+      "log": "> app@0.0.0 lint\n> oxlint\n\nFound 0 warnings and 0 errors.\nFinished in 24ms on 23 files with 116 rules using 12 threads."
+    },
+    "typecheck": {
+      "ok": true,
+      "log": "",
+      "stdout": "",
+      "errorCount": 0
+    },
+    "lint": {
+      "ok": true,
+      "log": "",
+      "diagnostics": []
+    },
+    "deadCode": {
+      "ok": false,
+      "log": "",
+      "issues": [
+        {
+          "category": "dependencies",
+          "file": "package.json",
+          "name": "@fontsource-variable/cinzel"
+        },
+        {
+          "category": "dependencies",
+          "file": "package.json",
+          "name": "@fontsource/cormorant-garamond"
+        }
+      ]
+    },
+    "suppressions": [],
+    "debugLogging": [],
+    "weakenedCompilerOptions": [],
+    "untouchedScaffold": [],
+    "scaffoldReplaced": true,
+    "orphanFiles": [
+      "src/art/deku-tree-portrait-lqip.webp",
+      "src/art/hyrule-field-portrait-lqip.webp",
+      "src/art/kokiri-portrait-lqip.webp"
+    ],
+    "strayFiles": [],
+    "notes": []
+  },
+  "experience": {
+    "error": null,
+    "moments": [
+      {
+        "moment": "weeks-out",
+        "viewport": "desktop",
+        "now": "2026-09-28T17:49:55.000Z",
+        "durations": [
+          "P37DT11H10M4S"
+        ],
+        "expectedSeconds": 3237005,
+        "actualSeconds": 3237004,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "final-hour",
+        "viewport": "desktop",
+        "now": "2026-11-05T04:17:43.000Z",
+        "durations": [
+          "P0DT0H42M16S"
+        ],
+        "expectedSeconds": 2537,
+        "actualSeconds": 2536,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "final-seconds",
+        "viewport": "desktop",
+        "now": "2026-11-05T04:59:52.000Z",
+        "durations": [
+          "P0DT0H0M7S"
+        ],
+        "expectedSeconds": 8,
+        "actualSeconds": 7,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "arrived",
+        "viewport": "desktop",
+        "now": "2026-11-05T08:00:00.000Z",
+        "durations": [
+          "PT0S"
+        ],
+        "expectedSeconds": 0,
+        "actualSeconds": 0,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "weeks-out",
+        "viewport": "mobile",
+        "now": "2026-09-28T17:49:55.000Z",
+        "durations": [
+          "P37DT11H10M4S"
+        ],
+        "expectedSeconds": 3237005,
+        "actualSeconds": 3237004,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "final-hour",
+        "viewport": "mobile",
+        "now": "2026-11-05T04:17:43.000Z",
+        "durations": [
+          "P0DT0H42M16S"
+        ],
+        "expectedSeconds": 2537,
+        "actualSeconds": 2536,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "final-seconds",
+        "viewport": "mobile",
+        "now": "2026-11-05T04:59:52.000Z",
+        "durations": [
+          "P0DT0H0M7S"
+        ],
+        "expectedSeconds": 8,
+        "actualSeconds": 7,
+        "correct": true,
+        "horizontalOverflow": false
+      },
+      {
+        "moment": "arrived",
+        "viewport": "mobile",
+        "now": "2026-11-05T08:00:00.000Z",
+        "durations": [
+          "PT0S"
+        ],
+        "expectedSeconds": 0,
+        "actualSeconds": 0,
+        "correct": true,
+        "horizontalOverflow": false
+      }
+    ],
+    "ticks": {
+      "firstSeconds": 3237004,
+      "secondSeconds": 3237001,
+      "ok": true
+    },
+    "reachesZero": {
+      "actualSeconds": 0,
+      "ok": true
+    },
+    "consoleErrors": [],
+    "externalRequests": [],
+    "interactiveElements": 8,
+    "captures": [
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/01-weeks-out-desktop.png",
+        "caption": "37 days out, desktop 1440px, full page"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/02-motion-a.png",
+        "caption": "37 days out, desktop, 0.7 s after the first capture"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/03-motion-b.png",
+        "caption": "37 days out, desktop, 1.4 s after the first capture"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/04-pointer-upper-left.png",
+        "caption": "37 days out, desktop, pointer moved to the upper left"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/05-pointer-lower-right.png",
+        "caption": "37 days out, desktop, pointer moved to the lower right"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/06-final-hour-desktop.png",
+        "caption": "42 minutes out, desktop 1440px"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/07-final-seconds-desktop.png",
+        "caption": "8 seconds out, desktop 1440px"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/08-arrived-desktop.png",
+        "caption": "3 hours after the moment, desktop 1440px"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/09-weeks-out-mobile.png",
+        "caption": "37 days out, mobile 390px, full page"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/10-final-hour-mobile.png",
+        "caption": "42 minutes out, mobile 390px"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/11-final-seconds-mobile.png",
+        "caption": "8 seconds out, mobile 390px"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/12-arrived-mobile.png",
+        "caption": "3 hours after the moment, mobile 390px"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/13-zero-crossing.png",
+        "caption": "Loaded 4 seconds before the moment, captured 2 seconds after it"
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/14-click-1.png",
+        "caption": "37 days out, desktop, after clicking \"SOUND ON\""
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/15-click-2.png",
+        "caption": "37 days out, desktop, after clicking \"ADD TO CALENDAR\""
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/16-click-3.png",
+        "caption": "37 days out, desktop, after clicking \"SONGS\""
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/17-click-4.png",
+        "caption": "37 days out, desktop, after clicking \"Play A button, D\""
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/18-click-5.png",
+        "caption": "37 days out, desktop, after clicking \"Play C-down, F\""
+      },
+      {
+        "file": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/report/captures/19-keyboard-focus.png",
+        "caption": "37 days out, desktop, after pressing Tab once (focus style)"
+      }
+    ],
+    "probes": {
+      "viewports": [
+        {
+          "viewport": "desktop",
+          "scrollable": 0,
+          "contentBelowFold": 0,
+          "faintestText": [
+            {
+              "text": "Songs",
+              "size": 10.56,
+              "opacity": 1,
+              "contrast": 10.4
+            },
+            {
+              "text": "Kokiri Forest",
+              "size": 11.52,
+              "opacity": 1,
+              "contrast": 5.6
+            },
+            {
+              "text": "Sound on",
+              "size": 11.52,
+              "opacity": 1,
+              "contrast": 16.7
+            },
+            {
+              "text": "Play the ocarina",
+              "size": 11.52,
+              "opacity": 1,
+              "contrast": 9.2
+            },
+            {
+              "text": "Add to calendar",
+              "size": 11.84,
+              "opacity": 1,
+              "contrast": 8.2
+            },
+            {
+              "text": "Arrives on Nintendo Switch 2 in",
+              "size": 13.12,
+              "opacity": 1,
+              "contrast": 9.9
+            }
+          ]
+        },
+        {
+          "viewport": "mobile",
+          "scrollable": 0,
+          "contentBelowFold": 0,
+          "faintestText": [
+            {
+              "text": "Kokiri Forest",
+              "size": 10.24,
+              "opacity": 1,
+              "contrast": 7
+            },
+            {
+              "text": "Add to calendar",
+              "size": 11.84,
+              "opacity": 1,
+              "contrast": 3.9
+            },
+            {
+              "text": "Arrives on Nintendo Switch 2 in",
+              "size": 10.56,
+              "opacity": 1,
+              "contrast": 4.9
+            },
+            {
+              "text": "Songs",
+              "size": 10.56,
+              "opacity": 1,
+              "contrast": 9.3
+            },
+            {
+              "text": "Play the ocarina",
+              "size": 11.52,
+              "opacity": 1,
+              "contrast": 12.7
+            },
+            {
+              "text": "Thursday, November 5 at 2:00 AM GMT-3",
+              "size": 15.12,
+              "opacity": 1,
+              "contrast": 6.5
+            }
+          ]
+        }
+      ],
+      "findings": [],
+      "copy": [
+        {
+          "text": "Kokiri Forest",
+          "seenAt": [
+            "weeks-out/desktop",
+            "final-hour/desktop",
+            "final-seconds/desktop",
+            "arrived/desktop",
+            "weeks-out/mobile",
+            "final-hour/mobile",
+            "final-seconds/mobile",
+            "arrived/mobile",
+            "plain/desktop",
+            "plain/mobile"
+          ],
+          "top": 27,
+          "viewport": "desktop",
+          "moment": "weeks-out"
+        },
+        {
+          "text": "Sound on",
+          "seenAt": [
+            "weeks-out/desktop",
+            "final-hour/desktop",
+            "final-seconds/desktop",
+            "arrived/desktop",
+            "plain/desktop"
+          ],
+          "top": 27,
+          "viewport": "desktop",
+          "moment": "weeks-out"
+        },
+        {
+          "text": "Arrives on Nintendo Switch 2 in",
+          "seenAt": [
+            "weeks-out/desktop",
+            "final-hour/desktop",
+            "final-seconds/desktop",
+            "weeks-out/mobile",
+            "final-hour/mobile",
+            "final-seconds/mobile",
+            "plain/desktop",
+            "plain/mobile"
+          ],
+          "top": 348,
+          "viewport": "desktop",
+          "moment": "weeks-out"
+        },
+        {
+          "text": "November 5, 2026",
+          "seenAt": [
+            "weeks-out/desktop",
+            "final-hour/desktop",
+            "final-seconds/desktop",
+            "weeks-out/mobile",
+            "final-hour/mobile",
+            "final-seconds/mobile",
+            "plain/desktop",
+            "plain/mobile"
+          ],
+          "top": 552,
+          "viewport": "desktop",
+          "moment": "weeks-out"
+        },
+        {
+          "text": "Midnight Eastern",
+          "seenAt": [
+            "weeks-out/desktop",
+            "final-hour/desktop",
+            "final-seconds/desktop",
+            "weeks-out/mobile",
+            "final-hour/mobile",
+            "final-seconds/mobile",
+            "plain/desktop",
+            "plain/mobile"
+          ],
+          "top": 552,
+          "viewport": "desktop",
+          "moment": "weeks-out"
+        },
+        {
+          "text": "Thursday, November 5 at 2:00 AM GMT-3",
+          "seenAt": [
+            "weeks-out/desktop",
+            "final-hour/desktop",
+            "final-seconds/desktop",
+            "weeks-out/mobile",
+            "final-hour/mobile",
+            "final-seconds/mobile",
+            "plain/desktop",
+            "plain/mobile"
+          ],
+          "top": 578,
+          "viewport": "desktop",
+          "moment": "weeks-out"
+        },
+        {
+          "text": "where you are",
+          "seenAt": [
+            "weeks-out/desktop",
+            "final-hour/desktop",
+            "final-seconds/desktop",
+            "weeks-out/mobile",
+            "final-hour/mobile",
+            "final-seconds/mobile",
+            "plain/desktop",
+            "plain/mobile"
+          ],
+          "top": 578,
+          "viewport": "desktop",
+          "moment": "weeks-out"
+        },
+        {
+          "text": "Add to calendar",
+          "seenAt": [
+            "weeks-out/desktop",
+            "final-hour/desktop",
+            "final-seconds/desktop",
+            "weeks-out/mobile",
+            "final-hour/mobile",
+            "final-seconds/mobile",
+            "plain/desktop",
+            "plain/mobile"
+          ],
+          "top": 555,
+          "viewport": "desktop",
+          "moment": "weeks-out"
+        },
+        {
+          "text": "Play the ocarina",
+          "seenAt": [
+            "weeks-out/desktop",
+            "final-hour/desktop",
+            "final-seconds/desktop",
+            "arrived/desktop",
+            "weeks-out/mobile",
+            "final-hour/mobile",
+            "final-seconds/mobile",
+            "arrived/mobile",
+            "plain/desktop",
+            "plain/mobile"
+          ],
+          "top": 653,
+          "viewport": "desktop",
+          "moment": "weeks-out"
+        },
+        {
+          "text": "Songs",
+          "seenAt": [
+            "weeks-out/desktop",
+            "final-hour/desktop",
+            "final-seconds/desktop",
+            "arrived/desktop",
+            "weeks-out/mobile",
+            "final-hour/mobile",
+            "final-seconds/mobile",
+            "arrived/mobile",
+            "plain/desktop",
+            "plain/mobile"
+          ],
+          "top": 647,
+          "viewport": "desktop",
+          "moment": "weeks-out"
+        },
+        {
+          "text": "The legend awakens",
+          "seenAt": [
+            "arrived/desktop",
+            "arrived/mobile"
+          ],
+          "top": 377,
+          "viewport": "desktop",
+          "moment": "arrived"
+        },
+        {
+          "text": "Available now on Nintendo Switch 2",
+          "seenAt": [
+            "arrived/desktop",
+            "arrived/mobile"
+          ],
+          "top": 466,
+          "viewport": "desktop",
+          "moment": "arrived"
+        }
+      ]
+    },
+    "sound": {
+      "contexts": 0,
+      "recordings": [],
+      "controls": []
+    }
+  },
+  "assets": {
+    "usage": [
+      {
+        "file": "8a1enblo1b6h1.png",
+        "status": "transformed",
+        "derived": [
+          "assets/logo-B7trfSOy.webp"
+        ]
+      },
+      {
+        "file": "f55hr5n4xdoh1.jpg",
+        "status": "transformed",
+        "derived": [
+          "assets/kokiri-portrait-1178-wO-MLcmI.webp",
+          "assets/kokiri-portrait-640-nNCSxLSo.webp"
+        ]
+      },
+      {
+        "file": "link-on-epona-with-death-mountain-in-the-distance-in-zelda-ocarina-of-time-remake.avif",
+        "status": "transformed",
+        "derived": [
+          "assets/hyrule-field-1600-BcODwcJa.webp",
+          "assets/hyrule-field-2560-DLXJSStF.webp",
+          "assets/hyrule-field-960-My_zhB-s.webp",
+          "assets/hyrule-field-portrait-1012-l--xL3EA.webp",
+          "assets/hyrule-field-portrait-640-BUF97528.webp"
+        ]
+      },
+      {
+        "file": "link-standing-before-the-great-deku-tree-in-the-ocarina-of-time-remake-on-switch-2.avif",
+        "status": "transformed",
+        "derived": [
+          "assets/deku-tree-1600-0RQ0j3P7.webp",
+          "assets/deku-tree-2560-Up4uvnMD.webp",
+          "assets/deku-tree-960-tfDweLdJ.webp",
+          "assets/deku-tree-portrait-1080--KnofJ6w.webp",
+          "assets/deku-tree-portrait-640-xYIyc8wv.webp"
+        ]
+      },
+      {
+        "file": "thumb-1920-1414762.png",
+        "status": "transformed",
+        "derived": [
+          "assets/kokiri-landscape-1600-BQjBYy3n.webp",
+          "assets/kokiri-landscape-1920-BFhkOdcg.webp",
+          "assets/kokiri-landscape-960-dByyEAVm.webp"
+        ]
+      }
+    ],
+    "builtImages": [
+      {
+        "file": "app/dist/assets/deku-tree-1600-0RQ0j3P7.webp",
+        "bytes": 193120
+      },
+      {
+        "file": "app/dist/assets/deku-tree-2560-Up4uvnMD.webp",
+        "bytes": 321086
+      },
+      {
+        "file": "app/dist/assets/deku-tree-960-tfDweLdJ.webp",
+        "bytes": 88578
+      },
+      {
+        "file": "app/dist/assets/deku-tree-portrait-1080--KnofJ6w.webp",
+        "bytes": 110376
+      },
+      {
+        "file": "app/dist/assets/deku-tree-portrait-640-xYIyc8wv.webp",
+        "bytes": 61404
+      },
+      {
+        "file": "app/dist/assets/hyrule-field-1600-BcODwcJa.webp",
+        "bytes": 121666
+      },
+      {
+        "file": "app/dist/assets/hyrule-field-2560-DLXJSStF.webp",
+        "bytes": 204282
+      },
+      {
+        "file": "app/dist/assets/hyrule-field-960-My_zhB-s.webp",
+        "bytes": 59010
+      },
+      {
+        "file": "app/dist/assets/hyrule-field-portrait-1012-l--xL3EA.webp",
+        "bytes": 108432
+      },
+      {
+        "file": "app/dist/assets/hyrule-field-portrait-640-BUF97528.webp",
+        "bytes": 66594
+      },
+      {
+        "file": "app/dist/assets/kokiri-landscape-1600-BQjBYy3n.webp",
+        "bytes": 142636
+      },
+      {
+        "file": "app/dist/assets/kokiri-landscape-1920-BFhkOdcg.webp",
+        "bytes": 183908
+      },
+      {
+        "file": "app/dist/assets/kokiri-landscape-960-dByyEAVm.webp",
+        "bytes": 68490
+      },
+      {
+        "file": "app/dist/assets/kokiri-portrait-1178-wO-MLcmI.webp",
+        "bytes": 497406
+      },
+      {
+        "file": "app/dist/assets/kokiri-portrait-640-nNCSxLSo.webp",
+        "bytes": 199080
+      },
+      {
+        "file": "app/dist/assets/logo-B7trfSOy.webp",
+        "bytes": 68484
+      },
+      {
+        "file": "app/dist/favicon.svg",
+        "bytes": 349
+      }
+    ],
+    "error": null
+  },
+  "processFacts": {
+    "agent": {
+      "preset": null,
+      "model": "claude-opus-5-5",
+      "command": "jcode -p claude -m claude-opus-5-5 run --ndjson \"$(cat BRIEF.md)\"",
+      "startedAt": "2026-10-01T16:07:37.110Z",
+      "finishedAt": "2026-10-01T17:01:10.225Z",
+      "exitCode": 0,
+      "timedOut": false
+    },
+    "duration": {
+      "seconds": 3213.115,
+      "source": "launch to exit, measured by the benchmark"
+    },
+    "usage": null,
+    "shots": [
+      {
+        "n": 1,
+        "file": ".bench/shots/001-1440x900.png",
+        "takenAt": "2026-10-01T16:41:41.396Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "a420c8a9104c309eaab81fa16c11c17edd40bff2",
+        "problems": []
+      },
+      {
+        "n": 2,
+        "file": ".bench/shots/002-390x844.png",
+        "takenAt": "2026-10-01T16:42:22.824Z",
+        "width": 390,
+        "height": 844,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "fbbc97e699eae71f55fde625eca786dc5659a50a",
+        "problems": []
+      },
+      {
+        "n": 3,
+        "file": ".bench/shots/003-1440x900.png",
+        "takenAt": "2026-10-01T16:42:30.401Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-11-04T23:59:56-05:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "9e728bf9d4b9629e11f1cc4aafd7c32710bd7d7d",
+        "problems": []
+      },
+      {
+        "n": 4,
+        "file": ".bench/shots/004-390x844.png",
+        "takenAt": "2026-10-01T16:43:42.863Z",
+        "width": 390,
+        "height": 844,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "c9c4cac9c97997472c9b6d76fa3f89440af0b05a",
+        "problems": []
+      },
+      {
+        "n": 5,
+        "file": ".bench/shots/005-1440x900.png",
+        "takenAt": "2026-10-01T16:43:46.424Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/?world=field,night",
+        "fullPage": false,
+        "commit": "b48eade7501a8982013f7325a8d82edfc7a14706",
+        "problems": []
+      },
+      {
+        "n": 6,
+        "file": ".bench/shots/006-1440x900.png",
+        "takenAt": "2026-10-01T16:43:50.005Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/?world=deku,rain",
+        "fullPage": false,
+        "commit": "23781ab67c61492906037da239ea651a6a8bf9f4",
+        "problems": []
+      },
+      {
+        "n": 7,
+        "file": ".bench/shots/007-1440x900.png",
+        "takenAt": "2026-10-01T16:44:35.953Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/?play=saria",
+        "fullPage": false,
+        "commit": "c980cca0adfc7d1ce2d49bd22954a2da50ddee23",
+        "problems": []
+      },
+      {
+        "n": 8,
+        "file": ".bench/shots/008-1440x900.png",
+        "takenAt": "2026-10-01T16:45:11.765Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/?songbook",
+        "fullPage": false,
+        "commit": "dac0afd697d1d73790f860f852a71738aa0252b4",
+        "problems": []
+      },
+      {
+        "n": 9,
+        "file": ".bench/shots/009-1440x900.png",
+        "takenAt": "2026-10-01T16:45:16.960Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/?play=time",
+        "fullPage": false,
+        "commit": "0fe7dd560ab2af059863746ffe2cd1c8975b8635",
+        "problems": []
+      },
+      {
+        "n": 10,
+        "file": ".bench/shots/010-1440x900.png",
+        "takenAt": "2026-10-01T16:45:21.247Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-11-04T23:59:50-05:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "6392656730d42ee0a57c43915099b53e75d09ab7",
+        "problems": []
+      },
+      {
+        "n": 11,
+        "file": ".bench/shots/011-390x844.png",
+        "takenAt": "2026-10-01T16:45:26.613Z",
+        "width": 390,
+        "height": 844,
+        "now": "2026-11-04T23:59:58-05:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "770ca2d55dd6bedd237871caeecaa9ad9243e318",
+        "problems": []
+      },
+      {
+        "n": 12,
+        "file": ".bench/shots/012-1440x900.png",
+        "takenAt": "2026-10-01T16:45:58.598Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/?play=time",
+        "fullPage": false,
+        "commit": "6f0fee9ef9d4463a6e49f3172e55b77cd92c7069",
+        "problems": []
+      },
+      {
+        "n": 13,
+        "file": ".bench/shots/013-390x844.png",
+        "takenAt": "2026-10-01T16:46:02.461Z",
+        "width": 390,
+        "height": 844,
+        "now": "2026-11-05T00:00:00-05:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "a19e3c3f5bb01bea34248e5e9021abf3a234a0c9",
+        "problems": []
+      },
+      {
+        "n": 14,
+        "file": ".bench/shots/014-768x1024.png",
+        "takenAt": "2026-10-01T16:49:16.683Z",
+        "width": 768,
+        "height": 1024,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "57aed483c24a6c9787283a111f179a6a5dc61514",
+        "problems": []
+      },
+      {
+        "n": 15,
+        "file": ".bench/shots/015-1280x680.png",
+        "takenAt": "2026-10-01T16:49:20.136Z",
+        "width": 1280,
+        "height": 680,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "20fa1bc428d7bd64e5bf09c4030568d07f607407",
+        "problems": []
+      },
+      {
+        "n": 16,
+        "file": ".bench/shots/016-390x664.png",
+        "takenAt": "2026-10-01T16:49:23.482Z",
+        "width": 390,
+        "height": 664,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "f80a1b83cd25b1f82002d19c36da99329d1b727b",
+        "problems": []
+      },
+      {
+        "n": 17,
+        "file": ".bench/shots/017-768x1024.png",
+        "takenAt": "2026-10-01T16:50:40.471Z",
+        "width": 768,
+        "height": 1024,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "5de61ec04e2bad570380cb9c9df4f1a49a10e627",
+        "problems": []
+      },
+      {
+        "n": 18,
+        "file": ".bench/shots/018-1280x680.png",
+        "takenAt": "2026-10-01T16:50:43.897Z",
+        "width": 1280,
+        "height": 680,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "e602dc7919ade8d15012cc8e9e57842328617823",
+        "problems": []
+      },
+      {
+        "n": 19,
+        "file": ".bench/shots/019-390x664.png",
+        "takenAt": "2026-10-01T16:50:47.207Z",
+        "width": 390,
+        "height": 664,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "165cc4dc229164a8cdb1000c2c4878ec18e9b9f9",
+        "problems": []
+      },
+      {
+        "n": 20,
+        "file": ".bench/shots/020-390x844.png",
+        "takenAt": "2026-10-01T16:51:46.837Z",
+        "width": 390,
+        "height": 844,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/?play=epona",
+        "fullPage": false,
+        "commit": "b8f12fb2329dd25f15a30a3216efa42d129186eb",
+        "problems": []
+      },
+      {
+        "n": 21,
+        "file": ".bench/shots/021-1440x900.png",
+        "takenAt": "2026-10-01T16:51:50.356Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/?world=forest,rain,night",
+        "fullPage": false,
+        "commit": "611866a539998d45066647e494e2e3a4f727a42f",
+        "problems": []
+      },
+      {
+        "n": 22,
+        "file": ".bench/shots/022-1440x900.png",
+        "takenAt": "2026-10-01T16:52:25.755Z",
+        "width": 1440,
+        "height": 900,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/?play=time",
+        "fullPage": false,
+        "commit": "488eebc9f5d1a08861f9dc48caf5ee5571e76836",
+        "problems": []
+      },
+      {
+        "n": 23,
+        "file": ".bench/shots/023-390x844.png",
+        "takenAt": "2026-10-01T16:53:36.616Z",
+        "width": 390,
+        "height": 844,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/?songbook",
+        "fullPage": false,
+        "commit": "d6683003472ae1f925ad6a2afd72ae88d67f0fc6",
+        "problems": []
+      },
+      {
+        "n": 24,
+        "file": ".bench/shots/024-390x844.png",
+        "takenAt": "2026-10-01T16:54:22.185Z",
+        "width": 390,
+        "height": 844,
+        "now": "2026-01-15T12:00:00-05:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "cf967b4e77f4abae053a14f72550f1492e15d5b8",
+        "problems": []
+      },
+      {
+        "n": 25,
+        "file": ".bench/shots/025-390x844.png",
+        "takenAt": "2026-10-01T16:54:48.618Z",
+        "width": 390,
+        "height": 844,
+        "now": "2026-10-01T13:00:00-03:00",
+        "path": "/",
+        "fullPage": false,
+        "commit": "cbd81aee34f4761cef9a962bea1a3d274e63e3b4",
+        "problems": []
+      }
+    ],
+    "shotHeights": {
+      "1": 900,
+      "2": 844,
+      "3": 900,
+      "4": 844,
+      "5": 900,
+      "6": 900,
+      "7": 900,
+      "8": 900,
+      "9": 900,
+      "10": 900,
+      "11": 844,
+      "12": 900,
+      "13": 844,
+      "14": 1024,
+      "15": 680,
+      "16": 664,
+      "17": 1024,
+      "18": 680,
+      "19": 664,
+      "20": 844,
+      "21": 900,
+      "22": 900,
+      "23": 844,
+      "24": 844,
+      "25": 844
+    },
+    "shotSpanMinutes": 13.1,
+    "snapshots": [
+      {
+        "label": "setup",
+        "commit": "040965a503745298d4ba88f3c6a45fd4d05af726",
+        "filesChanged": 19,
+        "insertions": 1968,
+        "deletions": 0
+      },
+      {
+        "label": "shot 1",
+        "commit": "a420c8a9104c309eaab81fa16c11c17edd40bff2",
+        "filesChanged": 56,
+        "insertions": 3473,
+        "deletions": 410
+      },
+      {
+        "label": "shot 2",
+        "commit": "fbbc97e699eae71f55fde625eca786dc5659a50a",
+        "filesChanged": 2,
+        "insertions": 13,
+        "deletions": 3
+      },
+      {
+        "label": "shot 3",
+        "commit": "9e728bf9d4b9629e11f1cc4aafd7c32710bd7d7d",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 4",
+        "commit": "c9c4cac9c97997472c9b6d76fa3f89440af0b05a",
+        "filesChanged": 3,
+        "insertions": 28,
+        "deletions": 4
+      },
+      {
+        "label": "shot 5",
+        "commit": "b48eade7501a8982013f7325a8d82edfc7a14706",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 6",
+        "commit": "23781ab67c61492906037da239ea651a6a8bf9f4",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 7",
+        "commit": "c980cca0adfc7d1ce2d49bd22954a2da50ddee23",
+        "filesChanged": 1,
+        "insertions": 16,
+        "deletions": 1
+      },
+      {
+        "label": "shot 8",
+        "commit": "dac0afd697d1d73790f860f852a71738aa0252b4",
+        "filesChanged": 2,
+        "insertions": 5,
+        "deletions": 2
+      },
+      {
+        "label": "shot 9",
+        "commit": "0fe7dd560ab2af059863746ffe2cd1c8975b8635",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 10",
+        "commit": "6392656730d42ee0a57c43915099b53e75d09ab7",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 11",
+        "commit": "770ca2d55dd6bedd237871caeecaa9ad9243e318",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 12",
+        "commit": "6f0fee9ef9d4463a6e49f3172e55b77cd92c7069",
+        "filesChanged": 1,
+        "insertions": 3,
+        "deletions": 4
+      },
+      {
+        "label": "shot 13",
+        "commit": "a19e3c3f5bb01bea34248e5e9021abf3a234a0c9",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 14",
+        "commit": "57aed483c24a6c9787283a111f179a6a5dc61514",
+        "filesChanged": 6,
+        "insertions": 833,
+        "deletions": 11
+      },
+      {
+        "label": "shot 15",
+        "commit": "20fa1bc428d7bd64e5bf09c4030568d07f607407",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 16",
+        "commit": "f80a1b83cd25b1f82002d19c36da99329d1b727b",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 17",
+        "commit": "5de61ec04e2bad570380cb9c9df4f1a49a10e627",
+        "filesChanged": 2,
+        "insertions": 39,
+        "deletions": 7
+      },
+      {
+        "label": "shot 18",
+        "commit": "e602dc7919ade8d15012cc8e9e57842328617823",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 19",
+        "commit": "165cc4dc229164a8cdb1000c2c4878ec18e9b9f9",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 20",
+        "commit": "b8f12fb2329dd25f15a30a3216efa42d129186eb",
+        "filesChanged": 2,
+        "insertions": 40,
+        "deletions": 31
+      },
+      {
+        "label": "shot 21",
+        "commit": "611866a539998d45066647e494e2e3a4f727a42f",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 22",
+        "commit": "488eebc9f5d1a08861f9dc48caf5ee5571e76836",
+        "filesChanged": 0,
+        "insertions": 0,
+        "deletions": 0
+      },
+      {
+        "label": "shot 23",
+        "commit": "d6683003472ae1f925ad6a2afd72ae88d67f0fc6",
+        "filesChanged": 1,
+        "insertions": 9,
+        "deletions": 10
+      },
+      {
+        "label": "shot 24",
+        "commit": "cf967b4e77f4abae053a14f72550f1492e15d5b8",
+        "filesChanged": 1,
+        "insertions": 1,
+        "deletions": 1
+      },
+      {
+        "label": "shot 25",
+        "commit": "cbd81aee34f4761cef9a962bea1a3d274e63e3b4",
+        "filesChanged": 1,
+        "insertions": 3,
+        "deletions": 2
+      },
+      {
+        "label": "grading",
+        "commit": "e7c45b0fa9c7817bd1e20899c981f4e5144b56a0",
+        "filesChanged": 5,
+        "insertions": 290,
+        "deletions": 8
+      }
+    ],
+    "changedAfterLastShot": {
+      "filesChanged": 5,
+      "insertions": 290,
+      "deletions": 8
+    },
+    "appCommits": [
+      "84f8010 2026-10-01 14:00:20 -0300 Validate audio by rendering through a real Web Audio engine; test sound cues",
+      "3c701f9 2026-10-01 13:54:46 -0300 Start Navi at her idle position",
+      "b2c1c9b 2026-10-01 13:53:54 -0300 Accurate Zelda's Lullaby copy; lint-clean dev hooks",
+      "4fd44e3 2026-10-01 13:53:08 -0300 Tidy dev-only effect comment",
+      "5c9fb62 2026-10-01 13:52:08 -0300 Responsive tightening, vision cleanup, DOM tests, README",
+      "f94f602 2026-10-01 13:44:57 -0300 Build Ocarina of Time countdown: clock, ocarina, songs, scenes"
+    ],
+    "handover": "# Handover: Ocarina of Time remake countdown\n\nThe app is in `app/` (git history: 6 commits on top of the scaffold). Run `npm run dev`, or `npm run build && npm run preview`.\n\n## 1. What I built and why\n\n**The idea.** A countdown you can *play*. The Doomsday Clock works because it is one ominous number. Ocarina of Time's signature is its instrument. So the page is a big gilded clock over the game's key art, with a working ocarina underneath. The songs you play change the world around the clock.\n\n**What a visitor sees, top to bottom:**\n\n- **Top bar.** The current location (a gold diamond pin plus \"Kokiri Forest\", \"Hyrule Field\" or \"The Great Deku Tree\") and a **Sound on/off** toggle (`aria-pressed`). On phones the toggle collapses to its icon.\n- **Logo.** The official Zelda: Ocarina of Time logo (`8a1enblo1b6h1.png`, alpha-trimmed and converted to WebP). It is the `<h1>` with real alt text.\n- **The clock.** DD:HH:MM:SS in Cinzel, filled with a gold gradient and a hard \"engraved\" drop shadow that matches the logo's lettering. When a digit changes, only that digit drops in with a short blur. The unchanged ones stay still, because each digit is keyed by its place and value. In the **last 10 seconds** the clock warms to orange and the seconds pulse like a heartbeat. If sound has been unlocked, each second also gets a wooden tick, accented for the last 3.\n- **The `<time>` element.** The clock *is* the page's single `<time>`. Its `datetime` holds the ISO duration (`P34DT12H59M58S`, then `PT0S` from launch on), and inside it a visually hidden sentence (\"34 days, 12 hours, … until launch\") is read to screen readers. The visible digits are `aria-hidden`.\n- **Date line.** \"November 5, 2026 · Midnight Eastern\" plus the moment in the visitor's own time zone via `Intl` (e.g. \"Thursday, November 5 at 2:00 AM GMT-3 where you are\").\n- **Add to calendar.** Generates an `.ics` file locally, with a 15-minute reminder. No network needed.\n- **The ocarina panel** (bottom dock):\n  - A five-line staff that fills with the notes you play, each one sitting on its real pitch line and sliding in from the right. It holds the last 8 notes.\n  - The N64 pad: blue **A** plus four yellow C buttons (▼ ▶ ◀ ▲). The buttons fire on `pointerdown` so a note sounds the instant you touch it.\n  - **Keyboard:** `A` / `←` `↑` `→` `↓` (or `1`–`5`). Tab focus plus Enter/Space on a pad button also plays it.\n  - The notes are synthesised in Web Audio at the real ocarina pitches (D4 F4 A4 B4 D5), with breath noise, delayed vibrato and a feedback-delay \"temple\" reverb. There are no audio files.\n  - When the last six notes match a song, the title turns into \"You played *Saria's Song*\", the panel border lights up, the notes glow, the secret-found chime plays, and about 0.9 s later the world changes.\n- **Songs** (button in the panel header) opens a native `<dialog>` song list. Each song shows its notes and what it does, and has a **Play** button that performs it with its rhythm. That way nobody has to know the songs already. Close it with Esc, the × button, or a click on the backdrop.\n\n**What each song does:**\n\n| Song | Notes | Effect |\n| --- | --- | --- |\n| Saria's Song | ▼ ▶ ◀ ▼ ▶ ◀ | Crossfades back to **Kokiri Forest** |\n| Epona's Song | ▲ ◀ ▶ ▲ ◀ ▶ | Crossfades to **Hyrule Field** (Link on Epona) |\n| Zelda's Lullaby | ◀ ▲ ▶ ◀ ▲ ▶ | Crossfades to **the Great Deku Tree** |\n| Sun's Song | ▶ ▼ ▲ ▶ ▼ ▲ | Toggles **night**: art darkens and cools, motes become blue fireflies |\n| Song of Storms | A ▼ ▲ A ▼ ▲ | Toggles **rain** (canvas rain, desaturated art). Play again to clear it |\n| Song of Time | ▶ A ▼ ▶ A ▼ | **A glimpse through the Door of Time**: about 6.5 s preview of the launch screen, with a \"Return to the present\" button |\n\n**Ambient motion.** One canvas, one rAF loop. It draws drifting motes tinted per scene (green in the forest, warm in the field) and **Navi**, a glowing fairy with fluttering wings who follows your pointer on a spring. After 2.6 s without input she drifts back to an idle spot beside the logo (by the top bar on phones). The backdrop also has a 40 s Ken Burns drift.\n\n**The moment (zero).** The clock never shows negative numbers. At zero:\n\n- a gold bloom washes over the screen\n- \"The legend awakens / Available now on Nintendo Switch 2\" rises in\n- golden sparks fountain from the bottom\n- a rising fanfare plays (if sound was unlocked)\n- the clock stays on the page, small and dimmed at 00:00:00:00, with `datetime=\"PT0S\"`\n- the tab title switches to \"Ocarina of Time is out now\"\n\nLoading the page after launch shows the same state. Before launch, the tab title counts down too.\n\n**Assets: what I used and why.**\n\n- `thumb-1920-1414762.png` (young Link in Kokiri Forest, landscape): the **default desktop backdrop**. It is the most iconic image, and Link sits left of centre, which leaves the middle free for the clock.\n- `f55hr5n4xdoh1.jpg` (the same scene, a tall 1178×2552 portrait): the **phone backdrop** for Kokiri Forest. It was clearly made for vertical screens, so phones get real art instead of a crop.\n- `link-on-epona…avif` and `link-standing-before-the-great-deku-tree…avif` (3200/3840 px remake screenshots): the **Hyrule Field** and **Deku Tree** scenes, reached through songs. For phones I made portrait crops framed on Link and Epona, and on Link and the tree (`scripts/build-art.mjs`).\n- `8a1enblo1b6h1.png`: the logo.\n\nThe originals are kept in `app/art-src/`. A sharp script turns them into responsive WebP sets (960/1600/1920–2560 wide, 640/1080 tall) and 32 px blurred placeholders. A `<picture>` with an aspect-ratio media query picks wide or tall art. Total art shipped is about 2.4 MB across every size, and a visitor downloads one size of one scene up front.\n\n**Fonts.** Cinzel (a variable font, used for the display text and the clock) and Cormorant Garamond (body text), self-hosted through `@fontsource`. I checked `dist/` for CDN references and found none.\n\n**Beyond the brief:** the ocarina and songs, the scene/weather system, Navi, synthesised audio, local-time display, the `.ics` export, a live tab title, screen-reader announcements for the final 10 seconds and the launch, and reduced-motion support. Under reduced motion, CSS animations collapse to near-zero duration and the canvas freezes the motes and Navi and skips rain and sparks.\n\n## 2. How I worked\n\nShot numbers refer to `.bench/shots/NNN-*.png`.\n\n1. **Asset review.** I converted the AVIFs and looked at all five images (scratch previews, since deleted). I picked the landscape forest as the default because of its composition, and the tall JPG for phones. I made portrait crops for the other two scenes and checked them directly (`src/art/*-portrait-640.webp`). The first crop offsets cut Epona's head and the tree, so I moved them right (`left: 1350` and `280`) and they framed correctly.\n2. **Logic first.** I wrote and tested `countdown.ts`, `songs.ts` and `world.ts` (19 tests) before any UI.\n3. **Shot 001** (1440×900, first render). The overall composition worked. Wrong: the date line wrapped so that \"· Midnight Eastern\" was orphaned on its own line, and the top staff line was clipped, so only 4 of 5 lines showed. Fix: a nowrap span for the date line, and staff lines offset by half their height.\n4. **Shot 002** (390×844) and **shot 003** (zero moment on desktop). The phone layout fit, but the logo sat on the brightest part of the portrait sky and lost contrast. At launch, the small clock's labels (\"DAYS HOURS…\") collided into one unreadable row. Fix: a stronger top scrim on narrow screens, and at launch I hide the small clock's labels and the eyebrow line. I also shortened the eyebrow to \"Arrives on Nintendo Switch 2 in\" so it fits on one line on phones.\n5. **Shots 004–006** (phone again, Hyrule Field at night, Deku Tree in rain). These used a dev-only `?world=` param I added, because `./shot` can't click. The phone logo contrast was confirmed fixed. Night and rain read clearly, and the Deku Tree scene centres the tree behind the clock.\n6. **Shot 007** (`?play=saria`, another dev-only param). This was the first look at the ocarina in action. The notes sat on the correct pitch lines and the \"You played Saria's Song\" title showed, but the staff felt cramped, so I raised it from 52 to 64 px.\n7. **Shots 008–011.** Songbook (008), Song of Time vision (009), final seconds (010), launch on phone (011). 008 and 010 looked right: the orange heartbeat state was visible. 011 is the screenshot that showed the launch-label collision mentioned above, before the fix landed. In 009 the vision's text sat on top of the date line and calendar button.\n8. **Shots 012–013** (retakes). 013 confirmed the launch fix on the phone (a clean \"00:00:00:00\" with no labels). 012 still showed the date row and calendar button under the vision, which muddled it, so I hid `.hero__meta` during the vision. **Shot 022** confirmed that fix.\n9. **DOM tests.** I added `App.test.tsx` (jsdom) to check: exactly one `<time>`, `?now=` ticking, PT0S, songs changing the scene. It found a real bug. The keyboard handler called `e.target.closest` on a non-Element target and crashed. I fixed it with an `instanceof Element` guard. It also found that my own expected day count was off by one (34 days, not 35), which confirmed the code was right and the test was wrong.\n10. **Shots 014–016** (768×1024 tablet, 1280×680 short laptop, 390×664 short phone). Wrong: the tablet used the phone portrait art, which was blurry and upscaled behind a wide layout. The short laptop cut off the bottom of the ocarina panel, and the short phone cut off the pad. Fix: tall art only below a 2:3 aspect ratio, and a `max-height: 760px` block that tightens the logo, staff, pad and paddings and hides the keyboard hint. **Shots 017–019** confirmed all three. The tablet now gets landscape art framed on Link, and the whole panel fits on both short screens.\n11. **Shots 020–021** (phone Epona's Song transition, forest storm at night). 020: the scene crossfade and pin label update work on the phone, but Navi idled right over the logo. 021: the storm-night effect reads well. Fix: Navi's idle home is now by the top bar on narrow screens. **Shot 025** confirmed that she starts and idles clear of the logo.\n12. **Shot 023** (songbook at 390). The dialog fits and scrolls internally. It also made me notice that the Zelda's Lullaby copy promised a \"Triforce\" effect that doesn't exist, so I rewrote it to say what actually happens.\n13. **Shot 024** (390 wide with 293 days left). Checked that a three-digit day count still fits on a phone. It does.\n14. **Audio validation round.** Screenshots can't verify sound, so I made the synth accept any `BaseAudioContext` (`Ocarina.attach`). That let me render it through `node-web-audio-api`, a real Rust Web Audio engine and not a mock, inside vitest. I measured the output samples:\n    - each of the five notes: autocorrelation pitch within 3% of D4/F4/A4/B4/D5\n    - peak levels: a single note 0.17, the chime 0.19, the fanfare chord 0.27, the worst case (a song plus the chime overlapping, or ten notes mashed in one second) 0.31. So there is plenty of headroom and nothing clips.\n    - notes decay to under 1% RMS, the echo is quieter than the note it repeats, the tick is short, and mute renders exactly zero.\n\n    I mutation-tested these checks to make sure they can fail. Detuning the oscillator by 6% failed 5 tests, and zeroing the master gain failed 9. I also rendered Zelda's Lullaby, the chime and the fanfare to a WAV and looked at an ffmpeg spectrogram (since deleted, like the scratch previews). It showed six distinct notes on the expected bands with the specified rhythm (long-short-longest), a descending-then-rising chime, and a sustained D major chord at the end. Mean level was -22 dB, max -10 dB.\n\n    New jsdom tests check when sounds fire:\n    - keys play the right frequencies, and the chime fires once per completed song\n    - the sound toggle sets `muted` and `aria-pressed`\n    - the final seconds tick 4, 3, 2, 1 with the last three accented, and the fanfare plays exactly once and never repeats\n    - nothing plays at zero if the visitor never interacted\n\n    Writing these surfaced one test-harness subtlety. A single `act()` across several seconds batches every tick into one React render, so per-second effects only ran once. Stepping one second per `act()` reflects the browser. The app code was correct.\n\n## 3. What I looked for\n\n- Does the clock read in one glance from across a room, and does it stay the hero over busy art? (contrast, scrim, size)\n- Do the assets look like they were chosen, not just placed? Is the subject framed on every aspect ratio, and is no art upscaled or blurry?\n- Does anything collide, wrap badly or get clipped at 390, 768, 1280×680, 1440, or with 3-digit days?\n- Is the interaction discoverable by someone who has never played the game? (the Songs list with Play buttons)\n- Does every effect the copy promises actually happen?\n- Is the zero moment an event, not just a 0? And is the post-launch page correct on a fresh load?\n- Does the `<time>` contract hold exactly: one element, every tick, `PT0S`?\n- Could a staff engineer review this? Pure logic separated from React, no free-running `setInterval`, no effects restarting every second, lint-clean without suppressions.\n\n## 4. How I decided it was done\n\nI stopped once a full pass across every state (default, each scene, night, rain, songbook, vision, final ten seconds, launch) at phone, short phone, tablet, short laptop and desktop found nothing left that I would fix before launch. The last few rounds turned up only small things (Navi's resting spot, one line of copy), and each fix was confirmed by a follow-up shot. All gates were green: build, lint at 0 warnings, 44 tests, and no off-origin URLs in `dist/`.\n\n## 5. How the code is organized\n\n```\napp/\n  art-src/                 original assets, renamed for meaning\n  scripts/build-art.mjs    sharp pipeline → src/art/*.webp (output committed; build never needs sharp)\n  src/\n    main.tsx, index.css    entry; all styles, tokens at the top, sectioned by component\n    App.tsx                composition: clock, world reducer, sound, launch/vision, title, a11y live region\n    art.ts                 scene manifest: srcsets, placeholder, focus points, mote tint\n    components/\n      Backdrop.tsx         layered <picture> crossfade between scenes, memoised\n      Atmosphere.tsx       single canvas/rAF: motes, rain, sparks, Navi; props via ref so the loop never restarts\n      Countdown.tsx        the one <time>, per-digit keyed animation\n      OcarinaPanel.tsx     staff + pad\n      Songbook.tsx         native <dialog>\n    hooks/\n      useClock.ts          ?now offset captured once; timeouts aligned to the countdown's second boundary; resync on tab visibility\n      useOcarina.ts        phrase state, keyboard, song recognition, rhythmic playback, timer cleanup\n      useReducedMotion.ts  useSyncExternalStore over matchMedia\n    lib/                   pure, framework-free\n      countdown.ts         remainingUntil, toIsoDuration, ?now parsing, msUntilNextTick\n      songs.ts             notes, songs, matchSong\n      world.ts             scene/night/rain/vision reducer (+ dev-only worldFromSearch)\n      audio.ts             Web Audio ocarina, ticks, chime, fanfare\n      calendar.ts          .ics generation\n    *.test.ts(x)           vitest\n```\n\nDev-only URL params (`?world=`, `?play=`, `?songbook`) sit behind `import.meta.env.DEV`. I checked that the production bundle doesn't contain them. `?now=` works in every build.\n\n## 6. How I verified it\n\n- `npm run build` and `npm run lint` pass with 0 warnings and 0 errors.\n- `npm test` runs 44 vitest tests:\n  - Time math: Nov 5 05:00Z target, the 37d11h10m5s example → `P37DT11H10M5S`, the 10-second example, ceiling rounding at the boundary, never negative, `PT0S`.\n  - `?now=` parsing, including garbage input and an unencoded `+`.\n  - Tick alignment.\n  - Song matching, including partial phrases and songs at the end of a longer phrase.\n  - Key mapping and the world reducer.\n  - jsdom tests that mount the real `<App/>` with fake timers: exactly one `<time>`; `?now=…23:59:50-05:00` reads `P0DT0H0M10S`, then `…9S` after one second, then `…6S`; it reaches `PT0S` and stays there 60 s later with no negative numbers; a load after launch is in the launched state; Epona's Song on the keyboard changes the scene; a pad click plays a note; the Song of Time shows the vision without changing `datetime`.\n  - Sound cues in the app: note frequencies per key, chime once per song, the mute toggle, ticks 4-3-2-1 with accents, the fanfare exactly once, and silence for visitors who never interacted.\n  - `audio.test.ts` renders the synth through a real Web Audio engine (`node-web-audio-api`, a dev dependency only, not in the bundle) and checks the samples: pitch for all five notes, no clipping, audible level, decay, echo level, tick length, and mute = digital silence. I mutation-tested these checks to confirm they fail when the synth is broken.\n- Offline: I grepped `dist/` for URLs. The only hits are the SVG namespace and React's error-doc string. All 5 font files are bundled.\n- Visual: 25 `./shot` screenshots across 390×844, 390×664, 768×1024, 1280×680 and 1440×900, every world state, the final seconds, and launch. `./shot` reported no console errors.\n\n## 7. What's still wrong or unfinished\n\n- **The sound was checked by measurement, not by ear.** Rendered output was confirmed for pitch, levels, envelopes and timing, and inspected as a spectrogram. But whether it *sounds* like an ocarina rather than a sine wave with breath is a taste call nobody has made by listening. I also only rendered it in the node engine, not in Safari or Firefox. Audio only starts after a first click or keypress (browser autoplay rules), so someone who never interacts gets a silent launch. A test confirms this behaviour.\n- **The interactions were never exercised with a real pointer.** These are Navi following the cursor, touch on the pad, crossfade timing, and the songbook's Play button. They are covered by code and jsdom tests, and by screenshots of the resulting states driven through the dev params, but not by clicking in a real browser.\n- **Song melodies are simplified.** The note sequences are correct, but the in-game Song of Time and Zelda's Lullaby have more nuanced rhythms than my beat values.\n- **The portrait key art (`kokiri-portrait-1178.webp`, about 500 KB) is the heaviest file.** I encoded it at quality 68, but a phone on a slow connection will see the blurred placeholder for a moment.\n- **The `.ics` download** was not tested in a real calendar app. The format follows RFC 5545 but no one has imported it.\n- **Long locale strings.** The \"where you are\" line uses the browser's locale format. A very long localized string could wrap onto two lines on a 390 px phone. It won't overflow, but I only checked it in English.\n",
+    "groundRules": {
+      "stayInsideRule": true,
+      "outside": []
+    },
+    "transcript": {
+      "source": "/Users/pedro/Development/doomsday-benchmark/runs/ocarina-remake_jcode-opus-5.5_2026-10-01T16-07-35/.bench/transcript.log",
+      "cleaned": "report/transcript.txt",
+      "bytes": 1140956
+    }
+  }
+}
