@@ -7,6 +7,7 @@ import type { AgentRecord } from '../run-meta.ts'
 import { readShotLog, type ShotRecord } from '../shot-log.ts'
 import { readUsage, runDuration, type RunDuration, type RunUsage } from '../usage.ts'
 import { findOutsideAccess, type OutsideAccess } from './boundary.ts'
+import { toolCallInputs } from './tool-calls.ts'
 import { cleanTranscript } from './transcript.ts'
 
 /** Where on the page something is, as the grader found it, for matching against the agent's screenshots. */
@@ -27,6 +28,8 @@ export interface ProcessFacts {
   shots: ShotRecord[]
   /** The pixel height of each screenshot's image, by shot number; full-page shots are as tall as the page was. */
   shotHeights: Record<number, number>
+  /** Screenshots no tool call ever named again: taken, but never opened or used. */
+  unopenedShots: number[]
   /** Minutes between the first and the last screenshot. */
   shotSpanMinutes: number | null
   snapshots: SnapshotStat[]
@@ -48,6 +51,8 @@ export function collectProcessFacts(paths: RunPaths, agent: AgentRecord | null, 
   const lastLooked = shots.at(-1)?.commit ?? snapshots[0].commit
   const transcriptSource = transcriptOverride ? path.resolve(transcriptOverride) : findTranscript(paths)
   const usage = transcriptSource ? readUsage(transcriptSource, agent?.model) : null
+  const transcriptText = transcriptSource ? fs.readFileSync(transcriptSource, 'utf8') : ''
+  const toolInputs = toolCallInputs(transcriptText)
 
   return {
     agent,
@@ -55,6 +60,8 @@ export function collectProcessFacts(paths: RunPaths, agent: AgentRecord | null, 
     usage,
     shots,
     shotHeights: Object.fromEntries(shots.map((shot) => [shot.n, pngHeight(path.join(paths.root, shot.file)) ?? shot.height])),
+    // Opening a screenshot, or cropping it to look closer, means a tool call names its file.
+    unopenedShots: transcriptSource ? shots.filter((shot) => !toolInputs.some((input) => input.includes(path.basename(shot.file)))).map((shot) => shot.n) : [],
     shotSpanMinutes: shots.length ? minutesBetween(shots[0].takenAt, shots.at(-1)!.takenAt) : null,
     snapshots,
     changedAfterLastShot: diffStat(paths, lastLooked, finalCommit),
@@ -62,7 +69,7 @@ export function collectProcessFacts(paths: RunPaths, agent: AgentRecord | null, 
     handover: fs.existsSync(paths.handover) ? fs.readFileSync(paths.handover, 'utf8') : null,
     groundRules: {
       stayInsideRule: fs.existsSync(paths.brief) && fs.readFileSync(paths.brief, 'utf8').includes(STAY_INSIDE_RULE),
-      outside: transcriptSource ? findOutsideAccess(fs.readFileSync(transcriptSource, 'utf8'), runRoots(paths)) : [],
+      outside: transcriptSource ? findOutsideAccess(transcriptText, runRoots(paths)) : [],
     },
     transcript: transcriptSource ? writeCleanTranscript(paths, transcriptSource) : null,
   }

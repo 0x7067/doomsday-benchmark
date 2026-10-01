@@ -328,6 +328,8 @@ function processEvidence({ paths, meta, statics, experience, processFacts: facts
 The agent's own screenshots taken with \`./shot\`, in order (open the first, the last and several in between). The span from first to last was ${facts.shotSpanMinutes ?? 0} minutes:
 ${shotLines.join('\n') || 'None: the agent never used the screenshot tool.'}
 
+Screenshots it took but never opened or used (no later tool call names the file): ${facts.unopenedShots.length ? `${facts.unopenedShots.length} of ${facts.shots.length}: ${facts.unopenedShots.join(', ')}` : 'none'}. A screenshot never opened is a look that never happened: weigh it in verification and critique, and against any claim that it was checked.
+
 Screenshot coverage: how many of those screenshots showed each moment at each viewport size (the agent may also have checked things with its own scripts; the transcript shows those):
 ${json(shotCoverage(facts.shots, target))}
 

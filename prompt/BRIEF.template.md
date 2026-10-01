@@ -22,6 +22,7 @@ Everything is in your current directory:
   ```
   ./shot [--width 1440] [--height 900] [--now <ISO timestamp>] [--wait <ms>] [--full-page] [--path /route]
   ```
+{{browserTools}}
 
 ## Requirements
 

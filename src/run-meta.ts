@@ -24,6 +24,8 @@ export interface RunMeta {
   harness?: Harness | null
   /** Set when the harness adapter limits the images kept in the agent's context. */
   imageWindow?: ImageWindow | null
+  /** The container image an isolated run's agent worked in; null or missing when it ran on this machine directly. */
+  isolation?: { image: string } | null
   /** Present only when the agent was launched through `bench run`. */
   agent?: AgentRecord
 }

@@ -3,6 +3,7 @@ import { parseArgs } from 'node:util'
 import { launchAgent, resolveAgentCommand } from './agents.ts'
 import { gradeRun } from './grade/grade.ts'
 import { detectHarness, HARNESSES, parseHarness } from './harness.ts'
+import { checkContainerLogin, ensureImage } from './isolation.ts'
 import { readMeta, writeMeta } from './run-meta.ts'
 import { setupRun } from './setup.ts'
 import { buildSite, SITE_DIR } from './site/build-site.ts'
@@ -18,9 +19,10 @@ const USAGE = `Usage:
       (${HARNESSES.join(', ')}) so its adapters are installed.
 
   npm run bench -- run --scenario <id> (--agent <preset> [--model <model>] | --cmd "<shell command>")
-                       [--label <name>] [--timeout <minutes>] [--harness <name>]
+                       [--label <name>] [--timeout <minutes>] [--harness <name>] [--no-isolation]
       Prepare a run directory and launch the agent in it. Presets are in agents.json.
-      The harness is read from the command unless --harness is given.
+      The harness is read from the command unless --harness is given. The agent runs in a
+      Docker container that sees only its run folder; --no-isolation runs it on this machine.
 
   npm run bench -- grade <run-dir> [--judge-model <model>] [--no-judges | --reuse-judges] [--transcript <file>]
       Grade a finished run. Writes <run-dir>/report/REPORT.md. --reuse-judges keeps the
@@ -52,6 +54,7 @@ async function main(): Promise<void> {
       transcript: { type: 'string' },
       harness: { type: 'string' },
       publish: { type: 'boolean', default: false },
+      'no-isolation': { type: 'boolean', default: false },
       version: { type: 'string' },
       help: { type: 'boolean', short: 'h', default: false },
     },
@@ -73,7 +76,8 @@ async function main(): Promise<void> {
   switch (command) {
     case 'setup': {
       const harness = values.harness ? parseHarness(values.harness) : null
-      const paths = setupRun(required(values.scenario, '--scenario'), { label: values.label, harness })
+      // You drive this agent yourself, on this machine, so it isn't isolated.
+      const paths = setupRun(required(values.scenario, '--scenario'), { label: values.label, harness, image: null })
       console.log(`\nRun ready: ${paths.root}${harness ? ` (set up for ${harness})` : ''}`)
       console.log(`Start your agent with its working directory set to that folder and give it BRIEF.md as the prompt.`)
       console.log(`Afterwards, save its transcript as .bench/transcript.<ext> (optional) and run:`)
@@ -86,9 +90,12 @@ async function main(): Promise<void> {
       if (!Number.isFinite(timeout) || timeout <= 0) throw new Error('--timeout must be a positive number of minutes')
       const harness = values.harness ? parseHarness(values.harness) : detectHarness(agent.command)
       if (!harness) console.warn('warning: could not tell the harness from the command, so no adapters are installed; pass --harness')
-      const paths = setupRun(required(values.scenario, '--scenario'), { label: values.label, harness })
-      console.log(`\nLaunching ${harness ?? 'agent'} in ${paths.root}:\n  ${agent.command}\n`)
-      const record = await launchAgent(paths, agent, timeout)
+      const isolated = !values['no-isolation']
+      if (isolated) checkContainerLogin(harness)
+      const image = isolated ? ensureImage() : null
+      const paths = setupRun(required(values.scenario, '--scenario'), { label: values.label, harness, image })
+      console.log(`\nLaunching ${harness ?? 'agent'} ${image ? `in a container (${image}) that sees only` : 'in'} ${paths.root}:\n  ${agent.command}\n`)
+      const record = await launchAgent(paths, agent, timeout, image ? { image, harness } : null)
       writeMeta(paths, { ...readMeta(paths), agent: record })
       const usage = readUsage(paths.transcript, agent.model)
       console.log(`\nAgent finished (exit ${record.exitCode}${record.timedOut ? ', timed out' : ''}): ${summarizeRun(runDuration(record, usage), usage)}`)

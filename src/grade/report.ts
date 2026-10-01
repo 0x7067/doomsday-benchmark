@@ -95,6 +95,7 @@ function markdown(paths: RunPaths, { evidence, verdicts, card }: ReportInput): s
   out.push(`- **Scenario:** ${meta.scenario.title}, counting down to ${meta.scenario.target}`)
   out.push(agent ? `- **Agent:** \`${agent.command}\` (exit ${agent.exitCode}${agent.timedOut ? ', timed out' : ''})` : '- **Agent:** launched manually')
   out.push(`- **Harness:** ${describeHarness(meta)}`)
+  out.push(`- **Isolation:** ${meta.isolation ? `a container (\`${meta.isolation.image}\`) that saw only the run folder` : 'none; the agent ran on the grading machine'}`)
   out.push(`- **Judges:** ${describeVerdicts(verdicts)}`, '')
 
   out.push(`## Score: ${card.total} / ${card.max}`, '', '| Area | Kind | Points |', '| --- | --- | --- |')
@@ -143,6 +144,7 @@ function markdown(paths: RunPaths, { evidence, verdicts, card }: ReportInput): s
 
   out.push('## Process facts', '')
   out.push(`- Screenshots taken by the agent: ${facts.shots.length}, spanning ${facts.shotSpanMinutes ?? 0} minutes`)
+  out.push(`- Screenshots it never opened: ${facts.unopenedShots.length ? `${facts.unopenedShots.length} (${facts.unopenedShots.join(', ')})` : 'none'}`)
   out.push(`- Changed after the last screenshot: ${facts.changedAfterLastShot.filesChanged} files, +${facts.changedAfterLastShot.insertions}/-${facts.changedAfterLastShot.deletions} lines`)
   out.push(`- Agent commits in app/: ${facts.appCommits.length}`)
   out.push(`- HANDOVER.md: ${facts.handover === null ? 'missing' : 'present'}`)

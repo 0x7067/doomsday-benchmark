@@ -17,7 +17,7 @@ It works with any model and any harness: Claude Code, Codex, OpenCode, Copilot, 
 
 ## Quick start
 
-You need Node 24+, git, and the [Claude Code](https://claude.com/claude-code) CLI (the judges run on it).
+You need Node 24+, git, Docker (agents run in containers), and the [Claude Code](https://claude.com/claude-code) CLI (the judges run on it).
 
 1. Install the dependencies and the headless browser:
 
@@ -49,7 +49,7 @@ You need Node 24+, git, and the [Claude Code](https://claude.com/claude-code) CL
    npm run bench -- site --publish
    ```
 
-The agent runs unattended with permission prompts turned off, so it has full access to your machine.
+The agent runs unattended with permission prompts turned off, inside a container that sees only its run folder (see [Isolation](#isolation)).
 
 ## How a run works
 
@@ -114,6 +114,17 @@ npm run bench -- site --publish
 
 That builds `_site/` from every graded run, in `runs/` and in the archived `results/<batch>/<run>/` folders, and force-pushes it to the `gh-pages` branch as one fresh commit. The site has a leaderboard for each [benchmark version](#versions), with a toggle that opens on the latest, with a chart of any score (the total or one category) against estimated cost, run time or tokens; each run opens its live countdown with a details panel (scores per category, time, tokens, cost) and the full report. Each app is rebuilt to be served from its subfolder; grading always uses the agent's own build. Transcripts are never published. Without `--publish`, it only builds `_site/` for a local look.
 
+### Isolation
+
+`run` puts the agent in a Docker container that sees only its run folder, mounted at `/work`, and a private home: not this benchmark, not other runs, and not any harness's session histories. It has its own processes and network, so parallel runs don't share ports. The image ([isolation/Dockerfile](isolation/Dockerfile)) has Node 24, Chromium with Playwright (any script in the run folder can `import { chromium } from 'playwright'`), the screenshot tool, and pinned versions of the Claude Code, OpenCode and Codex CLIs. It's built automatically the first time, and again whenever the Dockerfile or the screenshot tool changes. The app's dependencies are installed inside the container for Linux; grading reinstalls them on this machine afterwards.
+
+Each harness gets its login and nothing else:
+
+- **OpenCode** and **Codex**: their login file (`~/.local/share/opencode/auth.json`, `~/.codex/auth.json`) is mounted read-only.
+- **Claude Code**: a subscription login lives in the macOS Keychain, which a container can't reach. Run `claude setup-token` once and save the token it prints to `~/.config/doomsday-benchmark/claude-oauth-token` (or set `CLAUDE_CODE_OAUTH_TOKEN`). It's passed to the container by variable name, so it never appears in a command line or in the run's metadata.
+
+`--no-isolation` runs the agent directly on this machine, and `setup` runs are never isolated, since you drive that agent yourself. The brief's ground rules still tell agents to stay in their folder, so attempts to leave it show up in the report either way.
+
 ### Preset status
 
 | Preset | Status |
@@ -136,7 +147,7 @@ The harness is read from the launch command (`opencode ...`, `claude ...`, `code
 
 The process judge reads the agent's reasoning when the transcript has it, so the presets ask for it: `--thinking` for OpenCode (the model's full reasoning) and `--thinking-display summarized` for Claude Code (Anthropic's API returns a summary, not the raw reasoning; the flag isn't in `claude --help`). Add the same flag when you launch either with `--cmd`. The judge is told to score what the agent noticed and acted on, not how much reasoning it wrote.
 
-All presets skip permission prompts, because the agent must work unattended. **The agent runs with full access to your machine.** Run it in a VM or container if that matters to you.
+All presets skip permission prompts, because the agent must work unattended. Isolated, the agent can only touch its run folder; **with `--no-isolation` it runs with full access to your machine.**
 
 ## Scoring (100 points)
 
